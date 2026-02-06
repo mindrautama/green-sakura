@@ -196,18 +196,18 @@ export default function GreenSakuraPresentation() {
       <div className="relative z-10 w-full h-full flex flex-col">
 
         {/* Top Bar */}
-        <header className="flex items-center justify-between px-16 py-8">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-[#22c55e]/10 border border-[#22c55e]/20 flex items-center justify-center">
-              <Leaf className="w-5 h-5 text-[#22c55e]" />
+        <header className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 pt-10 pb-4 md:py-8 gap-4 md:gap-0">
+          <div className="flex items-center gap-3 md:gap-4">
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-[#22c55e]/10 border border-[#22c55e]/20 flex items-center justify-center">
+              <Leaf className="w-4 h-4 md:w-5 md:h-5 text-[#22c55e]" />
             </div>
             <div>
-              <div className="text-sm font-semibold text-white">Green SAKURA</div>
-              <div className="text-[10px] text-gray-500 uppercase tracking-widest">ESG Program</div>
+              <div className="text-xs md:text-sm font-semibold text-white">Green SAKURA</div>
+              <div className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-widest leading-none">ESG Program</div>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 md:gap-3 order-3 md:order-2">
             {Array.from({ length: total }).map((_, i) => (
               <button
                 key={i}
@@ -217,14 +217,14 @@ export default function GreenSakuraPresentation() {
             ))}
           </div>
 
-          <div className="text-right">
+          <div className="text-right hidden md:block md:order-3">
             <div className="text-xs text-gray-500">PTPN III Holding</div>
             <div className="text-sm font-medium text-white">FGD COST</div>
           </div>
         </header>
 
         {/* Slide Area */}
-        <main className="flex-1 px-16 pb-8 overflow-hidden">
+        <main className="flex-1 px-6 md:px-16 pb-8 overflow-y-auto md:overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
@@ -248,11 +248,11 @@ export default function GreenSakuraPresentation() {
         </main>
 
         {/* Bottom Navigation */}
-        <footer className="flex items-center justify-between px-16 py-6 border-t border-white/5">
-          <div className="flex items-center gap-6">
-            <span className="text-5xl font-light text-white/10">{String(current + 1).padStart(2, '0')}</span>
-            <div className="h-8 w-px bg-white/10" />
-            <span className="text-sm text-gray-400">of {String(total).padStart(2, '0')}</span>
+        <footer className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-4 md:py-6 border-t border-white/5 bg-bg-dark/80 backdrop-blur-md">
+          <div className="flex items-center gap-4 md:gap-6 mb-4 md:mb-0">
+            <span className="text-3xl md:text-5xl font-light text-white/10">{String(current + 1).padStart(2, '0')}</span>
+            <div className="h-6 md:h-8 w-px bg-white/10" />
+            <span className="text-xs md:text-sm text-gray-400">of {String(total).padStart(2, '0')}</span>
           </div>
 
           <div className="flex items-center gap-3">
@@ -268,7 +268,7 @@ export default function GreenSakuraPresentation() {
                   >
                     <div className="flex flex-col items-end">
                       <span className="text-[10px] font-bold text-[#22c55e] tracking-widest uppercase">LISA AI</span>
-                      {transcript && <p className="text-[10px] text-gray-400 italic max-w-[150px] truncate">{transcript}</p>}
+                      {transcript && <p className="text-[10px] text-gray-400 italic max-w-[100px] md:max-w-[150px] truncate">{transcript}</p>}
                     </div>
                     <div className="w-8 h-8 rounded-lg bg-[#22c55e]/10 flex items-center justify-center text-[#22c55e]">
                       <Sparkles className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
@@ -327,9 +327,9 @@ function TitleSlide() {
         </motion.div>
 
         <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.4 }}>
-          <p className="text-sm font-medium text-[#22c55e] tracking-[0.3em] uppercase mb-6">ESG Transformation Program</p>
-          <h1 className="text-8xl font-bold text-gradient mb-8 tracking-tight">Green SAKURA</h1>
-          <p className="text-2xl text-gray-400 font-light leading-relaxed max-w-2xl mx-auto">
+          <p className="text-xs md:text-sm font-medium text-[#22c55e] tracking-[0.3em] uppercase mb-4 md:mb-6">ESG Transformation Program</p>
+          <h1 className="text-4xl md:text-8xl font-bold text-gradient mb-6 md:mb-8 tracking-tight">Green SAKURA</h1>
+          <p className="text-lg md:text-2xl text-gray-400 font-light leading-relaxed max-w-2xl mx-auto px-4">
             Sustainable & Agile Work Culture for <span className="text-white font-medium">Responsible Corporate Action</span>
           </p>
         </motion.div>
@@ -338,19 +338,19 @@ function TitleSlide() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.6 }}
-          className="flex justify-center gap-8 mt-16"
+          className="flex flex-col md:flex-row justify-center gap-4 md:gap-8 mt-10 md:mt-16"
         >
           <div className="px-6 py-4 rounded-2xl glass-card">
-            <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Initiated By</div>
-            <div className="text-lg font-semibold text-white">Group of Cost</div>
+            <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Initiated By</div>
+            <div className="text-base md:text-lg font-semibold text-white">Group of Cost</div>
           </div>
           <div className="px-6 py-4 rounded-2xl glass-card">
-            <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Scope</div>
-            <div className="text-lg font-semibold text-white">Kantor Holding PTPN III (Persero)</div>
+            <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Scope</div>
+            <div className="text-base md:text-lg font-semibold text-white text-center">Holding PTPN III</div>
           </div>
           <div className="px-6 py-4 rounded-2xl glass-card">
-            <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Timeline</div>
-            <div className="text-lg font-semibold text-white">90 Days</div>
+            <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Timeline</div>
+            <div className="text-base md:text-lg font-semibold text-white">90 Days</div>
           </div>
         </motion.div>
       </div>
@@ -367,13 +367,13 @@ function ObjectivesSlide() {
   ];
 
   return (
-    <div className="h-full flex flex-col justify-center">
-      <div className="mb-16">
-        <p className="text-sm font-medium text-[#22c55e] tracking-[0.2em] uppercase mb-4">Strategic Objectives</p>
-        <h2 className="text-6xl font-bold text-white tracking-tight">Tujuan Program</h2>
+    <div className="h-full flex flex-col justify-start md:justify-center pt-4 md:pt-0 py-8">
+      <div className="mb-8 md:mb-16">
+        <p className="text-xs md:text-sm font-medium text-[#22c55e] tracking-[0.2em] uppercase mb-4">Strategic Objectives</p>
+        <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight">Tujuan Program</h2>
       </div>
 
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
         {objectives.map((obj, i) => (
           <motion.div
             key={i}
@@ -396,16 +396,16 @@ function ObjectivesSlide() {
 
 function PeopleStreamSlide() {
   return (
-    <div className="h-full flex flex-col justify-center gap-8">
-      <div className="flex gap-12">
+    <div className="h-full flex flex-col justify-start md:justify-center gap-6 md:gap-8 pt-4 md:pt-0 py-8 overflow-y-auto">
+      <div className="flex flex-col md:flex-row gap-8 md:gap-12">
         <div className="flex-1">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-4 w-fit">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs md:text-sm font-medium mb-4 w-fit">
             <Users className="w-4 h-4" /> People Stream
           </div>
-          <h2 className="text-4xl font-bold text-white mb-4 tracking-tight">Green Behavior & Culture</h2>
-          <p className="text-lg text-gray-400 leading-relaxed mb-6">Perubahan perilaku karyawan menjadi lebih sadar lingkungan</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Green Behavior & Culture</h2>
+          <p className="text-base md:text-lg text-gray-400 leading-relaxed mb-6">Perubahan perilaku karyawan menjadi lebih sadar lingkungan</p>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {['Kampanye Green Habit', 'Microlearning ESG 5 menit', 'Green Ambassador per unit', 'Insentif & Recognition'].map((item, i) => (
               <motion.div
                 key={i}
@@ -415,15 +415,15 @@ function PeopleStreamSlide() {
                 className="flex items-center gap-3 p-3 rounded-xl bg-white/5"
               >
                 <Check className="w-4 h-4 text-[#22c55e]" />
-                <span className="text-white text-sm">{item}</span>
+                <span className="text-white text-xs md:text-sm">{item}</span>
               </motion.div>
             ))}
           </div>
         </div>
 
-        <div className="w-80">
+        <div className="w-full md:w-80">
           <div className="p-6 rounded-2xl glass-card">
-            <h4 className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">Target KPI</h4>
+            <h4 className="text-[10px] md:text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">Target KPI</h4>
             <div className="space-y-4">
               {[
                 { label: 'Partisipasi Kampanye', value: '85%' },
@@ -432,8 +432,8 @@ function PeopleStreamSlide() {
               ].map((kpi, i) => (
                 <div key={i}>
                   <div className="flex justify-between mb-1">
-                    <span className="text-gray-400 text-xs">{kpi.label}</span>
-                    <span className="text-[#22c55e] font-bold text-sm">{kpi.value}</span>
+                    <span className="text-gray-400 text-[10px] md:text-xs">{kpi.label}</span>
+                    <span className="text-[#22c55e] font-bold text-xs md:text-sm">{kpi.value}</span>
                   </div>
                   <div className="progress-track h-1.5">
                     <motion.div className="progress-fill h-full" initial={{ width: 0 }} animate={{ width: kpi.value }} transition={{ delay: 0.5 + i * 0.2, duration: 1 }} />
@@ -446,7 +446,7 @@ function PeopleStreamSlide() {
       </div>
 
       {/* Benchmark & Insights */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.6 }} className="p-5 rounded-2xl glass-card border-l-4 border-emerald-500">
           <div className="flex items-center gap-2 mb-3">
             <Globe className="w-4 h-4 text-emerald-400" />
@@ -473,28 +473,28 @@ function PeopleStreamSlide() {
 
 function ProcessStreamSlide() {
   return (
-    <div className="h-full flex flex-col justify-center gap-8">
-      <div className="flex gap-12">
+    <div className="h-full flex flex-col justify-start md:justify-center gap-6 md:gap-8 pt-4 md:pt-0 py-8 overflow-y-auto">
+      <div className="flex flex-col md:flex-row gap-8 md:gap-12">
         <div className="flex-1">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium mb-4 w-fit">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs md:text-sm font-medium mb-4 w-fit">
             <Settings className="w-4 h-4" /> Process Stream
           </div>
-          <h2 className="text-4xl font-bold text-white mb-4 tracking-tight">Green Policy & Ways of Working</h2>
-          <p className="text-lg text-gray-400 leading-relaxed mb-6">Aturan & cara kerja yang lebih efisien dan ramah lingkungan</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Green Policy & Ways of Working</h2>
+          <p className="text-base md:text-lg text-gray-400 leading-relaxed mb-6">Aturan & cara kerja yang lebih ramah lingkungan</p>
 
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {['No Overtime Policy', 'WFH / WFA Options', 'Virtual-First Meeting', 'Travel berbasis Urgensi', 'Shared Room Standard', 'Paper Usage Control'].map((item, i) => (
               <motion.div key={i} initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.2 + i * 0.08 }} className="flex items-center gap-2 p-3 rounded-xl bg-white/5 border border-white/5">
                 <div className="w-2 h-2 rounded-full bg-cyan-400" />
-                <span className="text-white text-sm">{item}</span>
+                <span className="text-white text-xs md:text-sm">{item}</span>
               </motion.div>
             ))}
           </div>
         </div>
 
-        <div className="w-72">
+        <div className="w-full md:w-72">
           <div className="p-5 rounded-2xl glass-card">
-            <h4 className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">Expected Impact</h4>
+            <h4 className="text-[10px] md:text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">Expected Impact</h4>
             <div className="space-y-4">
               {[
                 { label: 'Travel Cost Reduction', value: '-30%', icon: <TrendingUp /> },
@@ -506,8 +506,8 @@ function ProcessStreamSlide() {
                     {React.cloneElement(stat.icon, { className: 'w-4 h-4' })}
                   </div>
                   <div className="flex-1">
-                    <div className="text-xs text-gray-400">{stat.label}</div>
-                    <div className="text-lg font-bold text-white">{stat.value}</div>
+                    <div className="text-[10px] text-gray-400">{stat.label}</div>
+                    <div className="text-base md:text-lg font-bold text-white">{stat.value}</div>
                   </div>
                 </motion.div>
               ))}
@@ -517,7 +517,7 @@ function ProcessStreamSlide() {
       </div>
 
       {/* Benchmark & Insights */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.6 }} className="p-5 rounded-2xl glass-card border-l-4 border-cyan-500">
           <div className="flex items-center gap-2 mb-3">
             <Globe className="w-4 h-4 text-cyan-400" />
@@ -544,16 +544,16 @@ function ProcessStreamSlide() {
 
 function TechnologyStreamSlide() {
   return (
-    <div className="h-full flex flex-col justify-center gap-8">
-      <div className="flex gap-12">
+    <div className="h-full flex flex-col justify-start md:justify-center gap-6 md:gap-8 pt-4 md:pt-0 py-8 overflow-y-auto">
+      <div className="flex flex-col md:flex-row gap-8 md:gap-12">
         <div className="flex-1">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-4 w-fit">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs md:text-sm font-medium mb-4 w-fit">
             <Cpu className="w-4 h-4" /> Technology Stream
           </div>
-          <h2 className="text-4xl font-bold text-white mb-4 tracking-tight">Green Digital Enablement</h2>
-          <p className="text-lg text-gray-400 leading-relaxed mb-6">Teknologi sebagai enabler transformasi ESG</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Green Digital Enablement</h2>
+          <p className="text-base md:text-lg text-gray-400 leading-relaxed mb-6 text-center md:text-left">Teknologi sebagai enabler transformasi ESG</p>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               { title: 'Online Recruitment', desc: 'End-to-end digital hiring' },
               { title: 'Paperless System', desc: 'HR & admin digitization' },
@@ -562,27 +562,27 @@ function TechnologyStreamSlide() {
             ].map((item, i) => (
               <motion.div key={i} initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3 + i * 0.1 }} className="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-blue-500/30 transition-all">
                 <h4 className="text-base font-semibold text-white mb-1">{item.title}</h4>
-                <p className="text-gray-400 text-sm">{item.desc}</p>
+                <p className="text-gray-400 text-xs md:text-sm">{item.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
 
-        <div className="w-72">
+        <div className="w-full md:w-72">
           <div className="p-6 rounded-2xl glass-card text-center">
-            <div className="w-14 h-14 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mx-auto mb-4">
-              <BarChart3 className="w-7 h-7" />
+            <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mx-auto mb-4">
+              <BarChart3 className="w-6 h-6 md:w-7 md:h-7" />
             </div>
-            <h4 className="text-xl font-bold text-white mb-1">Digital Maturity</h4>
-            <p className="text-gray-400 text-sm mb-4">Target pencapaian</p>
-            <div className="text-5xl font-bold text-gradient mb-2">85%</div>
-            <p className="text-xs text-gray-500">Proses HR & Admin Paperless</p>
+            <h4 className="text-lg md:text-xl font-bold text-white mb-1">Digital Maturity</h4>
+            <p className="text-gray-400 text-[10px] md:text-xs mb-4">Target pencapaian</p>
+            <div className="text-4xl md:text-5xl font-bold text-gradient mb-2">85%</div>
+            <p className="text-[10px] text-gray-500">Proses HR & Admin Paperless</p>
           </div>
         </div>
       </div>
 
       {/* Benchmark & Insights */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.6 }} className="p-5 rounded-2xl glass-card border-l-4 border-blue-500">
           <div className="flex items-center gap-2 mb-3">
             <Globe className="w-4 h-4 text-blue-400" />
@@ -616,13 +616,13 @@ function GovernanceSlide() {
   ];
 
   return (
-    <div className="h-full flex flex-col justify-center">
-      <div className="mb-12">
-        <p className="text-sm font-medium text-[#22c55e] tracking-[0.2em] uppercase mb-4">Program Governance</p>
-        <h2 className="text-6xl font-bold text-white tracking-tight">Struktur Program</h2>
+    <div className="h-full flex flex-col justify-start md:justify-center pt-4 md:pt-0 py-8 overflow-y-auto">
+      <div className="mb-8 md:mb-12">
+        <p className="text-xs md:text-sm font-medium text-[#22c55e] tracking-[0.2em] uppercase mb-4">Program Governance</p>
+        <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight">Struktur Program</h2>
       </div>
 
-      <div className="grid grid-cols-4 gap-6 mb-12">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12">
         {structure.map((item, i) => (
           <motion.div
             key={i}
@@ -641,16 +641,16 @@ function GovernanceSlide() {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.6 }}
-        className="p-8 rounded-3xl glass-card flex items-center gap-8"
+        className="p-6 md:p-8 rounded-3xl glass-card flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center md:text-left"
       >
-        <div className="w-16 h-16 rounded-2xl bg-[#22c55e]/10 border border-[#22c55e]/20 flex items-center justify-center text-[#22c55e]">
-          <BarChart3 className="w-8 h-8" />
+        <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-[#22c55e]/10 border border-[#22c55e]/20 flex items-center justify-center text-[#22c55e]">
+          <BarChart3 className="w-6 h-6 md:w-8 md:h-8" />
         </div>
         <div className="flex-1">
-          <h4 className="text-xl font-bold text-white mb-2">Dashboard Cost–ESG</h4>
-          <p className="text-gray-400">Monitoring terpusat di Management Command Center untuk konsumsi listrik, kertas, travel, dan cost saving</p>
+          <h4 className="text-lg md:text-xl font-bold text-white mb-2">Dashboard Cost–ESG</h4>
+          <p className="text-sm md:text-base text-gray-400">Monitoring terpusat di Management Command Center untuk konsumsi listrik, kertas, travel, dan cost saving</p>
         </div>
-        <div className="px-4 py-2 rounded-full bg-[#22c55e]/10 text-[#22c55e] text-sm font-medium">
+        <div className="px-4 py-2 rounded-full bg-[#22c55e]/10 text-[#22c55e] text-xs md:text-sm font-medium">
           Real-time Sync
         </div>
       </motion.div>
@@ -666,13 +666,13 @@ function RoadmapSlide() {
   ];
 
   return (
-    <div className="h-full flex flex-col justify-center">
-      <div className="mb-12">
-        <p className="text-sm font-medium text-[#22c55e] tracking-[0.2em] uppercase mb-4">Quick Wins</p>
-        <h2 className="text-6xl font-bold text-white tracking-tight">Roadmap 90 Hari</h2>
+    <div className="h-full flex flex-col justify-start md:justify-center pt-4 md:pt-0 py-8 overflow-y-auto">
+      <div className="mb-8 md:mb-12 text-center md:text-left">
+        <p className="text-xs md:text-sm font-medium text-[#22c55e] tracking-[0.2em] uppercase mb-4">Quick Wins</p>
+        <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight">Roadmap 90 Hari</h2>
       </div>
 
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         {phases.map((phase, i) => (
           <motion.div
             key={i}
@@ -718,11 +718,11 @@ function ClosingSlide() {
         </motion.div>
 
         <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3 }}>
-          <p className="text-sm font-medium text-[#22c55e] tracking-[0.3em] uppercase mb-6">Strategic Power Position</p>
-          <h2 className="text-6xl font-bold text-white mb-8 tracking-tight leading-tight">
+          <p className="text-xs md:text-sm font-medium text-[#22c55e] tracking-[0.3em] uppercase mb-4 md:mb-6">Strategic Power Position</p>
+          <h2 className="text-3xl md:text-6xl font-bold text-white mb-6 md:mb-8 tracking-tight leading-tight px-4">
             ESG sebagai penggerak <span className="text-gradient">Efisiensi</span> & Keberlanjutan
           </h2>
-          <p className="text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto mb-12">
+          <p className="text-base md:text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto mb-8 md:mb-12 px-4">
             Green SAKURA mentransformasi pola kerja operasional menjadi lebih efisien, hemat biaya, dan ramah lingkungan.
           </p>
         </motion.div>
@@ -731,10 +731,10 @@ function ClosingSlide() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="flex justify-center gap-6"
+          className="flex flex-wrap justify-center gap-3 md:gap-6 px-4"
         >
           {['Cost Efficiency', 'Operational Excellence', 'ESG Driven'].map((label, i) => (
-            <div key={i} className="px-6 py-3 rounded-full glass-card text-white font-medium">
+            <div key={i} className="px-4 md:px-6 py-2 md:py-3 rounded-full glass-card text-white text-xs md:text-sm font-medium">
               {label}
             </div>
           ))}

@@ -43,7 +43,10 @@ export default function GreenSakuraPresentation() {
       if (!isListening) return;
 
       try {
-        const wsUrl = 'ws://localhost:8083';
+        let wsUrl = process.env.NEXT_PUBLIC_LISA_RELAY_URL || 'localhost:8083';
+        const protocol = wsUrl.includes('localhost') ? 'ws://' : 'wss://';
+        if (!wsUrl.startsWith('ws')) wsUrl = protocol + wsUrl;
+
         ws = new WebSocket(wsUrl);
         wsRef.current = ws;
 
@@ -280,8 +283,8 @@ export default function GreenSakuraPresentation() {
               <button
                 onClick={() => setIsListening(!isListening)}
                 className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all ${isListening
-                    ? 'bg-red-500 text-white shadow-[0_0_20px_rgba(239,68,68,0.3)]'
-                    : 'bg-white/5 text-gray-400 border border-white/10 hover:text-white hover:bg-white/10'
+                  ? 'bg-red-500 text-white shadow-[0_0_20px_rgba(239,68,68,0.3)]'
+                  : 'bg-white/5 text-gray-400 border border-white/10 hover:text-white hover:bg-white/10'
                   }`}
               >
                 {isListening ? <Mic className="w-6 h-6" /> : <MicOff className="w-6 h-6" />}

@@ -1,19 +1,173 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Leaf, Users, Settings, Cpu, TrendingUp, Shield, Award, Clock,
   ChevronLeft, ChevronRight, Sparkles, ArrowRight, Target, Zap,
-  Check, BarChart3, Globe, Layers
+  Check, BarChart3, Globe, Layers, Mic, MicOff
 } from 'lucide-react';
 
 export default function GreenSakuraPresentation() {
   const [current, setCurrent] = useState(0);
+  const [isListening, setIsListening] = useState(false);
+  const [transcript, setTranscript] = useState('');
+  const [isAIThinking, setIsAIThinking] = useState(false);
+  const wsRef = useRef<WebSocket | null>(null);
+
   const total = 8;
+  const slideTitles = [
+    "Title Slide - Green SAKURA",
+    "Strategic Objectives",
+    "People Stream: Green Behavior & Culture",
+    "Process Stream: Green Policy & Ways of Working",
+    "Technology Stream: Green Digital Enablement",
+    "Program Governance",
+    "Roadmap 90 Hari",
+    "Closing Slide"
+  ];
 
   const nextSlide = () => setCurrent(prev => Math.min(prev + 1, total - 1));
   const prevSlide = () => setCurrent(prev => Math.max(prev - 1, 0));
+
+  // LISA AI Integration
+  useEffect(() => {
+    let ws: WebSocket | null = null;
+    let audioContext: AudioContext | null = null;
+    let processor: ScriptProcessorNode | null = null;
+    let stream: MediaStream | null = null;
+    let nextStartTime = 0;
+    const scheduledSources: AudioBufferSourceNode[] = [];
+
+    const startLISA = async () => {
+      if (!isListening) return;
+
+      try {
+        const wsUrl = 'ws://localhost:8083';
+        ws = new WebSocket(wsUrl);
+        wsRef.current = ws;
+
+        ws.onopen = async () => {
+          console.log("Connected to LISA Strategic AI");
+
+          ws?.send(JSON.stringify({
+            type: 'slide_update',
+            slideIndex: current,
+            slideTitle: slideTitles[current]
+          }));
+
+          audioContext = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 24000 });
+          if (audioContext.state === 'suspended') await audioContext.resume();
+          nextStartTime = audioContext.currentTime;
+
+          const floatTo16BitPCM = (input: Float32Array) => {
+            const output = new Int16Array(input.length);
+            for (let i = 0; i < input.length; i++) {
+              const s = Math.max(-1, Math.min(1, input[i]));
+              output[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+            }
+            return output;
+          };
+
+          const arrayBufferToBase64 = (buffer: ArrayBuffer) => {
+            let binary = '';
+            const bytes = new Uint8Array(buffer);
+            for (let i = 0; i < bytes.byteLength; i++) binary += String.fromCharCode(bytes[i]);
+            return window.btoa(binary);
+          };
+
+          stream = await navigator.mediaDevices.getUserMedia({
+            audio: { channelCount: 1, sampleRate: 24000 }
+          });
+
+          const source = audioContext.createMediaStreamSource(stream);
+          processor = audioContext.createScriptProcessor(4096, 1, 1);
+
+          processor.onaudioprocess = (e) => {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+              const inputData = e.inputBuffer.getChannelData(0);
+              const volume = inputData.reduce((a, b) => Math.max(a, Math.abs(b)), 0);
+              if (volume < 0.001) return;
+
+              const pcmData = floatTo16BitPCM(inputData);
+              const base64Audio = arrayBufferToBase64(pcmData.buffer);
+              ws.send(JSON.stringify({ type: 'audio', audio: base64Audio }));
+            }
+          };
+
+          source.connect(processor);
+          processor.connect(audioContext.destination);
+        };
+
+        ws.onmessage = async (event) => {
+          try {
+            const msg = JSON.parse(event.data);
+            if (msg.type === 'control' && msg.command === 'navigate_slide') {
+              if (msg.args.direction === 'next') nextSlide();
+              if (msg.args.direction === 'back') prevSlide();
+            }
+
+            if (msg.type === 'transcript') {
+              setIsAIThinking(false);
+              setTranscript(prev => prev + msg.data);
+            }
+
+            if (msg.type === 'interrupt' && audioContext) {
+              scheduledSources.forEach(s => { try { s.stop(); } catch (e) { } });
+              scheduledSources.length = 0;
+              nextStartTime = audioContext.currentTime;
+              setTranscript('');
+            }
+
+            if (msg.type === 'audio' && audioContext) {
+              if (audioContext.state === 'suspended') await audioContext.resume();
+              setTranscript('');
+              setIsAIThinking(false);
+              const binaryString = window.atob(msg.data);
+              const bytes = new Uint8Array(binaryString.length);
+              for (let i = 0; i < binaryString.length; i++) bytes[i] = binaryString.charCodeAt(i);
+              const int16Data = new Int16Array(bytes.buffer);
+              const float32Data = new Float32Array(int16Data.length);
+              for (let i = 0; i < int16Data.length; i++) float32Data[i] = int16Data[i] / 32768.0;
+
+              const buffer = audioContext.createBuffer(1, float32Data.length, 24000);
+              buffer.copyToChannel(float32Data, 0);
+              const source = audioContext.createBufferSource();
+              source.buffer = buffer;
+              source.connect(audioContext.destination);
+              const playTime = Math.max(audioContext.currentTime, nextStartTime);
+              source.start(playTime);
+              nextStartTime = playTime + buffer.duration;
+              scheduledSources.push(source);
+            }
+          } catch (e) { console.error(e); }
+        };
+
+        ws.onclose = () => {
+          console.log("Disconnected from LISA");
+          setIsListening(false);
+        };
+      } catch (err) { console.error(err); setIsListening(false); }
+    };
+
+    if (isListening) startLISA();
+    return () => {
+      if (ws) ws.close();
+      if (stream) stream.getTracks().forEach(t => t.stop());
+      if (processor) processor.disconnect();
+      if (audioContext) audioContext.close();
+    };
+  }, [isListening]);
+
+  useEffect(() => {
+    if (wsRef.current?.readyState === WebSocket.OPEN) {
+      wsRef.current.send(JSON.stringify({
+        type: 'slide_update',
+        slideIndex: current,
+        slideTitle: slideTitles[current]
+      }));
+    }
+  }, [current]);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -101,7 +255,39 @@ export default function GreenSakuraPresentation() {
             <span className="text-sm text-gray-400">of {String(total).padStart(2, '0')}</span>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex items-center gap-3">
+            {/* LISA AI Control */}
+            <div className="flex items-center gap-4 mr-4 pr-4 border-r border-white/10">
+              <AnimatePresence>
+                {(isListening || transcript) && (
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-xl"
+                  >
+                    <div className="flex flex-col items-end">
+                      <span className="text-[10px] font-bold text-[#22c55e] tracking-widest uppercase">LISA AI</span>
+                      {transcript && <p className="text-[10px] text-gray-400 italic max-w-[150px] truncate">{transcript}</p>}
+                    </div>
+                    <div className="w-8 h-8 rounded-lg bg-[#22c55e]/10 flex items-center justify-center text-[#22c55e]">
+                      <Sparkles className={`w-4 h-4 ${isListening ? 'animate-pulse' : ''}`} />
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <button
+                onClick={() => setIsListening(!isListening)}
+                className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all ${isListening
+                    ? 'bg-red-500 text-white shadow-[0_0_20px_rgba(239,68,68,0.3)]'
+                    : 'bg-white/5 text-gray-400 border border-white/10 hover:text-white hover:bg-white/10'
+                  }`}
+              >
+                {isListening ? <Mic className="w-6 h-6" /> : <MicOff className="w-6 h-6" />}
+              </button>
+            </div>
+
             <button
               onClick={prevSlide}
               disabled={current === 0}

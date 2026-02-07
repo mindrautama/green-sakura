@@ -660,9 +660,35 @@ function GovernanceSlide() {
 
 function RoadmapSlide() {
   const phases = [
-    { day: '30', title: 'Launch', items: ['Green Pledge', 'WFA Policy Deployment', 'Online Meeting Policy', 'Campaign Start'] },
-    { day: '60', title: 'Transform', items: ['Paperless Recruitment', 'WFA Implementation Sync', 'Travel Approval App', 'Folder Standard'] },
-    { day: '90', title: 'Scale', items: ['Dashboard Live', 'Cost Report', 'Champion Award'] },
+    {
+      day: '30',
+      title: 'Launch',
+      items: [
+        { name: 'Green Pledge', desc: 'Komitmen bersama seluruh pimpinan dan karyawan untuk mendukung inisiatif ramah lingkungan.' },
+        { name: 'WFA Policy Deployment', desc: 'Penerbitan kebijakan Work From Anywhere untuk mengurangi mobilitas dan penggunaan fasilitas.' },
+        { name: 'Online Meeting Policy', desc: 'Standarisasi pertemuan daring untuk meminimalisir emisi karbon dari perjalanan dinas.' },
+        { name: 'Campaign Start', desc: 'Peluncuran kampanye kesadaran ESG melalui berbagai kanal komunikasi internal.' }
+      ]
+    },
+    {
+      day: '60',
+      title: 'Transform',
+      items: [
+        { name: 'Paperless Recruitment', desc: 'Digitalisasi penuh proses rekrutmen untuk mengeliminasi penggunaan kertas secara total.' },
+        { name: 'WFA Implementation Sync', desc: 'Sinkronisasi dan evaluasi efektivitas pelaksanaan kebijakan kerja jarak jauh di seluruh unit.' },
+        { name: 'Travel Approval App', desc: 'Implementasi aplikasi persetujuan perjalanan dinas yang mengutamakan urgensi dan efisiensi.' },
+        { name: 'Folder Standard', desc: 'Penetapan standar pengelolaan dokumen digital untuk proses kerja yang lebih terorganisir.' }
+      ]
+    },
+    {
+      day: '90',
+      title: 'Scale',
+      items: [
+        { name: 'Dashboard Live', desc: 'Peluncuran dashboard pemantauan indikator ESG dan efisiensi biaya secara real-time.' },
+        { name: 'Cost Report', desc: 'Laporan komprehensif hasil penghematan biaya operasional melalui program Green SAKURA.' },
+        { name: 'Champion Award', desc: 'Penghargaan bagi unit yang menunjukkan dedikasi terbaik dalam penerapan budaya kerja hijau.' }
+      ]
+    },
   ];
 
   return (
@@ -679,7 +705,7 @@ function RoadmapSlide() {
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 + i * 0.15 }}
-            className="p-8 rounded-3xl glass-card"
+            className="p-8 rounded-3xl glass-card flex flex-col h-full"
           >
             <div className="flex items-center gap-4 mb-6">
               <div className="w-14 h-14 rounded-2xl bg-[#22c55e]/10 border border-[#22c55e]/20 flex items-center justify-center">
@@ -690,11 +716,16 @@ function RoadmapSlide() {
                 <div className="text-sm text-gray-500">{phase.title}</div>
               </div>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-4 flex-grow">
               {phase.items.map((item, j) => (
-                <div key={j} className="flex items-center gap-3 text-gray-300">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#22c55e]" />
-                  {item}
+                <div key={j} className="flex flex-col gap-1">
+                  <div className="flex items-center gap-3 text-white font-semibold text-sm">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#22c55e] shrink-0" />
+                    {item.name}
+                  </div>
+                  <p className="text-[11px] text-gray-400 leading-relaxed ml-[18px]">
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>

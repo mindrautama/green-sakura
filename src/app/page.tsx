@@ -14,6 +14,9 @@ export default function GreenSakuraPresentation() {
   const [transcript, setTranscript] = useState('');
   const [isAIThinking, setIsAIThinking] = useState(false);
   const dcRef = useRef<RTCDataChannel | null>(null);
+  const pcRef = useRef<RTCPeerConnection | null>(null);
+  const streamRef = useRef<MediaStream | null>(null);
+  const audioElRef = useRef<HTMLAudioElement | null>(null);
 
   const total = 8;
   const slideTitles = [
@@ -30,92 +33,114 @@ export default function GreenSakuraPresentation() {
   const nextSlide = () => setCurrent(prev => Math.min(prev + 1, total - 1));
   const prevSlide = () => setCurrent(prev => Math.max(prev - 1, 0));
 
+  const stopLISA = () => {
+    dcRef.current?.close();
+    dcRef.current = null;
+    pcRef.current?.close();
+    pcRef.current = null;
+    streamRef.current?.getTracks().forEach(t => t.stop());
+    streamRef.current = null;
+    if (audioElRef.current) {
+      audioElRef.current.pause();
+      audioElRef.current.srcObject = null;
+      audioElRef.current.remove();
+      audioElRef.current = null;
+    }
+  };
+
   // LISA AI Integration via WebRTC (no relay server needed)
   useEffect(() => {
-    let pc: RTCPeerConnection | null = null;
-    let dc: RTCDataChannel | null = null;
-    let audioEl: HTMLAudioElement | null = null;
-    let stream: MediaStream | null = null;
+    if (!isListening) {
+      stopLISA();
+      return;
+    }
+
+    let cancelled = false;
 
     const startLISA = async () => {
-      if (!isListening) return;
-
       try {
         // Step 1: Get ephemeral token from our API route
         const tokenRes = await fetch('/api/lisa/session', { method: 'POST' });
         if (!tokenRes.ok) throw new Error('Failed to get session token');
         const session = await tokenRes.json();
         const ephemeralKey = session.client_secret.value;
+        if (cancelled) return;
 
         // Step 2: Create WebRTC peer connection
-        pc = new RTCPeerConnection();
+        const pc = new RTCPeerConnection();
+        pcRef.current = pc;
 
         // Step 3: Set up audio output (AI voice)
-        audioEl = new Audio();
+        const audioEl = document.createElement('audio');
         audioEl.autoplay = true;
+        document.body.appendChild(audioEl);
+        audioElRef.current = audioEl;
         pc.ontrack = (event) => {
-          audioEl!.srcObject = event.streams[0];
+          console.log('LISA: audio track received');
+          audioEl.srcObject = event.streams[0];
+          audioEl.play().catch(e => console.error('Audio play error:', e));
         };
 
         // Step 4: Add user's microphone
-        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        pc.addTrack(stream.getTracks()[0]);
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        if (cancelled) { stream.getTracks().forEach(t => t.stop()); return; }
+        streamRef.current = stream;
+        stream.getTracks().forEach(track => pc.addTrack(track, stream));
 
         // Step 5: Create data channel for events
-        dc = pc.createDataChannel('oai-events');
+        const dc = pc.createDataChannel('oai-events');
         dcRef.current = dc;
 
         dc.onopen = () => {
-          console.log('Connected to LISA Strategic AI (WebRTC)');
-          // Send initial slide context
-          dc!.send(JSON.stringify({
+          console.log('LISA: data channel open!');
+          dc.send(JSON.stringify({
             type: 'conversation.item.create',
             item: {
               type: 'message',
               role: 'user',
               content: [{
                 type: 'input_text',
-                text: `User is now viewing Slide ${current + 1}: ${slideTitles[current]}.`
+                text: `Halo LISA! User sedang melihat Slide ${current + 1}: ${slideTitles[current]}. Berikan sambutan singkat dan profesional dalam Bahasa Indonesia.`
               }]
             }
           }));
+          dc.send(JSON.stringify({ type: 'response.create' }));
         };
 
         dc.onmessage = (event) => {
           try {
             const msg = JSON.parse(event.data);
 
-            // Handle function calls (slide navigation)
             if (msg.type === 'response.function_call_arguments.done') {
-              const args = JSON.parse(msg.arguments);
+              const args = typeof msg.arguments === 'string' ? JSON.parse(msg.arguments) : msg.arguments;
               if (msg.name === 'navigate_slide') {
                 if (args.direction === 'next') nextSlide();
                 if (args.direction === 'back') prevSlide();
               }
-              // Send function output back
-              dc!.send(JSON.stringify({
+              dc.send(JSON.stringify({
                 type: 'conversation.item.create',
                 item: {
                   type: 'function_call_output',
                   call_id: msg.call_id,
-                  output: JSON.stringify({ success: true, direction: args.direction })
+                  output: JSON.stringify({ success: true })
                 }
               }));
-              dc!.send(JSON.stringify({ type: 'response.create' }));
+              dc.send(JSON.stringify({ type: 'response.create' }));
             }
 
-            // Handle AI transcript
             if (msg.type === 'response.audio_transcript.delta') {
               setIsAIThinking(false);
               setTranscript(prev => prev + msg.delta);
             }
 
-            // Handle speech interruption
+            if (msg.type === 'response.audio_transcript.done') {
+              setTimeout(() => setTranscript(''), 4000);
+            }
+
             if (msg.type === 'input_audio_buffer.speech_started') {
               setTranscript('');
             }
 
-            // Handle errors
             if (msg.type === 'error') {
               console.error('LISA Error:', msg.error);
             }
@@ -124,20 +149,38 @@ export default function GreenSakuraPresentation() {
           }
         };
 
-        dc.onclose = () => {
-          console.log('Disconnected from LISA');
-          setIsListening(false);
-        };
+        dc.onclose = () => console.log('LISA: data channel closed');
+        pc.onconnectionstatechange = () => console.log('LISA: connection state:', pc.connectionState);
 
         // Step 6: Create and exchange SDP offer/answer
         const offer = await pc.createOffer();
         await pc.setLocalDescription(offer);
+        if (cancelled) return;
+
+        // Wait for ICE gathering to complete
+        await new Promise<void>((resolve) => {
+          if (pc.iceGatheringState === 'complete') {
+            resolve();
+          } else {
+            const onStateChange = () => {
+              if (pc.iceGatheringState === 'complete') {
+                pc.removeEventListener('icegatheringstatechange', onStateChange);
+                resolve();
+              }
+            };
+            pc.addEventListener('icegatheringstatechange', onStateChange);
+            setTimeout(resolve, 4000);
+          }
+        });
+        if (cancelled) return;
+
+        console.log('LISA: sending SDP offer...');
 
         const sdpRes = await fetch(
           'https://api.openai.com/v1/realtime?model=gpt-4o-realtime-preview',
           {
             method: 'POST',
-            body: offer.sdp,
+            body: pc.localDescription!.sdp,
             headers: {
               Authorization: `Bearer ${ephemeralKey}`,
               'Content-Type': 'application/sdp',
@@ -145,25 +188,28 @@ export default function GreenSakuraPresentation() {
           }
         );
 
-        if (!sdpRes.ok) throw new Error('Failed SDP exchange');
+        if (!sdpRes.ok) {
+          const errText = await sdpRes.text();
+          throw new Error(`SDP exchange failed ${sdpRes.status}: ${errText}`);
+        }
 
         const answerSdp = await sdpRes.text();
+        if (cancelled) return;
         await pc.setRemoteDescription({ type: 'answer', sdp: answerSdp });
+        console.log('LISA: WebRTC connected!');
 
       } catch (err) {
-        console.error('LISA Error:', err);
-        setIsListening(false);
+        if (!cancelled) {
+          console.error('LISA Error:', err);
+          setIsListening(false);
+        }
       }
     };
 
-    if (isListening) startLISA();
+    startLISA();
 
     return () => {
-      dcRef.current = null;
-      if (dc) dc.close();
-      if (pc) pc.close();
-      if (stream) stream.getTracks().forEach(t => t.stop());
-      if (audioEl) { audioEl.pause(); audioEl.srcObject = null; }
+      cancelled = true;
     };
   }, [isListening]);
 

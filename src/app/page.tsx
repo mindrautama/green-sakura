@@ -13,7 +13,7 @@ export default function GreenSakuraPresentation() {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
   const [isAIThinking, setIsAIThinking] = useState(false);
-  const wsRef = useRef<WebSocket | null>(null);
+  const dcRef = useRef<RTCDataChannel | null>(null);
 
   const total = 8;
   const slideTitles = [
@@ -30,141 +30,156 @@ export default function GreenSakuraPresentation() {
   const nextSlide = () => setCurrent(prev => Math.min(prev + 1, total - 1));
   const prevSlide = () => setCurrent(prev => Math.max(prev - 1, 0));
 
-  // LISA AI Integration
+  // LISA AI Integration via WebRTC (no relay server needed)
   useEffect(() => {
-    let ws: WebSocket | null = null;
-    let audioContext: AudioContext | null = null;
-    let processor: ScriptProcessorNode | null = null;
+    let pc: RTCPeerConnection | null = null;
+    let dc: RTCDataChannel | null = null;
+    let audioEl: HTMLAudioElement | null = null;
     let stream: MediaStream | null = null;
-    let nextStartTime = 0;
-    const scheduledSources: AudioBufferSourceNode[] = [];
 
     const startLISA = async () => {
       if (!isListening) return;
 
       try {
-        const wsUrl = process.env.NEXT_PUBLIC_LISA_RELAY_URL || 'ws://localhost:8083';
-        ws = new WebSocket(wsUrl);
-        wsRef.current = ws;
+        // Step 1: Get ephemeral token from our API route
+        const tokenRes = await fetch('/api/lisa/session', { method: 'POST' });
+        if (!tokenRes.ok) throw new Error('Failed to get session token');
+        const session = await tokenRes.json();
+        const ephemeralKey = session.client_secret.value;
 
-        ws.onopen = async () => {
-          console.log("Connected to LISA Strategic AI");
+        // Step 2: Create WebRTC peer connection
+        pc = new RTCPeerConnection();
 
-          ws?.send(JSON.stringify({
-            type: 'slide_update',
-            slideIndex: current,
-            slideTitle: slideTitles[current]
-          }));
-
-          audioContext = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 24000 });
-          if (audioContext.state === 'suspended') await audioContext.resume();
-          nextStartTime = audioContext.currentTime;
-
-          const floatTo16BitPCM = (input: Float32Array) => {
-            const output = new Int16Array(input.length);
-            for (let i = 0; i < input.length; i++) {
-              const s = Math.max(-1, Math.min(1, input[i]));
-              output[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
-            }
-            return output;
-          };
-
-          const arrayBufferToBase64 = (buffer: ArrayBuffer) => {
-            let binary = '';
-            const bytes = new Uint8Array(buffer);
-            for (let i = 0; i < bytes.byteLength; i++) binary += String.fromCharCode(bytes[i]);
-            return window.btoa(binary);
-          };
-
-          stream = await navigator.mediaDevices.getUserMedia({
-            audio: { channelCount: 1, sampleRate: 24000 }
-          });
-
-          const source = audioContext.createMediaStreamSource(stream);
-          processor = audioContext.createScriptProcessor(4096, 1, 1);
-
-          processor.onaudioprocess = (e) => {
-            if (ws && ws.readyState === WebSocket.OPEN) {
-              const inputData = e.inputBuffer.getChannelData(0);
-              const volume = inputData.reduce((a, b) => Math.max(a, Math.abs(b)), 0);
-              if (volume < 0.001) return;
-
-              const pcmData = floatTo16BitPCM(inputData);
-              const base64Audio = arrayBufferToBase64(pcmData.buffer);
-              ws.send(JSON.stringify({ type: 'audio', audio: base64Audio }));
-            }
-          };
-
-          source.connect(processor);
-          processor.connect(audioContext.destination);
+        // Step 3: Set up audio output (AI voice)
+        audioEl = new Audio();
+        audioEl.autoplay = true;
+        pc.ontrack = (event) => {
+          audioEl!.srcObject = event.streams[0];
         };
 
-        ws.onmessage = async (event) => {
+        // Step 4: Add user's microphone
+        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        pc.addTrack(stream.getTracks()[0]);
+
+        // Step 5: Create data channel for events
+        dc = pc.createDataChannel('oai-events');
+        dcRef.current = dc;
+
+        dc.onopen = () => {
+          console.log('Connected to LISA Strategic AI (WebRTC)');
+          // Send initial slide context
+          dc!.send(JSON.stringify({
+            type: 'conversation.item.create',
+            item: {
+              type: 'message',
+              role: 'user',
+              content: [{
+                type: 'input_text',
+                text: `User is now viewing Slide ${current + 1}: ${slideTitles[current]}.`
+              }]
+            }
+          }));
+        };
+
+        dc.onmessage = (event) => {
           try {
             const msg = JSON.parse(event.data);
-            if (msg.type === 'control' && msg.command === 'navigate_slide') {
-              if (msg.args.direction === 'next') nextSlide();
-              if (msg.args.direction === 'back') prevSlide();
+
+            // Handle function calls (slide navigation)
+            if (msg.type === 'response.function_call_arguments.done') {
+              const args = JSON.parse(msg.arguments);
+              if (msg.name === 'navigate_slide') {
+                if (args.direction === 'next') nextSlide();
+                if (args.direction === 'back') prevSlide();
+              }
+              // Send function output back
+              dc!.send(JSON.stringify({
+                type: 'conversation.item.create',
+                item: {
+                  type: 'function_call_output',
+                  call_id: msg.call_id,
+                  output: JSON.stringify({ success: true, direction: args.direction })
+                }
+              }));
+              dc!.send(JSON.stringify({ type: 'response.create' }));
             }
 
-            if (msg.type === 'transcript') {
+            // Handle AI transcript
+            if (msg.type === 'response.audio_transcript.delta') {
               setIsAIThinking(false);
-              setTranscript(prev => prev + msg.data);
+              setTranscript(prev => prev + msg.delta);
             }
 
-            if (msg.type === 'interrupt' && audioContext) {
-              scheduledSources.forEach(s => { try { s.stop(); } catch (e) { } });
-              scheduledSources.length = 0;
-              nextStartTime = audioContext.currentTime;
+            // Handle speech interruption
+            if (msg.type === 'input_audio_buffer.speech_started') {
               setTranscript('');
             }
 
-            if (msg.type === 'audio' && audioContext) {
-              if (audioContext.state === 'suspended') await audioContext.resume();
-              setTranscript('');
-              setIsAIThinking(false);
-              const binaryString = window.atob(msg.data);
-              const bytes = new Uint8Array(binaryString.length);
-              for (let i = 0; i < binaryString.length; i++) bytes[i] = binaryString.charCodeAt(i);
-              const int16Data = new Int16Array(bytes.buffer);
-              const float32Data = new Float32Array(int16Data.length);
-              for (let i = 0; i < int16Data.length; i++) float32Data[i] = int16Data[i] / 32768.0;
-
-              const buffer = audioContext.createBuffer(1, float32Data.length, 24000);
-              buffer.copyToChannel(float32Data, 0);
-              const source = audioContext.createBufferSource();
-              source.buffer = buffer;
-              source.connect(audioContext.destination);
-              const playTime = Math.max(audioContext.currentTime, nextStartTime);
-              source.start(playTime);
-              nextStartTime = playTime + buffer.duration;
-              scheduledSources.push(source);
+            // Handle errors
+            if (msg.type === 'error') {
+              console.error('LISA Error:', msg.error);
             }
-          } catch (e) { console.error(e); }
+          } catch (e) {
+            console.error('Data channel message error:', e);
+          }
         };
 
-        ws.onclose = () => {
-          console.log("Disconnected from LISA");
+        dc.onclose = () => {
+          console.log('Disconnected from LISA');
           setIsListening(false);
         };
-      } catch (err) { console.error(err); setIsListening(false); }
+
+        // Step 6: Create and exchange SDP offer/answer
+        const offer = await pc.createOffer();
+        await pc.setLocalDescription(offer);
+
+        const sdpRes = await fetch(
+          'https://api.openai.com/v1/realtime?model=gpt-4o-realtime-preview',
+          {
+            method: 'POST',
+            body: offer.sdp,
+            headers: {
+              Authorization: `Bearer ${ephemeralKey}`,
+              'Content-Type': 'application/sdp',
+            },
+          }
+        );
+
+        if (!sdpRes.ok) throw new Error('Failed SDP exchange');
+
+        const answerSdp = await sdpRes.text();
+        await pc.setRemoteDescription({ type: 'answer', sdp: answerSdp });
+
+      } catch (err) {
+        console.error('LISA Error:', err);
+        setIsListening(false);
+      }
     };
 
     if (isListening) startLISA();
+
     return () => {
-      if (ws) ws.close();
+      dcRef.current = null;
+      if (dc) dc.close();
+      if (pc) pc.close();
       if (stream) stream.getTracks().forEach(t => t.stop());
-      if (processor) processor.disconnect();
-      if (audioContext) audioContext.close();
+      if (audioEl) { audioEl.pause(); audioEl.srcObject = null; }
     };
   }, [isListening]);
 
+  // Notify LISA when slide changes
   useEffect(() => {
-    if (wsRef.current?.readyState === WebSocket.OPEN) {
-      wsRef.current.send(JSON.stringify({
-        type: 'slide_update',
-        slideIndex: current,
-        slideTitle: slideTitles[current]
+    if (dcRef.current?.readyState === 'open') {
+      dcRef.current.send(JSON.stringify({
+        type: 'conversation.item.create',
+        item: {
+          type: 'message',
+          role: 'user',
+          content: [{
+            type: 'input_text',
+            text: `User is now viewing Slide ${current + 1}: ${slideTitles[current]}.`
+          }]
+        }
       }));
     }
   }, [current]);

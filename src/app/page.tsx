@@ -670,51 +670,142 @@ function TechnologyStreamSlide() {
 
 function GovernanceSlide() {
   const structure = [
-    { role: 'Program Owner', name: 'HC Director' },
-    { role: 'Sponsor', name: 'Direksi' },
-    { role: 'PMO', name: 'FGD COST' },
-    { role: 'Champion', name: 'Green Ambassador' },
+    {
+      role: 'Program Owner',
+      name: 'HC Director',
+      kpi: 'Program on-track & budget',
+      review: 'Monthly',
+      color: 'emerald',
+    },
+    {
+      role: 'Sponsor',
+      name: 'Direksi',
+      kpi: 'Strategic alignment & ROI',
+      review: 'Quarterly',
+      color: 'amber',
+    },
+    {
+      role: 'PMO',
+      name: 'FGD COST',
+      kpi: 'Milestone delivery & reporting',
+      review: 'Weekly',
+      color: 'cyan',
+    },
+    {
+      role: 'Champion',
+      name: 'Green Ambassador',
+      kpi: 'Unit adoption & engagement',
+      review: 'Bi-weekly',
+      color: 'purple',
+    },
+  ];
+
+  const colorMap: Record<string, string> = {
+    emerald: 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400',
+    amber: 'bg-amber-500/10  border-amber-500/30  text-amber-400',
+    cyan: 'bg-cyan-500/10   border-cyan-500/30   text-cyan-400',
+    purple: 'bg-purple-500/10 border-purple-500/30 text-purple-400',
+  };
+
+  const escalation = [
+    { from: 'Green Ambassador', to: 'FGD COST (PMO)', trigger: 'Unit adoption < 60% dalam 2 minggu' },
+    { from: 'FGD COST (PMO)', to: 'HC Director', trigger: 'Milestone Day-30 tidak tercapai' },
+    { from: 'HC Director', to: 'Direksi', trigger: 'Cost saving < 50% target di Day-60' },
   ];
 
   return (
-    <div className="h-full flex flex-col justify-start md:justify-center pt-4 md:pt-0 py-8 overflow-y-auto">
-      <div className="mb-8 md:mb-12">
-        <p className="text-xs md:text-sm font-medium text-[#22c55e] tracking-[0.2em] uppercase mb-4">Program Governance</p>
-        <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight">Struktur Program</h2>
+    <div className="h-full flex flex-col justify-start md:justify-center pt-4 md:pt-0 py-4 overflow-y-auto gap-6 md:gap-8">
+      {/* Header */}
+      <div>
+        <p className="text-xs md:text-sm font-medium text-[#22c55e] tracking-[0.2em] uppercase mb-2">Program Governance</p>
+        <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">Struktur & Akuntabilitas</h2>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12">
+      {/* Role Cards with KPI */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
         {structure.map((item, i) => (
           <motion.div
             key={i}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 + i * 0.1 }}
-            className="p-6 rounded-2xl glass-card text-center"
+            transition={{ delay: 0.15 + i * 0.1 }}
+            className="p-4 md:p-5 rounded-2xl glass-card flex flex-col gap-3"
           >
-            <div className="text-xs text-[#22c55e] uppercase tracking-wider mb-3">{item.role}</div>
-            <div className="text-xl font-bold text-white">{item.name}</div>
+            {/* Role badge */}
+            <div className={`inline-flex items-center self-start px-2 py-1 rounded-full border text-[9px] md:text-[10px] font-semibold uppercase tracking-wider ${colorMap[item.color]}`}>
+              {item.role}
+            </div>
+            {/* Name */}
+            <div className="text-base md:text-lg font-bold text-white leading-tight">{item.name}</div>
+            {/* KPI */}
+            <div className="text-[10px] md:text-xs text-gray-400 leading-snug border-t border-white/5 pt-2">
+              <span className="text-gray-500 uppercase tracking-wider text-[9px]">KPI · </span>
+              {item.kpi}
+            </div>
+            {/* Review cadence */}
+            <div className={`text-[9px] md:text-[10px] font-semibold uppercase tracking-wider ${colorMap[item.color].split(' ')[2]}`}>
+              ↻ Review {item.review}
+            </div>
           </motion.div>
         ))}
       </div>
 
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.6 }}
-        className="p-6 md:p-8 rounded-3xl glass-card flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center md:text-left"
-      >
-        <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-[#22c55e]/10 border border-[#22c55e]/20 flex items-center justify-center text-[#22c55e]">
-          <BarChart3 className="w-6 h-6 md:w-8 md:h-8" />
-        </div>
-        <div className="flex-1">
-          <h4 className="text-lg md:text-xl font-bold text-white mb-2">Dashboard Cost–ESG</h4>
-          <p className="text-sm md:text-base text-gray-400">Monitoring terpusat di Management Command Center untuk konsumsi listrik, kertas, travel, dan cost saving</p>
-        </div>
-        <div className="px-4 py-2 rounded-full bg-[#22c55e]/10 text-[#22c55e] text-xs md:text-sm font-medium">
-          Real-time Sync
-        </div>
-      </motion.div>
+      {/* Bottom row: Escalation + Dashboard */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Escalation Path */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.55 }}
+          className="p-5 rounded-2xl glass-card border-l-4 border-red-500/60"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <Zap className="w-4 h-4 text-red-400" />
+            <span className="text-xs font-semibold text-red-400 uppercase tracking-wider">Eskalasi Path</span>
+          </div>
+          <div className="space-y-3">
+            {escalation.map((e, i) => (
+              <div key={i} className="flex flex-col gap-1">
+                <div className="flex items-center gap-2 text-[10px] md:text-xs">
+                  <span className="text-gray-300 font-medium">{e.from}</span>
+                  <ArrowRight className="w-3 h-3 text-gray-500 shrink-0" />
+                  <span className="text-white font-semibold">{e.to}</span>
+                </div>
+                <p className="text-[9px] md:text-[10px] text-gray-500 italic ml-0">Trigger: {e.trigger}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Dashboard & Monitoring */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.65 }}
+          className="p-5 rounded-2xl glass-card border-l-4 border-[#22c55e]/60"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <BarChart3 className="w-4 h-4 text-[#22c55e]" />
+            <span className="text-xs font-semibold text-[#22c55e] uppercase tracking-wider">Dashboard Cost–ESG</span>
+            <span className="ml-auto px-2 py-0.5 rounded-full bg-[#22c55e]/10 text-[#22c55e] text-[9px] font-medium">Real-time</span>
+          </div>
+          <p className="text-xs text-gray-400 mb-4 leading-relaxed">
+            Monitoring terpusat di Management Command Center — konsumsi listrik, kertas, travel, dan cost saving.
+          </p>
+          <div className="grid grid-cols-3 gap-2">
+            {[
+              { label: 'Weekly', desc: 'PMO Report' },
+              { label: 'Monthly', desc: 'HC Director Review' },
+              { label: 'Quarterly', desc: 'Board Report' },
+            ].map((r, i) => (
+              <div key={i} className="p-2 rounded-xl bg-white/5 text-center">
+                <div className="text-[#22c55e] font-bold text-xs md:text-sm">{r.label}</div>
+                <div className="text-[9px] text-gray-500 mt-0.5">{r.desc}</div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 }

@@ -43,7 +43,7 @@ export default function GreenSakuraPresentation() {
       if (!isListening) return;
 
       try {
-        const wsUrl = 'ws://localhost:8083';
+        const wsUrl = process.env.NEXT_PUBLIC_LISA_RELAY_URL || 'ws://localhost:8083';
         ws = new WebSocket(wsUrl);
         wsRef.current = ws;
 

@@ -299,9 +299,9 @@ export default function GreenSakuraPresentation() {
             >
               {current === 0 && <TitleSlide />}
               {current === 1 && <BackgroundSlide />}
-              {current === 2 && <ObjectivesSlide />}
-              {current === 3 && <StreamsOverviewSlide />}
-              {current === 4 && <StreamDeepDiveSlide />}
+              {current === 2 && <StreamsOverviewSlide />}
+              {current === 3 && <StreamDeepDiveSlide />}
+              {current === 4 && <ObjectivesSlide />}
               {current === 5 && <GovernanceSlide />}
               {current === 6 && <RoadmapSlide />}
               {current === 7 && <ClosingSlide />}
@@ -592,12 +592,22 @@ function BackgroundSlide() {
 
 
 function ObjectivesSlide() {
+  const streamBadge = {
+    people: { label: 'People', abbr: 'Pe', cls: 'bg-rose-500/20 text-rose-400 border-rose-500/30' },
+    process: { label: 'Process', abbr: 'Pr', cls: 'bg-amber-500/20 text-amber-400 border-amber-500/30' },
+    technology: { label: 'Technology', abbr: 'Te', cls: 'bg-sky-500/20 text-sky-400 border-sky-500/30' },
+  };
+
   const objectives = [
     {
       label: 'Go',
       name: 'Lean',
       desc: 'Pioneer of AI-driven production system & workforce-of-the-future.',
-      goal: 'Efisiensi pola kerja: Hybrid Work, Virtual-First Meeting, Workflow Automation.',
+      items: [
+        { text: 'Hybrid Work', stream: 'process' as const },
+        { text: 'Virtual-First Meeting', stream: 'process' as const },
+        { text: 'Workflow Automation', stream: 'technology' as const },
+      ],
       icon: <Zap className="w-4 h-4" />,
       color: 'amber'
     },
@@ -605,7 +615,11 @@ function ObjectivesSlide() {
       label: 'Go',
       name: 'Green',
       desc: 'Leading green biz incubator & impact investing alliance.',
-      goal: 'Budaya hijau: Green Habit Campaign, Green Ambassador, Green Travel Policy.',
+      items: [
+        { text: 'Green Habit Campaign', stream: 'people' as const },
+        { text: 'Green Ambassador', stream: 'people' as const },
+        { text: 'Green Travel Policy', stream: 'process' as const },
+      ],
       icon: <Leaf className="w-4 h-4" />,
       color: 'emerald'
     },
@@ -613,7 +627,12 @@ function ObjectivesSlide() {
       label: 'Go',
       name: 'AI',
       desc: 'First global WEF digital lighthouse in ag sector.',
-      goal: 'Digital-first: AI Approval Routing, RPA, Predictive Analytics, Dashboard ESG.',
+      items: [
+        { text: 'AI Approval Routing', stream: 'technology' as const },
+        { text: 'RPA', stream: 'technology' as const },
+        { text: 'Predictive Analytics', stream: 'technology' as const },
+        { text: 'Dashboard ESG', stream: 'technology' as const },
+      ],
       icon: <Cpu className="w-4 h-4" />,
       color: 'blue'
     },
@@ -621,7 +640,12 @@ function ObjectivesSlide() {
       label: 'Go',
       name: 'Secure',
       desc: 'National champion of inclusive growth & operational resilience.',
-      goal: 'Ketahanan operasional: ESS, SOP Online, IHCMIS backbone, Standarisasi digital.',
+      items: [
+        { text: 'ESS', stream: 'technology' as const },
+        { text: 'SOP Online', stream: 'technology' as const },
+        { text: 'IHCMIS', stream: 'technology' as const },
+        { text: 'Standarisasi Digital', stream: 'process' as const },
+      ],
       icon: <Shield className="w-4 h-4" />,
       color: 'cyan'
     },
@@ -629,7 +653,11 @@ function ObjectivesSlide() {
       label: 'Go',
       name: 'Beyond',
       desc: 'Global innovation leader in specialty products & agri supply chain.',
-      goal: 'Standar global: ESG Dashboard, Executive Command Center, Cost Report compliance.',
+      items: [
+        { text: 'ESG Dashboard', stream: 'technology' as const },
+        { text: 'Executive Command Center', stream: 'technology' as const },
+        { text: 'Cost Report', stream: 'process' as const },
+      ],
       icon: <Globe className="w-4 h-4" />,
       color: 'purple'
     },
@@ -653,6 +681,14 @@ function ObjectivesSlide() {
           <div className="h-px w-20 bg-gradient-to-l from-transparent via-white/20 to-transparent" />
         </div>
         <p className="text-[10px] md:text-xs text-gray-500">Green SAKURA alignment dengan strategi korporat PTPN</p>
+        <div className="flex items-center justify-center gap-4 mt-2">
+          {Object.values(streamBadge).map((s, i) => (
+            <div key={i} className="flex items-center gap-1">
+              <span className={`text-[7px] font-bold uppercase px-1 py-px rounded border ${s.cls}`}>{s.abbr}</span>
+              <span className="text-[9px] text-gray-500">{s.label}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="flex flex-col md:flex-row gap-3 md:gap-4 w-full items-start justify-center px-2">
@@ -695,10 +731,17 @@ function ObjectivesSlide() {
               transition={{ delay: 0.5 + i * 0.08 }}
               className={`p-3 rounded-xl border ${colorMap[obj.color].split(' ')[1]} ${colorMap[obj.color].split(' ')[2]} w-full`}
             >
-              <div className="text-[8px] font-black uppercase tracking-widest text-gray-500 mb-1">Green SAKURA</div>
-              <p className="text-[10px] md:text-[11px] text-white font-semibold leading-snug">
-                {obj.goal}
-              </p>
+              <div className="text-[8px] font-black uppercase tracking-widest text-gray-500 mb-2">Green SAKURA</div>
+              <div className="flex flex-wrap gap-1.5">
+                {obj.items.map((item, j) => (
+                  <div key={j} className="flex items-center gap-1 bg-white/5 rounded-md px-1.5 py-0.5">
+                    <span className={`text-[7px] font-bold uppercase tracking-wider px-1 py-px rounded border ${streamBadge[item.stream].cls}`}>
+                      {streamBadge[item.stream].abbr}
+                    </span>
+                    <span className="text-[9px] text-white font-medium">{item.text}</span>
+                  </div>
+                ))}
+              </div>
             </motion.div>
           </div>
         ))}

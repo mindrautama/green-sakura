@@ -42,33 +42,10 @@
 
 ---
 
-## Slide 3 — Strategic Framework 5G
-### 🎯 Pesan Utama: Green SAKURA selaras dengan strategi korporat 5G
-
-> *"Sebelum masuk ke detail program, penting bagi kami untuk menunjukkan bahwa Green SAKURA **bukan program yang berdiri sendiri**. Program ini sepenuhnya **aligned** dengan **Strategic Framework 5G** yang menjadi arah besar korporat PTPN."*
->
-> *"Mari kita lihat satu per satu:*
->
-> *Pertama, **Go Lean** — PTPN ingin menjadi pioneer AI-driven production system dan workforce-of-the-future. Green SAKURA mendukung ini melalui **efisiensi pola kerja**: Hybrid Work, Virtual-First Meeting, dan Workflow Automation. Kita menuju cara kerja yang lebih lean dan efisien.*
->
-> *Kedua, **Go Green** — PTPN ingin menjadi leading green business incubator. Green SAKURA langsung mendukung ini melalui **budaya hijau**: Green Habit Campaign, Green Ambassador di setiap unit, dan Green Travel Policy.*
->
-> *Ketiga, **Go AI** — Target menjadi WEF digital lighthouse pertama di sektor pertanian. Green SAKURA mendorong **digital-first operations**: AI-powered approval routing, RPA untuk otomatisasi, Predictive Analytics, dan Dashboard ESG real-time.*
->
-> *Keempat, **Go Secure** — Menjadi national champion dalam hal resilience. Green SAKURA memperkuat **ketahanan operasional** melalui ESS (Employee Self Service), SOP Online, dan IHCMIS sebagai backbone digital yang tangguh.*
->
-> *Dan kelima, **Go Beyond** — Menjadi global innovation leader. Green SAKURA menyiapkan PTPN menuju **standar ESG global** melalui ESG Dashboard, Executive Command Center, dan Cost Report yang memenuhi compliance internasional.*
->
-> *Jadi, Green SAKURA adalah **akselerator** bagi kelima pilar strategis ini."*
-
-**⏱ Estimasi durasi: 3–4 menit**
-
----
-
-## Slide 4 — The 3-Stream Focus
+## Slide 3 — The 3-Stream Focus
 ### 🎯 Pesan Utama: Implementasi melalui 3 stream — People, Process, Technology
 
-> *"Untuk mengeksekusi program ini secara terstruktur, kami membagi implementasi ke dalam **3 stream utama**:*
+> *"Untuk menjawab tantangan SGA tersebut secara terstruktur, kami membagi implementasi ke dalam **3 stream utama**:*
 >
 > *Stream pertama — **People**: Behavior & Culture. Stream ini fokus pada **membangun kesadaran dan budaya kerja ramah lingkungan** di seluruh karyawan. Inisiatif kuncinya meliputi Kampanye Green Habit, Microlearning ESG, Green Ambassador per Unit, dan program Insentif & Recognition. Target utamanya adalah **85% Employee Participation**.*
 >
@@ -82,7 +59,7 @@
 
 ---
 
-## Slide 5 — Stream Deep Dive
+## Slide 4 — Stream Deep Dive
 ### 🎯 Pesan Utama: Detail masing-masing stream
 
 #### Tab 1: People Stream — Green Behavior & Culture
@@ -132,6 +109,29 @@
 > *Menurut Deloitte Intelligent Automation Survey 2022, **92% perusahaan** mencapai positive ROI dari intelligent automation, dengan leading organizations melihat cost reduction dalam **12–18 bulan**."*
 
 **⏱ Estimasi durasi: 5–7 menit (total 3 tab)**
+
+---
+
+## Slide 5 — Strategic Framework 5G
+### 🎯 Pesan Utama: Semua inisiatif Green SAKURA selaras dengan strategi korporat 5G
+
+> *"Bapak/Ibu, setelah melihat detail ketiga stream tadi, izinkan kami menunjukkan **satu hal penting**: bahwa seluruh inisiatif Green SAKURA **bukan program yang berdiri sendiri**. Program ini sepenuhnya **aligned** dengan **Strategic Framework 5G** yang menjadi arah besar korporat PTPN."*
+>
+> *"Mari kita lihat:*
+>
+> *Pertama, **Go Lean** — Hybrid Work dan Virtual-First Meeting dari **Process stream**, serta Workflow Automation dari **Technology stream**, langsung mendukung pilar ini.*
+>
+> *Kedua, **Go Green** — Green Habit Campaign dan Green Ambassador dari **People stream**, ditambah Green Travel Policy dari **Process stream**, adalah motor penggerak pilar ini.*
+>
+> *Ketiga, **Go AI** — AI Approval Routing, RPA, Predictive Analytics, dan Dashboard ESG — semuanya dari **Technology stream** — mendorong PTPN menuju digital lighthouse.*
+>
+> *Keempat, **Go Secure** — ESS, SOP Online, dan IHCMIS dari **Technology stream**, ditambah Standarisasi Digital dari **Process stream**, memperkuat ketahanan operasional.*
+>
+> *Dan kelima, **Go Beyond** — ESG Dashboard dan Executive Command Center dari **Technology stream**, serta Cost Report compliance dari **Process stream**, menyiapkan PTPN menuju standar ESG global.*
+>
+> *Jadi, Green SAKURA adalah **akselerator** bagi kelima pilar strategis ini — dan setiap inisiatif bisa di-trace kembali ke stream People, Process, atau Technology."*
+
+**⏱ Estimasi durasi: 3–4 menit**
 
 ---
 
@@ -226,9 +226,9 @@
 |---|---|---|
 | 1 | Title | 1–2 menit |
 | 2 | Background & Urgensi | 2–3 menit |
-| 3 | Strategic Framework 5G | 3–4 menit |
-| 4 | 3-Stream Focus | 2–3 menit |
-| 5 | Stream Deep Dive (3 tab) | 5–7 menit |
+| 3 | 3-Stream Focus | 2–3 menit |
+| 4 | Stream Deep Dive (3 tab) | 5–7 menit |
+| 5 | Strategic Framework 5G | 3–4 menit |
 | 6 | Governance | 2–3 menit |
 | 7 | Roadmap 90 Hari | 3–4 menit |
 | 8 | Closing | 2–3 menit |
@@ -238,9 +238,9 @@
 
 ## 💡 Tips Penyampaian
 
-1. **Slide 2 (Background)** — Beri jeda setelah menyebut angka gap 13%. Biarkan audiens mencerna data.
-2. **Slide 3 (5G)** — Cukup highlight 2–3 G yang paling relevan jika waktu terbatas. Go Lean dan Go Green paling kuat relevansinya.
-3. **Slide 5 (Deep Dive)** — Bisa pilih 1 tab saja jika waktu terbatas. Pilih **Process Stream** karena paling tangible (WFA, Green Travel Policy).
+1. **Slide 2 (Background)** — Beri jeda setelah menyebut kisaran gap. Biarkan audiens mencerna data.
+2. **Slide 4 (Deep Dive)** — Bisa pilih 1 tab saja jika waktu terbatas. Pilih **Process Stream** karena paling tangible (WFA, Green Travel Policy).
+3. **Slide 5 (5G)** — Ini "aha moment". Tekankan bahwa setiap badge Pe/Pr/Te bisa di-trace ke stream. Cukup highlight 2–3 G yang paling relevan jika waktu terbatas.
 4. **Slide 6 (Governance)** — Tekankan bahwa eskalasi sudah didesain otomatis — Direksi tidak perlu mikro-manajemen.
 5. **Slide 7 (Roadmap)** — Tekankan bahwa hasil sudah terlihat di Day 30 (quick wins), bukan menunggu 90 hari penuh.
 6. **Slide 8 (Closing)** — Akhiri dengan kontak mata ke seluruh audiens saat menyebut "kami mohon dukungan".

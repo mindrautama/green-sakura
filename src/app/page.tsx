@@ -480,10 +480,9 @@ function TitleSlide() {
 }
 function BackgroundSlide() {
   const q3Data = [
-    { name: 'PT Triputra', sga: '7%', color: 'blue' },
-    { name: 'Sinarmas Agro', sga: '8%', color: 'blue' },
-    { name: 'Astra Agro', sga: '13%', color: 'blue' },
-    { name: 'Rata-rata Peers', sga: '9%', color: 'blue' },
+    { name: 'Best-in-class Peers', sga: '8%', color: 'blue' },
+    { name: 'Rata-rata Industri', sga: '10%', color: 'blue' },
+    { name: 'Upper Range Peers', sga: '14%', color: 'blue' },
     { name: 'PTPN III', sga: '17%', color: 'red', highlight: true },
   ];
 
@@ -512,8 +511,8 @@ function BackgroundSlide() {
           <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-widest mb-3">Baseline Tahun 2024</div>
           <div className="flex items-end gap-5 mb-4">
             <div>
-              <div className="text-[9px] text-gray-500 uppercase">Peers Avg</div>
-              <div className="text-3xl font-bold text-white">8<span className="text-base">%</span></div>
+              <div className="text-[9px] text-gray-500 uppercase">Industri Avg</div>
+              <div className="text-3xl font-bold text-white">8–12<span className="text-base">%</span></div>
             </div>
             <div className="mb-2 text-red-500 animate-pulse">
               <TrendingDown className="w-5 h-5 rotate-180" />
@@ -525,7 +524,7 @@ function BackgroundSlide() {
           </div>
           <div className="p-2.5 bg-red-500/5 rounded-xl border border-red-500/10">
             <p className="text-[11px] text-red-400/90 leading-relaxed italic">
-              "Terdapat <strong>selisih 13%</strong> dalam SGA to Sales ratio yang menunjukkan inefisiensi biaya operasional & admin dibanding standar industri."
+              "Rasio SGA PTPN III berada <strong>di atas kisaran industri</strong>, menunjukkan peluang signifikan untuk efisiensi biaya operasional & admin."
             </p>
           </div>
         </motion.div>
@@ -552,7 +551,7 @@ function BackgroundSlide() {
             </div>
           </div>
           <p className="text-[11px] text-gray-400 leading-relaxed">
-            Meskipun membaik, PTPN III masih mencatatkan <strong>SGA Rp 7.39 T</strong> — hampir 3x lipat rata-rata peers di Rp 2.78 T.
+            Meskipun membaik, rasio SGA PTPN III masih <strong>di atas kisaran industri</strong>. Gap ini menunjukkan ruang besar untuk perbaikan melalui efisiensi pola kerja.
           </p>
         </motion.div>
       </div>
@@ -870,7 +869,7 @@ function StreamDeepDiveSlide() {
                 <div className="p-4 rounded-2xl glass-card">
                   <h4 className="text-[10px] font-medium text-gray-500 uppercase tracking-wider mb-3">Target KPI</h4>
                   <div className="space-y-3">
-                    {[{ label: 'Partisipasi Kampanye', value: '85%' }, { label: 'Penyelesaian Microlearning', value: '80%' }, { label: 'ESG Awareness', value: '90%' }].map((kpi, i) => (
+                    {[{ label: 'Partisipasi Kampanye', value: '85%' }, { label: 'Penyelesaian Microlearning', value: '80%' }, { label: 'ESG Awareness (survey)', value: '90%' }].map((kpi, i) => (
                       <div key={i}>
                         <div className="flex justify-between mb-1">
                           <span className="text-gray-400 text-[10px]">{kpi.label}</span>
@@ -889,15 +888,15 @@ function StreamDeepDiveSlide() {
                 <motion.div initial={{ y: 15, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.4 }} className="p-4 rounded-2xl glass-card border-l-4 border-emerald-500">
                   <div className="flex items-center gap-2 mb-2"><Globe className="w-3.5 h-3.5 text-emerald-400" /><span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Global Benchmark</span></div>
                   <div className="space-y-1.5 text-xs">
-                    <div className="flex justify-between"><span className="text-gray-400">Unilever — Green Culture Program</span><span className="text-white font-semibold">28% energy reduction</span></div>
-                    <div className="flex justify-between"><span className="text-gray-400">Google — Carbon Neutral Office</span><span className="text-white font-semibold">100% renewable</span></div>
-                    <div className="flex justify-between"><span className="text-gray-400">Patagonia — Employee ESG Pledge</span><span className="text-white font-semibold">95% participation</span></div>
+                    <div className="flex justify-between"><span className="text-gray-400">Unilever — Sustainable Living Plan</span><span className="text-white font-semibold">28% energy reduction</span></div>
+                    <div className="flex justify-between"><span className="text-gray-400">Google — Renewable Matching</span><span className="text-white font-semibold">100% electricity matched</span></div>
+                    <div className="flex justify-between"><span className="text-gray-400">IKEA — People & Planet Positive</span><span className="text-white font-semibold">92% renewable energy</span></div>
                   </div>
                 </motion.div>
                 <motion.div initial={{ y: 15, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.5 }} className="p-4 rounded-2xl glass-card border-l-4 border-blue-500">
                   <div className="flex items-center gap-2 mb-2"><Sparkles className="w-3.5 h-3.5 text-blue-400" /><span className="text-xs font-semibold text-blue-400 uppercase tracking-wider">Consultant Insight</span></div>
-                  <p className="text-gray-300 text-xs italic leading-relaxed">"Companies with strong ESG culture see <span className="text-white font-semibold">25% higher employee engagement</span> and <span className="text-white font-semibold">20% lower attrition</span>."</p>
-                  <p className="text-[10px] text-gray-500 mt-1.5">— McKinsey & Company, 2024</p>
+                  <p className="text-gray-300 text-xs italic leading-relaxed">"Companies with strong ESG propositions see <span className="text-white font-semibold">14% higher employee engagement</span> and purpose-driven employees are <span className="text-white font-semibold">2.5× more likely</span> to report high satisfaction."</p>
+                  <p className="text-[10px] text-gray-500 mt-1.5">— McKinsey & Company, 2020 & 2023</p>
                 </motion.div>
               </div>
             </motion.div>
@@ -933,7 +932,7 @@ function StreamDeepDiveSlide() {
                     <span className="text-[9px] text-gray-600">Scope: Fungsi Non-Ops</span>
                   </div>
                   {[
-                    { label: 'WFA Days Target (Non-Ops)', value: '6–8 hr', tag: 'Per Bulan', icon: <Clock className="w-3.5 h-3.5" />, color: 'text-cyan-400 bg-cyan-500/10', tagColor: 'text-cyan-400/70' },
+                    { label: 'WFA Days Target (Non-Ops)', value: '6–8 hari', tag: 'Per Bulan', icon: <Clock className="w-3.5 h-3.5" />, color: 'text-cyan-400 bg-cyan-500/10', tagColor: 'text-cyan-400/70' },
                     { label: 'Travel & Commute Cost', value: '−30%', tag: 'Cost & Carbon', icon: <TrendingUp className="w-3.5 h-3.5" />, color: 'text-emerald-400 bg-emerald-500/10', tagColor: 'text-emerald-400/70' },
                     { label: 'Virtual Meeting Adoption', value: '70%', tag: 'Productivity', icon: <Globe className="w-3.5 h-3.5" />, color: 'text-blue-400 bg-blue-500/10', tagColor: 'text-blue-400/70' },
                     { label: 'Carbon Emisi Komuter', value: '−25%', tag: 'ESG Impact', icon: <Leaf className="w-3.5 h-3.5" />, color: 'text-amber-400 bg-amber-500/10', tagColor: 'text-amber-400/70' },
@@ -955,37 +954,33 @@ function StreamDeepDiveSlide() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <motion.div initial={{ y: 15, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.4 }} className="p-4 rounded-2xl glass-card border-l-4 border-cyan-500">
                   <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-2"><Globe className="w-3.5 h-3.5 text-cyan-400" /><span className="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Benchmark — Industri Agro</span></div>
-                    <span className="text-[8px] text-gray-600 italic">*estimasi praktik industri</span>
+                    <div className="flex items-center gap-2"><Globe className="w-3.5 h-3.5 text-cyan-400" /><span className="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Research — Hybrid Work Impact</span></div>
+                    <span className="text-[8px] text-gray-600 italic">*peer-reviewed studies</span>
                   </div>
                   <div className="space-y-2.5">
                     {[
-                      { company: 'Wilmar International', wfa: 8, wfo: 14, source: 'Sustainability Report 2023' },
-                      { company: 'Cargill Agri', wfa: 10, wfo: 12, source: 'Annual Report 2023' },
-                      { company: 'Astra Agro Lestari', wfa: 6, wfo: 16, source: 'Laporan Tahunan 2023' },
+                      { finding: 'Fully remote workers', impact: '−54% carbon footprint', source: 'Cornell–Microsoft, PNAS 2023' },
+                      { finding: 'Hybrid 2–4 days WFH', impact: '−11 to 29% emissions', source: 'Cornell–Microsoft, PNAS 2023' },
+                      { finding: 'Global hybrid adoption', impact: '75% maintain productivity', source: 'BCG Remote Work Survey, 2020' },
                     ].map((item, i) => (
                       <div key={i} className="text-[10px]">
                         <div className="flex justify-between mb-0.5">
-                          <span className="text-gray-300 font-semibold">{item.company}</span>
-                          <span className="text-[8px] text-gray-600 italic">{item.source}</span>
+                          <span className="text-gray-300 font-semibold">{item.finding}</span>
+                          <span className="text-cyan-400 font-bold">{item.impact}</span>
                         </div>
-                        <div className="text-gray-500 mb-1"><span className="text-amber-400 font-bold">{item.wfa} hr WFA</span> + <span className="text-emerald-400 font-bold">{item.wfo} hr WFO</span> /bln</div>
-                        <div className="flex h-1.5 rounded-full overflow-hidden">
-                          <div className="bg-amber-400/70 rounded-l-full" style={{ width: `${(item.wfa / 22) * 100}%` }} />
-                          <div className="bg-emerald-400/50 rounded-r-full flex-1" />
-                        </div>
+                        <div className="text-[8px] text-gray-600 italic">{item.source}</div>
                       </div>
                     ))}
                     <div className="pt-2 border-t border-white/5 text-[9px] text-cyan-400/80 font-semibold">
-                      💡 Rekomendasi PTPN: <span className="text-white">6–8 hari WFA/bulan</span>
-                      <div className="text-[8px] text-gray-600 italic font-normal mt-0.5">Ref: Mercer Global Talent Trends 2024 · BCG Future of Work 2023</div>
+                      💡 Rekomendasi PTPN: <span className="text-white">6–8 hari WFA/bulan (fungsi non-ops)</span>
+                      <div className="text-[8px] text-gray-600 italic font-normal mt-0.5">Ref: PNAS (Proceedings of the National Academy of Sciences), 2023</div>
                     </div>
                   </div>
                 </motion.div>
                 <motion.div initial={{ y: 15, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.5 }} className="p-4 rounded-2xl glass-card border-l-4 border-amber-500">
                   <div className="flex items-center gap-2 mb-2"><Sparkles className="w-3.5 h-3.5 text-amber-400" /><span className="text-xs font-semibold text-amber-400 uppercase tracking-wider">Consultant Insight</span></div>
-                  <p className="text-gray-300 text-xs italic leading-relaxed">"Hybrid work policies reduce corporate carbon emissions by <span className="text-white font-semibold">30–50%</span> while improving employee productivity by <span className="text-white font-semibold">15%</span>."</p>
-                  <p className="text-[10px] text-gray-500 mt-1.5">— Boston Consulting Group, 2024</p>
+                  <p className="text-gray-300 text-xs italic leading-relaxed">"Fully remote workers reduce carbon footprint by <span className="text-white font-semibold">up to 54%</span>, and hybrid workers (2–4 days WFH) by <span className="text-white font-semibold">11–29%</span> vs. onsite workers."</p>
+                  <p className="text-[10px] text-gray-500 mt-1.5">— Cornell University & Microsoft Research, PNAS 2023</p>
                   <p className="text-[10px] text-amber-400/80 mt-2 pt-2 border-t border-white/5 leading-relaxed">💡 Implikasi PTPN: hybrid kantor dapat menurunkan biaya perjalanan & emisi secara signifikan.</p>
                 </motion.div>
               </div>
@@ -1037,15 +1032,15 @@ function StreamDeepDiveSlide() {
                 <motion.div initial={{ y: 15, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.45 }} className="p-4 rounded-2xl glass-card border-l-4 border-blue-500">
                   <div className="flex items-center gap-2 mb-2"><Globe className="w-3.5 h-3.5 text-blue-400" /><span className="text-xs font-semibold text-blue-400 uppercase tracking-wider">Global Benchmark</span></div>
                   <div className="space-y-1.5 text-xs">
-                    <div className="flex justify-between"><span className="text-gray-400">Siemens — Digital HR Platform</span><span className="text-white font-semibold">100% cloud HR</span></div>
-                    <div className="flex justify-between"><span className="text-gray-400">Microsoft — Hybrid Work + RPA</span><span className="text-white font-semibold">40% travel reduction</span></div>
-                    <div className="flex justify-between"><span className="text-gray-400">Adobe — E-signature Adoption</span><span className="text-white font-semibold">99% approval digital</span></div>
+                    <div className="flex justify-between"><span className="text-gray-400">Siemens — Cloud HR Migration</span><span className="text-white font-semibold">SuccessFactors + Workday</span></div>
+                    <div className="flex justify-between"><span className="text-gray-400">Cornell–Microsoft Research</span><span className="text-white font-semibold">−54% carbon (remote)</span></div>
+                    <div className="flex justify-between"><span className="text-gray-400">DocuSign — E-signature Global</span><span className="text-white font-semibold">82% faster agreement</span></div>
                   </div>
                 </motion.div>
                 <motion.div initial={{ y: 15, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.55 }} className="p-4 rounded-2xl glass-card border-l-4 border-purple-500">
                   <div className="flex items-center gap-2 mb-2"><Sparkles className="w-3.5 h-3.5 text-purple-400" /><span className="text-xs font-semibold text-purple-400 uppercase tracking-wider">Consultant Insight</span></div>
-                  <p className="text-gray-300 text-xs italic leading-relaxed">"Paperless & automated workflows yield <span className="text-white font-semibold">3–5× ROI</span> within 18 months, with <span className="text-white font-semibold">60% faster</span> approval cycles and near-zero document loss."</p>
-                  <p className="text-[10px] text-gray-500 mt-1.5">— Deloitte Digital Transformation, 2024</p>
+                  <p className="text-gray-300 text-xs italic leading-relaxed">"<span className="text-white font-semibold">92% of companies</span> achieve positive ROI from intelligent automation, with leading organizations seeing cost reductions within <span className="text-white font-semibold">12–18 months</span>."</p>
+                  <p className="text-[10px] text-gray-500 mt-1.5">— Deloitte Intelligent Automation Survey, 2022</p>
                 </motion.div>
               </div>
             </motion.div>

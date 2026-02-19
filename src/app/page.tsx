@@ -281,7 +281,7 @@ export default function GreenSakuraPresentation() {
 
           <div className="text-right hidden md:block md:order-3">
             <div className="text-xs text-gray-500">PTPN III Holding</div>
-            <div className="text-sm font-medium text-white">FGD COST</div>
+            <div className="text-sm font-medium text-white">Group of Cost</div>
           </div>
         </header>
 
@@ -479,52 +479,55 @@ function TitleSlide() {
   );
 }
 function BackgroundSlide() {
-  const q3Data = [
-    { name: 'Best-in-class Peers', sga: '8%', color: 'blue' },
-    { name: 'Rata-rata Industri', sga: '10%', color: 'blue' },
-    { name: 'Upper Range Peers', sga: '14%', color: 'blue' },
-    { name: 'PTPN III', sga: '17%', color: 'red', highlight: true },
+  const peers = [
+    { name: 'Wilmar International', sga: '6–8%', mid: 7, color: 'emerald' },
+    { name: 'SMART (Sinarmas Agro)', sga: '8–10%', mid: 9, color: 'blue' },
+    { name: 'Triputra Agro Persada', sga: '9–11%', mid: 10, color: 'blue' },
+    { name: 'Golden Agri-Resources', sga: '9–11%', mid: 10, color: 'blue' },
+    { name: 'Astra Agro Lestari', sga: '11–13%', mid: 12, color: 'amber' },
+    { name: 'Median Industri', sga: '≈10%', mid: 10, color: 'white', isMedian: true },
+    { name: 'PTPN III (Holding)', sga: '17%', mid: 17, color: 'red', highlight: true },
   ];
 
   return (
-    <div className="h-full flex flex-col justify-start md:justify-center py-2 overflow-y-auto gap-3 md:gap-4 lg:gap-6">
+    <div className="h-full flex flex-col justify-start md:justify-center py-1 overflow-y-auto gap-2 md:gap-3">
       {/* Header */}
       <div>
-        <p className="text-[10px] md:text-xs font-medium text-red-400 tracking-[0.2em] uppercase mb-1 flex items-center gap-2">
+        <p className="text-[10px] md:text-xs font-medium text-red-400 tracking-[0.2em] uppercase mb-0.5 flex items-center gap-2">
           <AlertCircle className="w-3.5 h-3.5" /> Latar Belakang & Urgensi
         </p>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight">
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-tight leading-tight">
           Gap Efisiensi: SGA to Sales Ratio
         </h2>
-        <p className="text-gray-400 mt-1 text-[11px] md:text-sm">Perbandingan efisiensi operasional PTPN III terhadap Industri Perkebunan (Peers)</p>
+        <p className="text-gray-400 mt-0.5 text-[10px] md:text-xs">Perbandingan efisiensi operasional PTPN III terhadap peers perkebunan regional</p>
       </div>
 
       {/* Main Stats Comparison */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3">
         {/* Left: 2024 Full Year */}
         <motion.div
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="p-4 rounded-2xl glass-card border-l-4 border-red-500/50"
+          className="p-3 rounded-2xl glass-card border-l-4 border-red-500/50"
         >
-          <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-widest mb-3">Baseline Tahun 2024</div>
-          <div className="flex items-end gap-5 mb-4">
+          <div className="text-[9px] font-semibold text-gray-500 uppercase tracking-widest mb-2">Baseline Tahun 2024</div>
+          <div className="flex items-end gap-4 mb-2">
             <div>
-              <div className="text-[9px] text-gray-500 uppercase">Industri Avg</div>
-              <div className="text-3xl font-bold text-white">8–12<span className="text-base">%</span></div>
+              <div className="text-[8px] text-gray-500 uppercase">Median Industri</div>
+              <div className="text-2xl font-bold text-white">≈10<span className="text-sm">%</span></div>
             </div>
-            <div className="mb-2 text-red-500 animate-pulse">
-              <TrendingDown className="w-5 h-5 rotate-180" />
+            <div className="mb-1 text-red-500 animate-pulse">
+              <TrendingDown className="w-4 h-4 rotate-180" />
             </div>
             <div>
-              <div className="text-[9px] text-red-500 uppercase">PTPN III</div>
-              <div className="text-3xl font-bold text-red-500">21<span className="text-base">%</span></div>
+              <div className="text-[8px] text-red-500 uppercase">PTPN III</div>
+              <div className="text-2xl font-bold text-red-500">21<span className="text-sm">%</span></div>
             </div>
           </div>
-          <div className="p-2.5 bg-red-500/5 rounded-xl border border-red-500/10">
-            <p className="text-[11px] text-red-400/90 leading-relaxed italic">
-              "Rasio SGA PTPN III berada <strong>di atas kisaran industri</strong>, menunjukkan peluang signifikan untuk efisiensi biaya operasional & admin."
+          <div className="p-2 bg-red-500/5 rounded-lg border border-red-500/10">
+            <p className="text-[10px] text-red-400/90 leading-snug italic">
+              "Gap <strong>+11 ppt</strong> di atas median industri — peluang signifikan untuk efisiensi biaya."
             </p>
           </div>
         </motion.div>
@@ -534,57 +537,60 @@ function BackgroundSlide() {
           initial={{ x: 20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="p-4 rounded-2xl glass-card border-l-4 border-amber-500/50"
+          className="p-3 rounded-2xl glass-card border-l-4 border-amber-500/50"
         >
-          <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-widest mb-3">Posisi Quartal-3 2025</div>
-          <div className="flex items-end gap-5 mb-4">
+          <div className="text-[9px] font-semibold text-gray-500 uppercase tracking-widest mb-2">Posisi Quartal-3 2025</div>
+          <div className="flex items-end gap-4 mb-2">
             <div>
-              <div className="text-[9px] text-gray-500 uppercase">Peers Avg</div>
-              <div className="text-3xl font-bold text-white">9<span className="text-base">%</span></div>
+              <div className="text-[8px] text-gray-500 uppercase">Median Industri</div>
+              <div className="text-2xl font-bold text-white">≈10<span className="text-sm">%</span></div>
             </div>
-            <div className="mb-2 text-amber-500">
-              <TrendingUp className="w-5 h-5 rotate-180" />
+            <div className="mb-1 text-amber-500">
+              <TrendingUp className="w-4 h-4 rotate-180" />
             </div>
             <div>
-              <div className="text-[9px] text-amber-500 uppercase">PTPN III</div>
-              <div className="text-3xl font-bold text-amber-400">17<span className="text-base">%</span></div>
+              <div className="text-[8px] text-amber-500 uppercase">PTPN III</div>
+              <div className="text-2xl font-bold text-amber-400">17<span className="text-sm">%</span></div>
             </div>
           </div>
-          <p className="text-[11px] text-gray-400 leading-relaxed">
-            Meskipun membaik, rasio SGA PTPN III masih <strong>di atas kisaran industri</strong>. Gap ini menunjukkan ruang besar untuk perbaikan melalui efisiensi pola kerja.
+          <p className="text-[10px] text-gray-400 leading-snug">
+            Membaik dari 21% ke 17%, namun masih <strong>+7 ppt di atas median</strong>. Ruang besar untuk efisiensi pola kerja.
           </p>
         </motion.div>
       </div>
 
-      {/* Peers Breakdown Bar Chart Style */}
+      {/* Peers Benchmark Bar Chart */}
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4 }}
-        className="p-4 rounded-2xl glass-card bg-white/[0.02]"
+        className="p-3 rounded-2xl glass-card bg-white/[0.02]"
       >
-        <div className="flex items-center justify-between mb-4">
-          <h4 className="text-[10px] font-bold text-white uppercase tracking-wider">Benchmark SGA to Sales (Q3-2025)</h4>
-          <span className="text-[9px] text-gray-500 italic">*Data per Sept 2025</span>
+        <div className="flex items-center justify-between mb-2">
+          <h4 className="text-[9px] font-bold text-white uppercase tracking-wider">Benchmark SGA/Sales — Peers Perkebunan Regional</h4>
+          <span className="text-[7px] text-gray-500 italic">FY2023–FY2024</span>
         </div>
-        <div className="space-y-3">
-          {q3Data.map((peer, i) => (
-            <div key={i} className="space-y-1">
-              <div className="flex justify-between items-end px-1">
-                <span className={`text-[11px] ${peer.highlight ? 'text-white font-bold' : 'text-gray-400'}`}>{peer.name}</span>
-                <span className={`text-xs font-bold ${peer.highlight ? 'text-red-500' : 'text-white'}`}>{peer.sga}</span>
+        <div className="space-y-1.5">
+          {peers.map((peer, i) => (
+            <div key={i} className={`space-y-0.5 ${peer.isMedian ? 'pt-1.5 border-t border-dashed border-white/10' : ''}`}>
+              <div className="flex justify-between items-end px-0.5">
+                <span className={`text-[9px] ${peer.highlight ? 'text-white font-bold' : peer.isMedian ? 'text-gray-300 font-semibold italic' : 'text-gray-400'}`}>{peer.name}</span>
+                <span className={`text-[10px] font-bold ${peer.highlight ? 'text-red-500' : peer.isMedian ? 'text-gray-300' : peer.color === 'emerald' ? 'text-emerald-400' : peer.color === 'amber' ? 'text-amber-400' : 'text-white'}`}>{peer.sga}</span>
               </div>
-              <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
+              <div className="h-1 rounded-full bg-white/5 overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
-                  animate={{ width: `${(parseInt(peer.sga) / 21) * 100}%` }}
-                  transition={{ delay: 0.5 + i * 0.1, duration: 1 }}
-                  className={`h-full rounded-full ${peer.highlight ? 'bg-gradient-to-r from-red-600 to-red-400' : 'bg-white/20'}`}
+                  animate={{ width: `${(peer.mid / 22) * 100}%` }}
+                  transition={{ delay: 0.5 + i * 0.08, duration: 1 }}
+                  className={`h-full rounded-full ${peer.highlight ? 'bg-gradient-to-r from-red-600 to-red-400' : peer.isMedian ? 'bg-gradient-to-r from-gray-500 to-gray-400' : peer.color === 'emerald' ? 'bg-emerald-500/40' : peer.color === 'amber' ? 'bg-amber-500/40' : 'bg-white/20'}`}
                 />
               </div>
             </div>
           ))}
         </div>
+        <p className="text-[7px] text-gray-600 italic mt-2 pt-1.5 border-t border-white/5">
+          Sumber: Laporan Tahunan & Laporan Keuangan perusahaan perkebunan listed regional (AALI, TAPG, SMART, Wilmar, GAR) FY2023–FY2024; analisis Group of Cost.
+        </p>
       </motion.div>
     </div>
   );
@@ -947,46 +953,46 @@ function StreamDeepDiveSlide() {
 
           {/* ── PROCESS ── */}
           {activeTab === 'process' && (
-            <motion.div key="process" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} transition={{ duration: 0.25 }} className="flex flex-col gap-4">
+            <motion.div key="process" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} transition={{ duration: 0.25 }} className="flex flex-col gap-2">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">PTPN Green Ways of Working</h2>
-                <p className="text-xs text-gray-400 mt-1">Standar kerja rendah karbon · Fungsi Non-Operasional Kantor · Target 2026–2027</p>
+                <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight">PTPN Green Ways of Working</h2>
+                <p className="text-[10px] text-gray-400 mt-0.5">Standar kerja rendah karbon · Fungsi Non-Operasional Kantor · Target 2026–2027</p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {/* Policies */}
-                <div className="p-4 rounded-2xl glass-card border-t-2 border-cyan-500/30">
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 mb-3">
-                    <span className="text-sm">🏢</span>
-                    <span className="text-[9px] font-semibold uppercase tracking-wider text-cyan-400">Fungsi Non-Operasional (Kantor)</span>
+                <div className="p-3 rounded-2xl glass-card border-t-2 border-cyan-500/30">
+                  <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 mb-2">
+                    <span className="text-xs">🏢</span>
+                    <span className="text-[8px] font-semibold uppercase tracking-wider text-cyan-400">Fungsi Non-Operasional (Kantor)</span>
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     {['Hybrid Work untuk fungsi non-operasional', 'Virtual-First Meeting Policy', 'Green Travel Policy (Pembatasan perdin non-esensial)', 'Efisiensi Energi Kantor (AC, Listrik, Lampu)'].map((p, i) => (
-                      <motion.div key={i} initial={{ x: -12, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.1 + i * 0.07 }} className="flex items-start gap-2.5 p-2.5 rounded-xl bg-white/5">
-                        <div className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 bg-cyan-400" />
-                        <span className="text-white/90 text-xs leading-snug">{p}</span>
+                      <motion.div key={i} initial={{ x: -12, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.1 + i * 0.07 }} className="flex items-start gap-2 p-2 rounded-xl bg-white/5">
+                        <div className="w-1.5 h-1.5 rounded-full mt-1 shrink-0 bg-cyan-400" />
+                        <span className="text-white/90 text-[11px] leading-snug">{p}</span>
                       </motion.div>
                     ))}
                   </div>
                 </div>
                 {/* Expected Impact WFA */}
-                <div className="p-4 rounded-2xl glass-card flex flex-col gap-2">
-                  <div className="flex items-center justify-between mb-1">
-                    <h4 className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Expected Impact — WFA Policy</h4>
-                    <span className="text-[9px] text-gray-600">Scope: Fungsi Non-Ops</span>
+                <div className="p-3 rounded-2xl glass-card flex flex-col gap-1.5">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-[9px] font-semibold text-gray-500 uppercase tracking-wider">Expected Impact — WFA Policy</h4>
+                    <span className="text-[8px] text-gray-600">Scope: Fungsi Non-Ops</span>
                   </div>
                   {[
-                    { label: 'WFA Days Target (Non-Ops)', value: '6–8 hari', tag: 'Per Bulan', icon: <Clock className="w-3.5 h-3.5" />, color: 'text-cyan-400 bg-cyan-500/10', tagColor: 'text-cyan-400/70' },
-                    { label: 'Travel & Commute Cost', value: '−30%', tag: 'Cost & Carbon', icon: <TrendingUp className="w-3.5 h-3.5" />, color: 'text-emerald-400 bg-emerald-500/10', tagColor: 'text-emerald-400/70' },
-                    { label: 'Virtual Meeting Adoption', value: '70%', tag: 'Productivity', icon: <Globe className="w-3.5 h-3.5" />, color: 'text-blue-400 bg-blue-500/10', tagColor: 'text-blue-400/70' },
-                    { label: 'Carbon Emisi Komuter', value: '−25%', tag: 'ESG Impact', icon: <Leaf className="w-3.5 h-3.5" />, color: 'text-amber-400 bg-amber-500/10', tagColor: 'text-amber-400/70' },
+                    { label: 'WFA Days Target (Non-Ops)', value: '6–8 hari', tag: 'Per Bulan', icon: <Clock className="w-3 h-3" />, color: 'text-cyan-400 bg-cyan-500/10', tagColor: 'text-cyan-400/70' },
+                    { label: 'Travel & Commute Cost', value: '−30%', tag: 'Cost & Carbon', icon: <TrendingUp className="w-3 h-3" />, color: 'text-emerald-400 bg-emerald-500/10', tagColor: 'text-emerald-400/70' },
+                    { label: 'Virtual Meeting Adoption', value: '70%', tag: 'Productivity', icon: <Globe className="w-3 h-3" />, color: 'text-blue-400 bg-blue-500/10', tagColor: 'text-blue-400/70' },
+                    { label: 'Carbon Emisi Komuter', value: '−25%', tag: 'ESG Impact', icon: <Leaf className="w-3 h-3" />, color: 'text-amber-400 bg-amber-500/10', tagColor: 'text-amber-400/70' },
                   ].map((stat, i) => (
-                    <motion.div key={i} initial={{ x: 15, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.15 + i * 0.07 }} className="flex items-center gap-2.5 p-2 rounded-xl bg-white/5">
-                      <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${stat.color}`}>{stat.icon}</div>
+                    <motion.div key={i} initial={{ x: 15, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.15 + i * 0.07 }} className="flex items-center gap-2 p-1.5 rounded-lg bg-white/5">
+                      <div className={`w-6 h-6 rounded-md flex items-center justify-center shrink-0 ${stat.color}`}>{stat.icon}</div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-[9px] text-gray-400 truncate">{stat.label}</div>
-                        <div className="flex items-baseline gap-1.5">
-                          <span className="text-sm font-bold text-white">{stat.value}</span>
-                          <span className={`text-[8px] font-medium ${stat.tagColor}`}>{stat.tag}</span>
+                        <div className="text-[8px] text-gray-400 truncate">{stat.label}</div>
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-xs font-bold text-white">{stat.value}</span>
+                          <span className={`text-[7px] font-medium ${stat.tagColor}`}>{stat.tag}</span>
                         </div>
                       </div>
                     </motion.div>
@@ -994,37 +1000,36 @@ function StreamDeepDiveSlide() {
                 </div>
               </div>
               {/* Benchmark WFA/WFO */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <motion.div initial={{ y: 15, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.4 }} className="p-4 rounded-2xl glass-card border-l-4 border-cyan-500">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-2"><Globe className="w-3.5 h-3.5 text-cyan-400" /><span className="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Research — Hybrid Work Impact</span></div>
-                    <span className="text-[8px] text-gray-600 italic">*peer-reviewed studies</span>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <motion.div initial={{ y: 15, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.4 }} className="p-3 rounded-2xl glass-card border-l-4 border-cyan-500">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-1.5"><Globe className="w-3 h-3 text-cyan-400" /><span className="text-[10px] font-semibold text-cyan-400 uppercase tracking-wider">Research — Hybrid Work Impact</span></div>
+                    <span className="text-[7px] text-gray-600 italic">*peer-reviewed studies</span>
                   </div>
-                  <div className="space-y-2.5">
+                  <div className="space-y-2">
                     {[
                       { finding: 'Fully remote workers', impact: '−54% carbon footprint', source: 'Cornell–Microsoft, PNAS 2023' },
                       { finding: 'Hybrid 2–4 days WFH', impact: '−11 to 29% emissions', source: 'Cornell–Microsoft, PNAS 2023' },
                       { finding: 'Global hybrid adoption', impact: '75% maintain productivity', source: 'BCG Remote Work Survey, 2020' },
                     ].map((item, i) => (
-                      <div key={i} className="text-[10px]">
+                      <div key={i} className="text-[9px]">
                         <div className="flex justify-between mb-0.5">
                           <span className="text-gray-300 font-semibold">{item.finding}</span>
                           <span className="text-cyan-400 font-bold">{item.impact}</span>
                         </div>
-                        <div className="text-[8px] text-gray-600 italic">{item.source}</div>
+                        <div className="text-[7px] text-gray-600 italic">{item.source}</div>
                       </div>
                     ))}
-                    <div className="pt-2 border-t border-white/5 text-[9px] text-cyan-400/80 font-semibold">
+                    <div className="pt-1.5 border-t border-white/5 text-[8px] text-cyan-400/80 font-semibold">
                       💡 Rekomendasi PTPN: <span className="text-white">6–8 hari WFA/bulan (fungsi non-ops)</span>
-                      <div className="text-[8px] text-gray-600 italic font-normal mt-0.5">Ref: PNAS (Proceedings of the National Academy of Sciences), 2023</div>
                     </div>
                   </div>
                 </motion.div>
-                <motion.div initial={{ y: 15, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.5 }} className="p-4 rounded-2xl glass-card border-l-4 border-amber-500">
-                  <div className="flex items-center gap-2 mb-2"><Sparkles className="w-3.5 h-3.5 text-amber-400" /><span className="text-xs font-semibold text-amber-400 uppercase tracking-wider">Consultant Insight</span></div>
-                  <p className="text-gray-300 text-xs italic leading-relaxed">"Fully remote workers reduce carbon footprint by <span className="text-white font-semibold">up to 54%</span>, and hybrid workers (2–4 days WFH) by <span className="text-white font-semibold">11–29%</span> vs. onsite workers."</p>
-                  <p className="text-[10px] text-gray-500 mt-1.5">— Cornell University & Microsoft Research, PNAS 2023</p>
-                  <p className="text-[10px] text-amber-400/80 mt-2 pt-2 border-t border-white/5 leading-relaxed">💡 Implikasi PTPN: hybrid kantor dapat menurunkan biaya perjalanan & emisi secara signifikan.</p>
+                <motion.div initial={{ y: 15, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.5 }} className="p-3 rounded-2xl glass-card border-l-4 border-amber-500">
+                  <div className="flex items-center gap-1.5 mb-1.5"><Sparkles className="w-3 h-3 text-amber-400" /><span className="text-[10px] font-semibold text-amber-400 uppercase tracking-wider">Consultant Insight</span></div>
+                  <p className="text-gray-300 text-[11px] italic leading-snug">"Fully remote workers reduce carbon footprint by <span className="text-white font-semibold">up to 54%</span>, and hybrid workers (2–4 days WFH) by <span className="text-white font-semibold">11–29%</span> vs. onsite workers."</p>
+                  <p className="text-[9px] text-gray-500 mt-1">— Cornell University & Microsoft Research, PNAS 2023</p>
+                  <p className="text-[9px] text-amber-400/80 mt-1.5 pt-1.5 border-t border-white/5 leading-snug">💡 Implikasi PTPN: hybrid kantor dapat menurunkan biaya perjalanan & emisi secara signifikan.</p>
                 </motion.div>
               </div>
             </motion.div>
@@ -1103,7 +1108,7 @@ function GovernanceSlide() {
   const structure = [
     {
       role: 'Program Owner',
-      name: 'Group FGD Cost',
+      name: 'Group of Cost',
       kpi: 'Program on-track & budget',
       review: 'Monthly',
       color: 'emerald',
@@ -1132,8 +1137,8 @@ function GovernanceSlide() {
   };
 
   const escalation = [
-    { from: 'Green Ambassador', to: 'Group FGD Cost', trigger: 'Unit adoption < 60% dalam 2 minggu' },
-    { from: 'Group FGD Cost', to: 'BOD', trigger: 'Cost saving < 50% target di Day-60' },
+    { from: 'Green Ambassador', to: 'Group of Cost', trigger: 'Unit adoption < 60% dalam 2 minggu' },
+    { from: 'Group of Cost', to: 'BOD', trigger: 'Cost saving < 50% target di Day-60' },
   ];
 
   return (
@@ -1217,7 +1222,7 @@ function GovernanceSlide() {
           </p>
           <div className="grid grid-cols-3 gap-2">
             {[
-              { label: 'Weekly', desc: 'FGD Cost Report' },
+              { label: 'Weekly', desc: 'Group of Cost Report' },
               { label: 'Monthly', desc: 'Program Owner Review' },
               { label: 'Quarterly', desc: 'Board Report' },
             ].map((r, i) => (

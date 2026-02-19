@@ -2,7 +2,7 @@
 ### Panduan Penyampaian kepada Direksi
 
 > **Program**: Green SAKURA — Sustainable & Agile Work Culture for Responsible Corporate Action  
-> **Inisiator**: Group FGD Cost  
+> **Inisiator**: Group of Cost  
 > **Scope**: Holding PTPN III (Persero)  
 > **Durasi**: 90 Hari  
 
@@ -15,7 +15,7 @@
 >
 > *Bapak/Ibu Direksi yang kami hormati,*
 >
-> *Perkenankanlah kami dari Group FGD Cost mempresentasikan sebuah program yang kami beri nama **Green SAKURA** — singkatan dari **Sustainable & Agile Work Culture for Responsible Corporate Action**.*
+> *Perkenankanlah kami dari Group of Cost mempresentasikan sebuah program yang kami beri nama **Green SAKURA** — singkatan dari **Sustainable & Agile Work Culture for Responsible Corporate Action**.*
 >
 > *Program ini merupakan inisiatif transformasi pola kerja di lingkungan Holding PTPN III yang dirancang untuk berjalan dalam kurun waktu **90 hari**. Fokus utama program ini adalah meningkatkan **efisiensi biaya operasional** sekaligus mendorong **kepatuhan terhadap standar ESG** — Environmental, Social, dan Governance.*
 >
@@ -30,11 +30,15 @@
 
 > *"Bapak/Ibu, slide ini menunjukkan data faktual yang menjadi latar belakang urgensitas program ini.*
 >
-> *Berdasarkan analisis **SGA to Sales Ratio** — yaitu rasio biaya Selling, General & Administrative terhadap pendapatan — posisi PTPN III masih berada di atas kisaran industri perkebunan.*
+> *Berdasarkan analisis **SGA to Sales Ratio** — yaitu rasio biaya Selling, General & Administrative terhadap pendapatan — posisi PTPN III masih berada jauh di atas peers perkebunan regional.*
 >
-> *Pada **Tahun 2024 (Full Year)**, benchmark industri menunjukkan rasio SGA umumnya berada pada kisaran **8–12%**. Sementara PTPN III berada di angka **21%** — jauh di atas kisaran tersebut, menunjukkan peluang signifikan untuk efisiensi biaya operasional dan administrasi.*
+> *Dari benchmarking terhadap perusahaan perkebunan listed — Wilmar International di kisaran 6–8%, SMART (Sinarmas Agro) 8–10%, Triputra Agro Persada dan Golden Agri-Resources 9–11%, serta Astra Agro Lestari 11–13% — **median industri berada di sekitar 10%**.*
 >
-> *Meskipun pada **Kuartal 3 tahun 2025** angka ini membaik ke **17%**, rasio PTPN III masih di atas kisaran industri. Gap ini menunjukkan ruang besar untuk perbaikan melalui efisiensi pola kerja dan digitalisasi proses.*
+> *Sementara PTPN III pada **Tahun 2024** mencatatkan rasio **21%** — gap **+11 percentage points** di atas median. Ini menunjukkan peluang signifikan untuk efisiensi biaya operasional.*
+>
+> *Meskipun pada **Kuartal 3 tahun 2025** angka ini membaik ke **17%**, PTPN III masih **+7 ppt di atas median industri**. Gap ini menunjukkan ruang besar untuk perbaikan.*
+>
+> *Data ini bersumber dari Laporan Tahunan dan Laporan Keuangan perusahaan listed regional: AALI, TAPG, SMART, Wilmar, dan GAR.*
 >
 > *Inilah mengapa kami mengusulkan program Green SAKURA — untuk menurunkan gap ini melalui pendekatan yang **terstruktur, terukur, dan berkelanjutan**."*
 
@@ -140,18 +144,18 @@
 
 > *"Sebuah program sebaik apapun tidak akan berhasil tanpa **governance yang jelas**. Berikut adalah struktur akuntabilitas program Green SAKURA:*
 >
-> *Pertama, **Program Owner**: Group FGD Cost. Bertanggung jawab memastikan program berjalan on-track dan sesuai budget. Review dilakukan **monthly**.*
+> *Pertama, **Program Owner**: Group of Cost. Bertanggung jawab memastikan program berjalan on-track dan sesuai budget. Review dilakukan **monthly**.*
 >
 > *Kedua, **Sponsor**: Board of Directors. Memastikan strategic alignment dan ROI program. Review dilakukan **quarterly**.*
 >
 > *Ketiga, **Champion**: Green Ambassador di masing-masing unit. Bertanggung jawab atas unit adoption dan engagement. Review dilakukan **bi-weekly**.*
 >
 > *Untuk mekanisme eskalasi, kami menetapkan 2 trigger:*
-> 1. *Jika **unit adoption di bawah 60% dalam 2 minggu**, Green Ambassador akan eskalasi ke Group FGD Cost.*
-> 2. *Jika **cost saving di bawah 50% target pada Day-60**, Group FGD Cost akan eskalasi ke Board of Directors.*
+> 1. *Jika **unit adoption di bawah 60% dalam 2 minggu**, Green Ambassador akan eskalasi ke Group of Cost.*
+> 2. *Jika **cost saving di bawah 50% target pada Day-60**, Group of Cost akan eskalasi ke Board of Directors.*
 >
 > *Monitoring terpusat melalui **Dashboard Cost–ESG** secara real-time di Management Command Center — memantau konsumsi listrik, kertas, travel, dan cost saving. Dengan cadence pelaporan:*
-> - *Weekly — FGD Cost Report*
+> - *Weekly — Group of Cost Report*
 > - *Monthly — Program Owner Review*
 > - *Quarterly — Board Report*
 >

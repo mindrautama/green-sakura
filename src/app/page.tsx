@@ -19,15 +19,13 @@ export default function GreenSakuraPresentation() {
   const streamRef = useRef<MediaStream | null>(null);
   const audioElRef = useRef<HTMLAudioElement | null>(null);
 
-  const total = 10;
+  const total = 8;
   const slideTitles = [
     "Title Slide - Green SAKURA",
     "Latar Belakang: Gap Benchmark SGA",
     "Strategic Objectives",
     "Overview 3 Stream",
-    "People Stream: Green Behavior & Culture",
-    "Process Stream: Green Policy & Ways of Working",
-    "Technology Stream: Green Digital Enablement",
+    "3-Stream Deep Dive",
     "Program Governance",
     "Roadmap 90 Hari",
     "Closing Slide"
@@ -303,12 +301,10 @@ export default function GreenSakuraPresentation() {
               {current === 1 && <BackgroundSlide />}
               {current === 2 && <ObjectivesSlide />}
               {current === 3 && <StreamsOverviewSlide />}
-              {current === 4 && <PeopleStreamSlide />}
-              {current === 5 && <ProcessStreamSlide />}
-              {current === 6 && <TechnologyStreamSlide />}
-              {current === 7 && <GovernanceSlide />}
-              {current === 8 && <RoadmapSlide />}
-              {current === 9 && <ClosingSlide />}
+              {current === 4 && <StreamDeepDiveSlide />}
+              {current === 5 && <GovernanceSlide />}
+              {current === 6 && <RoadmapSlide />}
+              {current === 7 && <ClosingSlide />}
             </motion.div>
           </AnimatePresence>
         </main>
@@ -426,18 +422,18 @@ function TitleSlide() {
             damping: 20,
             delay: 0.1
           }}
-          className="relative inline-block mb-12"
+          className="relative inline-block mb-6 md:mb-8"
         >
-          <div className="w-40 h-40 rounded-[40px] bg-gradient-to-br from-[#22c55e]/20 to-[#16a34a]/5 border border-[#22c55e]/30 flex items-center justify-center glow-green shadow-[0_0_50px_rgba(34,197,94,0.15)]">
+          <div className="w-24 h-24 md:w-32 md:h-32 rounded-[24px] md:rounded-[40px] bg-gradient-to-br from-[#22c55e]/20 to-[#16a34a]/5 border border-[#22c55e]/30 flex items-center justify-center glow-green shadow-[0_0_50px_rgba(34,197,94,0.15)]">
             <motion.div
               animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.05, 0.95, 1] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
-              <Leaf className="w-20 h-20 text-[#22c55e]" />
+              <Leaf className="w-12 h-12 md:w-16 md:h-16 text-[#22c55e]" />
             </motion.div>
           </div>
           {/* Ornamental rings */}
-          <div className="absolute inset-0 rounded-[40px] border border-[#22c55e]/10 scale-125 animate-pulse" />
+          <div className="absolute inset-0 rounded-[24px] md:rounded-[40px] border border-[#22c55e]/10 scale-125 animate-pulse" />
         </motion.div>
 
         <motion.div
@@ -445,13 +441,13 @@ function TitleSlide() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          <p className="text-xs md:text-base font-bold text-[#22c55e] tracking-[0.5em] uppercase mb-6 drop-shadow-sm">
+          <p className="text-[10px] md:text-sm font-bold text-[#22c55e] tracking-[0.5em] uppercase mb-3 md:mb-4 drop-shadow-sm">
             ESG Transformation Program
           </p>
-          <h1 className="text-6xl md:text-[10rem] font-black text-gradient mb-8 tracking-tighter leading-none py-2">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-gradient mb-4 md:mb-6 tracking-tighter leading-none py-2">
             Green SAKURA
           </h1>
-          <p className="text-xl md:text-3xl text-gray-400 font-light leading-snug max-w-3xl mx-auto px-4 tracking-wide">
+          <p className="text-lg md:text-xl lg:text-2xl text-gray-400 font-light leading-snug max-w-3xl mx-auto px-4 tracking-wide">
             Sustainable & Agile Work Culture for <span className="text-white font-semibold underline underline-offset-8 decoration-[#22c55e]/40">Responsible Corporate Action</span>
           </p>
         </motion.div>
@@ -460,7 +456,7 @@ function TitleSlide() {
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="flex flex-wrap justify-center gap-4 md:gap-10 mt-16 md:mt-24"
+          className="flex flex-wrap justify-center gap-3 md:gap-6 mt-8 md:mt-12"
         >
           {[
             { label: 'Initiated By', value: 'Group of Cost' },
@@ -470,11 +466,11 @@ function TitleSlide() {
             <motion.div
               key={i}
               whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.05)" }}
-              className="px-10 py-6 rounded-3xl glass-card border border-white/10 relative overflow-hidden group"
+              className="px-6 md:px-8 py-3 md:py-4 rounded-2xl md:rounded-3xl glass-card border border-white/10 relative overflow-hidden group shadow-xl"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#22c55e]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="text-[10px] md:text-xs text-gray-500 uppercase tracking-[0.2em] mb-2 font-bold">{item.label}</div>
-              <div className="text-lg md:text-2xl font-bold text-white tracking-tight">{item.value}</div>
+              <div className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-[0.2em] mb-1 font-bold">{item.label}</div>
+              <div className="text-sm md:text-lg font-bold text-white tracking-tight">{item.value}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -492,43 +488,43 @@ function BackgroundSlide() {
   ];
 
   return (
-    <div className="h-full flex flex-col justify-start md:justify-center pt-4 md:pt-0 py-4 overflow-y-auto gap-6 md:gap-8">
+    <div className="h-full flex flex-col justify-start md:justify-center py-2 overflow-y-auto gap-3 md:gap-4 lg:gap-6">
       {/* Header */}
       <div>
-        <p className="text-xs md:text-sm font-medium text-red-400 tracking-[0.2em] uppercase mb-2 flex items-center gap-2">
-          <AlertCircle className="w-4 h-4" /> Latar Belakang & Urgensi
+        <p className="text-[10px] md:text-xs font-medium text-red-400 tracking-[0.2em] uppercase mb-1 flex items-center gap-2">
+          <AlertCircle className="w-3.5 h-3.5" /> Latar Belakang & Urgensi
         </p>
-        <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight">
           Gap Efisiensi: SGA to Sales Ratio
         </h2>
-        <p className="text-gray-400 mt-2 text-sm md:text-base">Perbandingan efisiensi operasional PTPN III terhadap Industri Perkebunan (Peers)</p>
+        <p className="text-gray-400 mt-1 text-[11px] md:text-sm">Perbandingan efisiensi operasional PTPN III terhadap Industri Perkebunan (Peers)</p>
       </div>
 
       {/* Main Stats Comparison */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
         {/* Left: 2024 Full Year */}
         <motion.div
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="p-6 rounded-3xl glass-card border-l-4 border-red-500/50"
+          className="p-4 rounded-2xl glass-card border-l-4 border-red-500/50"
         >
-          <div className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-4">Baseline Tahun 2024</div>
-          <div className="flex items-end gap-6 mb-6">
+          <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-widest mb-3">Baseline Tahun 2024</div>
+          <div className="flex items-end gap-5 mb-4">
             <div>
-              <div className="text-[10px] text-gray-500 uppercase">Peers Avg</div>
-              <div className="text-4xl font-bold text-white">8<span className="text-lg">%</span></div>
+              <div className="text-[9px] text-gray-500 uppercase">Peers Avg</div>
+              <div className="text-3xl font-bold text-white">8<span className="text-base">%</span></div>
             </div>
             <div className="mb-2 text-red-500 animate-pulse">
-              <TrendingDown className="w-6 h-6 rotate-180" />
+              <TrendingDown className="w-5 h-5 rotate-180" />
             </div>
             <div>
-              <div className="text-[10px] text-red-500 uppercase">PTPN III</div>
-              <div className="text-4xl font-bold text-red-500">21<span className="text-lg">%</span></div>
+              <div className="text-[9px] text-red-500 uppercase">PTPN III</div>
+              <div className="text-3xl font-bold text-red-500">21<span className="text-base">%</span></div>
             </div>
           </div>
-          <div className="p-3 bg-red-500/5 rounded-xl border border-red-500/10">
-            <p className="text-xs text-red-400/90 leading-relaxed italic">
+          <div className="p-2.5 bg-red-500/5 rounded-xl border border-red-500/10">
+            <p className="text-[11px] text-red-400/90 leading-relaxed italic">
               "Terdapat <strong>selisih 13%</strong> dalam SGA to Sales ratio yang menunjukkan inefisiensi biaya operasional & admin dibanding standar industri."
             </p>
           </div>
@@ -539,23 +535,23 @@ function BackgroundSlide() {
           initial={{ x: 20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="p-6 rounded-3xl glass-card border-l-4 border-amber-500/50"
+          className="p-4 rounded-2xl glass-card border-l-4 border-amber-500/50"
         >
-          <div className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-4">Posisi Quartal-3 2025</div>
-          <div className="flex items-end gap-6 mb-6">
+          <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-widest mb-3">Posisi Quartal-3 2025</div>
+          <div className="flex items-end gap-5 mb-4">
             <div>
-              <div className="text-[10px] text-gray-500 uppercase">Peers Avg</div>
-              <div className="text-4xl font-bold text-white">9<span className="text-lg">%</span></div>
+              <div className="text-[9px] text-gray-500 uppercase">Peers Avg</div>
+              <div className="text-3xl font-bold text-white">9<span className="text-base">%</span></div>
             </div>
             <div className="mb-2 text-amber-500">
-              <TrendingUp className="w-6 h-6 rotate-180" />
+              <TrendingUp className="w-5 h-5 rotate-180" />
             </div>
             <div>
-              <div className="text-[10px] text-amber-500 uppercase">PTPN III</div>
-              <div className="text-4xl font-bold text-amber-400">17<span className="text-lg">%</span></div>
+              <div className="text-[9px] text-amber-500 uppercase">PTPN III</div>
+              <div className="text-3xl font-bold text-amber-400">17<span className="text-base">%</span></div>
             </div>
           </div>
-          <p className="text-xs text-gray-400 leading-relaxed">
+          <p className="text-[11px] text-gray-400 leading-relaxed">
             Meskipun membaik, PTPN III masih mencatatkan <strong>SGA Rp 7.39 T</strong> — hampir 3x lipat rata-rata peers di Rp 2.78 T.
           </p>
         </motion.div>
@@ -566,20 +562,20 @@ function BackgroundSlide() {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4 }}
-        className="p-6 rounded-3xl glass-card bg-white/[0.02]"
+        className="p-4 rounded-2xl glass-card bg-white/[0.02]"
       >
-        <div className="flex items-center justify-between mb-6">
-          <h4 className="text-xs font-bold text-white uppercase tracking-wider">Benchmark SGA to Sales (Q3-2025)</h4>
-          <span className="text-[10px] text-gray-500 italic">*Data per Sept 2025</span>
+        <div className="flex items-center justify-between mb-4">
+          <h4 className="text-[10px] font-bold text-white uppercase tracking-wider">Benchmark SGA to Sales (Q3-2025)</h4>
+          <span className="text-[9px] text-gray-500 italic">*Data per Sept 2025</span>
         </div>
-        <div className="space-y-5">
+        <div className="space-y-3">
           {q3Data.map((peer, i) => (
-            <div key={i} className="space-y-1.5">
+            <div key={i} className="space-y-1">
               <div className="flex justify-between items-end px-1">
-                <span className={`text-xs ${peer.highlight ? 'text-white font-bold' : 'text-gray-400'}`}>{peer.name}</span>
-                <span className={`text-sm font-bold ${peer.highlight ? 'text-red-500' : 'text-white'}`}>{peer.sga}</span>
+                <span className={`text-[11px] ${peer.highlight ? 'text-white font-bold' : 'text-gray-400'}`}>{peer.name}</span>
+                <span className={`text-xs font-bold ${peer.highlight ? 'text-red-500' : 'text-white'}`}>{peer.sga}</span>
               </div>
-              <div className="h-2 rounded-full bg-white/5 overflow-hidden">
+              <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${(parseInt(peer.sga) / 21) * 100}%` }}
@@ -601,26 +597,42 @@ function ObjectivesSlide() {
     {
       label: 'Go',
       name: 'Lean',
-      desc: 'Pioneer of AI-driven production system.',
-      goal: 'Menurunkan carbon footprint & operational cost.',
-      icon: <Zap className="w-5 h-5" />,
+      desc: 'Pioneer of AI-driven production system & workforce-of-the-future.',
+      goal: 'Efisiensi pola kerja: Hybrid Work, Virtual-First Meeting, Workflow Automation.',
+      icon: <Zap className="w-4 h-4" />,
       color: 'amber'
     },
     {
       label: 'Go',
       name: 'Green',
-      desc: 'Leading green biz incubator.',
-      goal: 'Membangun budaya kerja ramah lingkungan & sadar aset.',
-      icon: <Leaf className="w-5 h-5" />,
+      desc: 'Leading green biz incubator & impact investing alliance.',
+      goal: 'Budaya hijau: Green Habit Campaign, Green Ambassador, Green Travel Policy.',
+      icon: <Leaf className="w-4 h-4" />,
       color: 'emerald'
     },
     {
       label: 'Go',
       name: 'AI',
-      desc: 'First global WEF digital lighthouse.',
-      goal: 'Mendorong paperless & digital ways of working.',
-      icon: <Cpu className="w-5 h-5" />,
+      desc: 'First global WEF digital lighthouse in ag sector.',
+      goal: 'Digital-first: AI Approval Routing, RPA, Predictive Analytics, Dashboard ESG.',
+      icon: <Cpu className="w-4 h-4" />,
       color: 'blue'
+    },
+    {
+      label: 'Go',
+      name: 'Secure',
+      desc: 'National champion of inclusive growth & operational resilience.',
+      goal: 'Ketahanan operasional: ESS, SOP Online, IHCMIS backbone, Standarisasi digital.',
+      icon: <Shield className="w-4 h-4" />,
+      color: 'cyan'
+    },
+    {
+      label: 'Go',
+      name: 'Beyond',
+      desc: 'Global innovation leader in specialty products & agri supply chain.',
+      goal: 'Standar global: ESG Dashboard, Executive Command Center, Cost Report compliance.',
+      icon: <Globe className="w-4 h-4" />,
+      color: 'purple'
     },
   ];
 
@@ -628,28 +640,31 @@ function ObjectivesSlide() {
     amber: 'text-amber-400 border-amber-500/20 bg-amber-500/10',
     emerald: 'text-emerald-400 border-emerald-500/20 bg-emerald-500/10',
     blue: 'text-blue-400 border-blue-500/20 bg-blue-500/10',
+    cyan: 'text-cyan-400 border-cyan-500/20 bg-cyan-500/10',
+    purple: 'text-purple-400 border-purple-500/20 bg-purple-500/10',
   };
 
   return (
-    <div className="h-full flex flex-col justify-center items-center py-4 overflow-y-auto w-full">
-      <div className="mb-6 text-center">
-        <p className="text-[10px] md:text-xs font-bold text-[#22c55e] tracking-[0.4em] uppercase mb-2">Strategic Framework</p>
-        <div className="flex items-center justify-center gap-6 mb-1">
+    <div className="h-full flex flex-col justify-center items-center py-2 overflow-y-auto w-full">
+      <div className="mb-5 text-center">
+        <p className="text-xs md:text-sm font-bold text-[#22c55e] tracking-[0.4em] uppercase mb-2">Strategic Framework</p>
+        <div className="flex items-center justify-center gap-5 mb-1">
           <div className="h-px w-20 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter">5G</h2>
+          <h2 className="text-5xl md:text-6xl font-black text-white tracking-tighter">5G</h2>
           <div className="h-px w-20 bg-gradient-to-l from-transparent via-white/20 to-transparent" />
         </div>
+        <p className="text-[10px] md:text-xs text-gray-500">Green SAKURA alignment dengan strategi korporat PTPN</p>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-4 md:gap-5 w-full items-start justify-center px-4">
+      <div className="flex flex-col md:flex-row gap-3 md:gap-4 w-full items-start justify-center px-2">
         {objectives.map((obj, i) => (
           <div key={i} className="flex-1 flex flex-col items-center w-full min-w-0">
             {/* Main 5G Card */}
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.1 + i * 0.1 }}
-              className="p-4 rounded-3xl glass-card border border-white/5 hover:border-white/20 transition-all flex flex-col h-40 md:h-44 w-full relative group"
+              transition={{ delay: 0.1 + i * 0.08 }}
+              className="p-4 rounded-2xl glass-card border border-white/5 hover:border-white/20 transition-all flex flex-col h-36 md:h-40 w-full relative group"
             >
               <div className={`w-9 h-9 rounded-xl flex items-center justify-center mb-3 ${colorMap[obj.color].split(' ').slice(2).join(' ')} border ${colorMap[obj.color].split(' ')[1]}`}>
                 <div className={colorMap[obj.color].split(' ')[0]}>
@@ -658,10 +673,10 @@ function ObjectivesSlide() {
               </div>
 
               <div className="mb-2">
-                <span className={`text-sm md:text-base font-black uppercase italic tracking-tighter ${colorMap[obj.color].split(' ')[0]}`}>{obj.label}</span>
-                <span className="text-sm md:text-base font-black uppercase italic tracking-tighter text-white ml-1.5">{obj.name}</span>
+                <span className={`text-sm font-black uppercase italic tracking-tighter ${colorMap[obj.color].split(' ')[0]}`}>{obj.label}</span>
+                <span className="text-sm font-black uppercase italic tracking-tighter text-white ml-1.5">{obj.name}</span>
               </div>
-              <p className="text-[10px] md:text-[11px] text-gray-400 leading-tight font-medium">
+              <p className="text-[10px] md:text-[11px] text-gray-400 leading-snug font-medium">
                 {obj.desc}
               </p>
             </motion.div>
@@ -670,19 +685,19 @@ function ObjectivesSlide() {
             <motion.div
               initial={{ scaleY: 0 }}
               animate={{ scaleY: 1 }}
-              transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
-              className={`w-px h-6 md:h-8 bg-gradient-to-b ${colorMap[obj.color].split(' ')[0].replace('text-', 'from-')} to-transparent opacity-40`}
+              transition={{ delay: 0.4 + i * 0.08, duration: 0.5 }}
+              className={`w-px h-5 md:h-6 bg-gradient-to-b ${colorMap[obj.color].split(' ')[0].replace('text-', 'from-')} to-transparent opacity-40`}
             />
 
-            {/* Focus Tujuan Box */}
+            {/* Green SAKURA Mapping Box */}
             <motion.div
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.6 + i * 0.1 }}
-              className={`p-3 rounded-2xl border ${colorMap[obj.color].split(' ')[1]} ${colorMap[obj.color].split(' ')[2]} w-full`}
+              transition={{ delay: 0.5 + i * 0.08 }}
+              className={`p-3 rounded-xl border ${colorMap[obj.color].split(' ')[1]} ${colorMap[obj.color].split(' ')[2]} w-full`}
             >
-              <div className="text-[8px] font-black uppercase tracking-widest text-gray-500 mb-1">Focus Tujuan</div>
-              <p className="text-[10px] md:text-[11px] text-white font-bold leading-tight">
+              <div className="text-[8px] font-black uppercase tracking-widest text-gray-500 mb-1">Green SAKURA</div>
+              <p className="text-[10px] md:text-[11px] text-white font-semibold leading-snug">
                 {obj.goal}
               </p>
             </motion.div>
@@ -705,7 +720,7 @@ function StreamsOverviewSlide() {
       bgColor: 'bg-emerald-500/10',
       borderColor: 'border-emerald-500/20',
       description: 'Membangun kesadaran & budaya kerja ramah lingkungan.',
-      focus: ['Green Habit Campaign', 'Engagement & Incentives', 'Green Ambassador'],
+      focus: ['Kampanye Green Habit', 'Microlearning ESG', 'Green Ambassador per Unit', 'Insentif & Recognition'],
       target: '85% Employee Participation'
     },
     {
@@ -717,7 +732,7 @@ function StreamsOverviewSlide() {
       bgColor: 'bg-cyan-500/10',
       borderColor: 'border-cyan-500/20',
       description: 'Standardisasi proses bisnis rendah karbon & efisien.',
-      focus: ['Hybrid Work Policy', 'E-SPJ & Digital Field Ops', 'Efficiency Controls'],
+      focus: ['Hybrid Work Policy', 'Virtual-First Meeting', 'Green Travel Policy', 'Efisiensi Energi Kantor'],
       target: '-30% Travel & Operational Cost'
     },
     {
@@ -729,57 +744,57 @@ function StreamsOverviewSlide() {
       bgColor: 'bg-blue-500/10',
       borderColor: 'border-blue-500/20',
       description: 'Penyediaan platform & alat kerja digital terintegrasi.',
-      focus: ['IHCMIS Backbone', 'Automation & Paperless', 'Data & Analytics'],
+      focus: ['Paperless Operations', 'Green IT Infrastructure', 'Workflow Automation', 'Data & Analytics'],
       target: '100% Digital Transformation'
     }
   ];
 
   return (
-    <div className="h-full flex flex-col justify-center gap-8 py-4 overflow-y-auto w-full">
+    <div className="h-full flex flex-col justify-center gap-4 py-2 overflow-y-auto w-full">
       <div className="text-center">
-        <p className="text-xs md:text-sm font-medium text-[#22c55e] tracking-[0.2em] uppercase mb-4">Implementation Pillars</p>
-        <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4">The 3-Stream Focus</h2>
-        <div className="h-1 w-24 bg-gradient-to-r from-[#22c55e] to-emerald-400 mx-auto rounded-full" />
+        <p className="text-[10px] md:text-xs font-medium text-[#22c55e] tracking-[0.2em] uppercase mb-2">Implementation Pillars</p>
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight mb-2">The 3-Stream Focus</h2>
+        <div className="h-1 w-16 bg-gradient-to-r from-[#22c55e] to-emerald-400 mx-auto rounded-full" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
         {streams.map((stream, i) => (
           <motion.div
             key={i}
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 + i * 0.1 }}
-            className={`p-8 rounded-[2.5rem] glass-card border-t-4 ${stream.borderColor.replace('500/20', '400')} relative overflow-hidden group hover:scale-[1.02] transition-transform duration-300`}
+            className={`p-4 md:p-5 rounded-2xl glass-card border-t-3 ${stream.borderColor.replace('500/20', '400')} relative overflow-hidden group hover:scale-[1.02] transition-transform duration-300`}
           >
-            <div className={`absolute top-0 right-0 p-10 opacity-[0.05] group-hover:opacity-[0.1] transition-opacity`}>
-              {React.cloneElement(stream.icon as React.ReactElement<any>, { className: "w-32 h-32" })}
+            <div className={`absolute top-0 right-0 p-6 opacity-[0.05] group-hover:opacity-[0.1] transition-opacity`}>
+              {React.cloneElement(stream.icon as React.ReactElement<any>, { className: "w-20 h-20" })}
             </div>
 
-            <div className={`w-16 h-16 rounded-2xl ${stream.bgColor} flex items-center justify-center mb-8 border ${stream.borderColor}`}>
-              {stream.icon}
+            <div className={`w-10 h-10 rounded-xl ${stream.bgColor} flex items-center justify-center mb-4 border ${stream.borderColor}`}>
+              {React.cloneElement(stream.icon as React.ReactElement<any>, { className: "w-5 h-5" })}
             </div>
 
-            <div className="mb-6">
-              <h3 className="text-2xl font-bold text-white mb-1">{stream.title}</h3>
-              <p className={`text-sm font-semibold uppercase tracking-widest ${stream.id === 'people' ? 'text-emerald-400' : stream.id === 'process' ? 'text-cyan-400' : 'text-blue-400'}`}>{stream.subtitle}</p>
+            <div className="mb-3">
+              <h3 className="text-lg font-bold text-white mb-0.5">{stream.title}</h3>
+              <p className={`text-[10px] font-semibold uppercase tracking-widest ${stream.id === 'people' ? 'text-emerald-400' : stream.id === 'process' ? 'text-cyan-400' : 'text-blue-400'}`}>{stream.subtitle}</p>
             </div>
 
-            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+            <p className="text-gray-400 text-[11px] leading-relaxed mb-3">
               {stream.description}
             </p>
 
-            <div className="space-y-3 mb-8">
+            <div className="space-y-1.5 mb-4">
               {stream.focus.map((item, j) => (
-                <div key={j} className="flex items-center gap-3">
-                  <div className={`w-1.5 h-1.5 rounded-full ${stream.id === 'people' ? 'bg-emerald-400' : stream.id === 'process' ? 'bg-cyan-400' : 'bg-blue-400'}`} />
-                  <span className="text-white/80 text-xs font-medium">{item}</span>
+                <div key={j} className="flex items-center gap-2">
+                  <div className={`w-1 h-1 rounded-full ${stream.id === 'people' ? 'bg-emerald-400' : stream.id === 'process' ? 'bg-cyan-400' : 'bg-blue-400'}`} />
+                  <span className="text-white/80 text-[11px] font-medium">{item}</span>
                 </div>
               ))}
             </div>
 
-            <div className={`mt-auto p-4 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-between`}>
-              <div className="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Main Target</div>
-              <div className="text-white font-bold text-sm tracking-tight">{stream.target}</div>
+            <div className={`mt-auto p-2.5 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between`}>
+              <div className="text-[9px] text-gray-500 uppercase font-bold tracking-wider">Main Target</div>
+              <div className="text-white font-bold text-xs tracking-tight">{stream.target}</div>
             </div>
           </motion.div>
         ))}
@@ -789,366 +804,260 @@ function StreamsOverviewSlide() {
 }
 
 
-function PeopleStreamSlide() {
-  return (
-    <div className="h-full flex flex-col justify-start md:justify-center gap-6 md:gap-8 pt-4 md:pt-0 py-8 overflow-y-auto">
-      <div className="flex flex-col md:flex-row gap-8 md:gap-12">
-        <div className="flex-1">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs md:text-sm font-medium mb-4 w-fit">
-            <Users className="w-4 h-4" /> People Stream
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Green Behavior & Culture</h2>
-          <p className="text-base md:text-lg text-gray-400 leading-relaxed mb-6">Perubahan perilaku karyawan menjadi lebih sadar lingkungan</p>
+function StreamDeepDiveSlide() {
+  const [activeTab, setActiveTab] = useState<'people' | 'process' | 'technology'>('people');
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {['Kampanye Green Habit', 'Microlearning ESG 5 menit', 'Green Ambassador per unit', 'Insentif & Recognition'].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.3 + i * 0.1 }}
-                className="flex items-center gap-3 p-3 rounded-xl bg-white/5"
-              >
-                <Check className="w-4 h-4 text-[#22c55e]" />
-                <span className="text-white text-xs md:text-sm">{item}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        <div className="w-full md:w-80">
-          <div className="p-6 rounded-2xl glass-card">
-            <h4 className="text-[10px] md:text-xs font-medium text-gray-500 uppercase tracking-wider mb-4">Target KPI</h4>
-            <div className="space-y-4">
-              {[
-                { label: 'Partisipasi Kampanye', value: '85%' },
-                { label: 'Penurunan Listrik', value: '-15%' },
-                { label: 'ESG Awareness', value: '90%' },
-              ].map((kpi, i) => (
-                <div key={i}>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-gray-400 text-[10px] md:text-xs">{kpi.label}</span>
-                    <span className="text-[#22c55e] font-bold text-xs md:text-sm">{kpi.value}</span>
-                  </div>
-                  <div className="progress-track h-1.5">
-                    <motion.div className="progress-fill h-full" initial={{ width: 0 }} animate={{ width: kpi.value }} transition={{ delay: 0.5 + i * 0.2, duration: 1 }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Benchmark & Insights */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-        <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.6 }} className="p-5 rounded-2xl glass-card border-l-4 border-emerald-500">
-          <div className="flex items-center gap-2 mb-3">
-            <Globe className="w-4 h-4 text-emerald-400" />
-            <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Global Benchmark</span>
-          </div>
-          <div className="space-y-2 text-sm">
-            <div className="flex justify-between"><span className="text-gray-400">Unilever — Green Culture Program</span><span className="text-white font-semibold">28% energy reduction</span></div>
-            <div className="flex justify-between"><span className="text-gray-400">Google — Carbon Neutral Office</span><span className="text-white font-semibold">100% renewable</span></div>
-            <div className="flex justify-between"><span className="text-gray-400">Patagonia — Employee ESG Pledge</span><span className="text-white font-semibold">95% participation</span></div>
-          </div>
-        </motion.div>
-        <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.7 }} className="p-5 rounded-2xl glass-card border-l-4 border-blue-500">
-          <div className="flex items-center gap-2 mb-3">
-            <Sparkles className="w-4 h-4 text-blue-400" />
-            <span className="text-xs font-semibold text-blue-400 uppercase tracking-wider">Consultant Insight</span>
-          </div>
-          <p className="text-gray-300 text-sm italic leading-relaxed">"Companies with strong ESG culture see <span className="text-white font-semibold">25% higher employee engagement</span> and <span className="text-white font-semibold">20% lower attrition</span>."</p>
-          <p className="text-xs text-gray-500 mt-2">— McKinsey & Company, 2024</p>
-        </motion.div>
-      </div>
-    </div>
-  );
-}
-
-function ProcessStreamSlide() {
-  const policyGroups = [
-    {
-      label: 'Fungsi Non-Operasional (Kantor)',
-      color: 'cyan',
-      dot: 'bg-cyan-400',
-      icon: '🏢',
-      policies: [
-        'Hybrid Work untuk fungsi non-operasional',
-        'Virtual-First Meeting Policy',
-        'E-SPJ (Surat Perjalanan Dinas Digital)',
-        'Efisiensi Energi Kantor (AC, Listrik, Lampu)',
-      ],
-    },
+  const tabs = [
+    { id: 'people' as const, label: 'People Stream', icon: <Users className="w-4 h-4" />, color: 'emerald' },
+    { id: 'process' as const, label: 'Process Stream', icon: <Settings className="w-4 h-4" />, color: 'cyan' },
+    { id: 'technology' as const, label: 'Technology Stream', icon: <Cpu className="w-4 h-4" />, color: 'blue' },
   ];
 
-  const colorBorder: Record<string, string> = {
-    cyan: 'border-cyan-500/30',
-    emerald: 'border-emerald-500/30',
+  const colorActive: Record<string, string> = {
+    emerald: 'bg-emerald-500/20 border-emerald-400 text-emerald-300',
+    cyan: 'bg-cyan-500/20    border-cyan-400    text-cyan-300',
+    blue: 'bg-blue-500/20    border-blue-400    text-blue-300',
   };
-  const colorText: Record<string, string> = {
-    cyan: 'text-cyan-400',
-    emerald: 'text-emerald-400',
-  };
-  const colorBg: Record<string, string> = {
-    cyan: 'bg-cyan-500/10',
-    emerald: 'bg-emerald-500/10',
-  };
+  const colorInactive = 'border-white/10 text-gray-400 hover:text-white hover:border-white/30';
 
   return (
-    <div className="h-full flex flex-col justify-start md:justify-center pt-4 md:pt-0 py-4 overflow-y-auto gap-4 md:gap-5">
-      {/* Header */}
-      <div>
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium mb-3 w-fit">
-          <Settings className="w-3.5 h-3.5" /> Process Stream
-        </div>
-        <h2 className="text-2xl md:text-4xl font-bold text-white tracking-tight">PTPN Green Ways of Working Framework</h2>
-        <p className="text-xs md:text-sm text-gray-400 mt-1">Standar kerja rendah karbon untuk fungsi kantor & operasional kebun PTPN</p>
-        <p className="text-[10px] text-cyan-400/70 mt-0.5">Green operating model untuk efisiensi biaya perjalanan, energi, dan kertas di PTPN · Target 2025–2027 vs baseline 2024</p>
+    <div className="h-full flex flex-col pt-2 overflow-hidden">
+      {/* Tab Navigation */}
+      <div className="flex gap-2 mb-4 flex-shrink-0">
+        {tabs.map(tab => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl border text-xs font-semibold transition-all duration-200 ${activeTab === tab.id ? colorActive[tab.color] : colorInactive
+              }`}
+          >
+            {tab.icon}
+            {tab.label}
+          </button>
+        ))}
       </div>
 
-      {/* Policy Groups + Impact */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-        {/* Two policy category cards */}
-        {policyGroups.map((group, gi) => (
-          <motion.div
-            key={gi}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 + gi * 0.15 }}
-            className={`p-4 rounded-2xl glass-card border-t-2 ${colorBorder[group.color]}`}
-          >
-            <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full ${colorBg[group.color]} border ${colorBorder[group.color]} mb-3`}>
-              <span className="text-sm">{group.icon}</span>
-              <span className={`text-[9px] font-semibold uppercase tracking-wider ${colorText[group.color]}`}>{group.label}</span>
-            </div>
-            <div className="space-y-2">
-              {group.policies.map((policy, pi) => (
-                <motion.div
-                  key={pi}
-                  initial={{ x: -15, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.3 + gi * 0.15 + pi * 0.07 }}
-                  className="flex items-start gap-2.5 p-2.5 rounded-xl bg-white/5"
-                >
-                  <div className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${group.dot}`} />
-                  <span className="text-white/90 text-xs leading-snug">{policy}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        ))}
+      {/* Tab Content */}
+      <div className="flex-1 overflow-y-auto">
+        <AnimatePresence mode="wait">
 
-        {/* Expected Impact */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="p-4 rounded-2xl glass-card flex flex-col gap-2"
-        >
-          <div className="flex items-center justify-between mb-1">
-            <h4 className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Expected Impact — WFA Policy</h4>
-            <span className="text-[9px] text-gray-600">Scope: Fungsi Non-Ops Kantor</span>
-          </div>
-          {[
-            { label: 'WFA Days Target (Non-Ops)', value: '6–8 hr', tag: 'Per Bulan', icon: <Clock className="w-3.5 h-3.5" />, color: 'text-cyan-400 bg-cyan-500/10', tagColor: 'text-cyan-400/70' },
-            { label: 'Travel & Commute Cost', value: '−30%', tag: 'Cost & Carbon', icon: <TrendingUp className="w-3.5 h-3.5" />, color: 'text-emerald-400 bg-emerald-500/10', tagColor: 'text-emerald-400/70' },
-            { label: 'Virtual Meeting Adoption', value: '70%', tag: 'Productivity', icon: <Globe className="w-3.5 h-3.5" />, color: 'text-blue-400 bg-blue-500/10', tagColor: 'text-blue-400/70' },
-            { label: 'Carbon Emisi Komuter', value: '−25%', tag: 'ESG Impact', icon: <Leaf className="w-3.5 h-3.5" />, color: 'text-amber-400 bg-amber-500/10', tagColor: 'text-amber-400/70' },
-          ].map((stat, i) => (
-            <motion.div
-              key={i}
-              initial={{ x: 20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.55 + i * 0.08 }}
-              className="flex items-center gap-2.5 p-2 rounded-xl bg-white/5"
-            >
-              <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${stat.color}`}>
-                {stat.icon}
+          {/* ── PEOPLE ── */}
+          {activeTab === 'people' && (
+            <motion.div key="people" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} transition={{ duration: 0.25 }} className="flex flex-col gap-4 h-full">
+              <div>
+                <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">Green Behavior & Culture</h2>
+                <p className="text-xs text-gray-400 mt-1">Perubahan perilaku karyawan menjadi lebih sadar lingkungan</p>
               </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-[9px] text-gray-400 truncate">{stat.label}</div>
-                <div className="flex items-baseline gap-1.5">
-                  <span className="text-sm font-bold text-white">{stat.value}</span>
-                  <span className={`text-[8px] font-medium ${stat.tagColor}`}>{stat.tag}</span>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Initiatives */}
+                <div className="md:col-span-2 grid grid-cols-2 gap-2">
+                  {[
+                    { title: 'Kampanye Green Habit', desc: 'Program harian hemat listrik, air & kertas di seluruh kantor holding' },
+                    { title: 'Microlearning ESG 5 menit', desc: 'Modul singkat mingguan via app tentang praktik kerja berkelanjutan' },
+                    { title: 'Green Ambassador per unit', desc: 'Satu perwakilan tiap direktorat sebagai agen perubahan ESG' },
+                    { title: 'Insentif & Recognition', desc: 'Penghargaan bulanan untuk unit dengan kontribusi green terbaik' },
+                  ].map((item, i) => (
+                    <motion.div key={i} initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.1 + i * 0.07 }} className="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-emerald-500/10">
+                      <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <div>
+                        <div className="text-white text-xs font-semibold">{item.title}</div>
+                        <div className="text-[10px] text-gray-500 mt-0.5 leading-snug">{item.desc}</div>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
+                {/* KPI */}
+                <div className="p-4 rounded-2xl glass-card">
+                  <h4 className="text-[10px] font-medium text-gray-500 uppercase tracking-wider mb-3">Target KPI</h4>
+                  <div className="space-y-3">
+                    {[{ label: 'Partisipasi Kampanye', value: '85%' }, { label: 'Penyelesaian Microlearning', value: '80%' }, { label: 'ESG Awareness', value: '90%' }].map((kpi, i) => (
+                      <div key={i}>
+                        <div className="flex justify-between mb-1">
+                          <span className="text-gray-400 text-[10px]">{kpi.label}</span>
+                          <span className="text-emerald-400 font-bold text-xs">{kpi.value}</span>
+                        </div>
+                        <div className="progress-track h-1.5">
+                          <motion.div className="progress-fill h-full" initial={{ width: 0 }} animate={{ width: kpi.value }} transition={{ delay: 0.3 + i * 0.15, duration: 1 }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              {/* Benchmark + Insight */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <motion.div initial={{ y: 15, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.4 }} className="p-4 rounded-2xl glass-card border-l-4 border-emerald-500">
+                  <div className="flex items-center gap-2 mb-2"><Globe className="w-3.5 h-3.5 text-emerald-400" /><span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Global Benchmark</span></div>
+                  <div className="space-y-1.5 text-xs">
+                    <div className="flex justify-between"><span className="text-gray-400">Unilever — Green Culture Program</span><span className="text-white font-semibold">28% energy reduction</span></div>
+                    <div className="flex justify-between"><span className="text-gray-400">Google — Carbon Neutral Office</span><span className="text-white font-semibold">100% renewable</span></div>
+                    <div className="flex justify-between"><span className="text-gray-400">Patagonia — Employee ESG Pledge</span><span className="text-white font-semibold">95% participation</span></div>
+                  </div>
+                </motion.div>
+                <motion.div initial={{ y: 15, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.5 }} className="p-4 rounded-2xl glass-card border-l-4 border-blue-500">
+                  <div className="flex items-center gap-2 mb-2"><Sparkles className="w-3.5 h-3.5 text-blue-400" /><span className="text-xs font-semibold text-blue-400 uppercase tracking-wider">Consultant Insight</span></div>
+                  <p className="text-gray-300 text-xs italic leading-relaxed">"Companies with strong ESG culture see <span className="text-white font-semibold">25% higher employee engagement</span> and <span className="text-white font-semibold">20% lower attrition</span>."</p>
+                  <p className="text-[10px] text-gray-500 mt-1.5">— McKinsey & Company, 2024</p>
+                </motion.div>
               </div>
             </motion.div>
-          ))}
-        </motion.div>
-      </div>
+          )}
 
-      {/* Bottom: Benchmark + Insight */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.65 }} className="p-4 rounded-2xl glass-card border-l-4 border-cyan-500">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-2">
-              <Globe className="w-3.5 h-3.5 text-cyan-400" />
-              <span className="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Benchmark — Industri Agro & Perkebunan</span>
-            </div>
-            <span className="text-[8px] text-gray-600 italic">*estimasi berbasis praktik industri</span>
-          </div>
-          <div className="space-y-3">
-            {[
-              { company: 'Wilmar International', role: 'Non-Ops (HQ/Regional)', wfa: 8, wfo: 14, note: '35% fuel reduction', source: 'Sustainability Report 2023' },
-              { company: 'Cargill Agri', role: 'Non-Ops (Office)', wfa: 10, wfo: 12, note: '40% paperless field ops', source: 'Annual Report 2023' },
-              { company: 'Astra Agro Lestari', role: 'Non-Ops (Kantor)', wfa: 6, wfo: 16, note: '100% digital inspection', source: 'Laporan Tahunan 2023' },
-            ].map((item, i) => (
-              <div key={i} className="text-[10px]">
-                <div className="flex justify-between items-center mb-0.5">
-                  <span className="text-gray-300 font-semibold">{item.company}</span>
-                  <span className="text-cyan-400/70 text-[9px]">{item.note}</span>
+          {/* ── PROCESS ── */}
+          {activeTab === 'process' && (
+            <motion.div key="process" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} transition={{ duration: 0.25 }} className="flex flex-col gap-4">
+              <div>
+                <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">PTPN Green Ways of Working</h2>
+                <p className="text-xs text-gray-400 mt-1">Standar kerja rendah karbon · Fungsi Non-Operasional Kantor · Target 2026–2027</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {/* Policies */}
+                <div className="p-4 rounded-2xl glass-card border-t-2 border-cyan-500/30">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 mb-3">
+                    <span className="text-sm">🏢</span>
+                    <span className="text-[9px] font-semibold uppercase tracking-wider text-cyan-400">Fungsi Non-Operasional (Kantor)</span>
+                  </div>
+                  <div className="space-y-2">
+                    {['Hybrid Work untuk fungsi non-operasional', 'Virtual-First Meeting Policy', 'Green Travel Policy (Pembatasan perdin non-esensial)', 'Efisiensi Energi Kantor (AC, Listrik, Lampu)'].map((p, i) => (
+                      <motion.div key={i} initial={{ x: -12, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.1 + i * 0.07 }} className="flex items-start gap-2.5 p-2.5 rounded-xl bg-white/5">
+                        <div className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 bg-cyan-400" />
+                        <span className="text-white/90 text-xs leading-snug">{p}</span>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
-                <div className="text-gray-500 mb-1 flex items-center gap-1.5">
-                  <span>{item.role} · <span className="text-amber-400 font-bold">{item.wfa} hr WFA</span> + <span className="text-emerald-400 font-bold">{item.wfo} hr WFO</span> /bln</span>
-                  <span className="text-[8px] text-gray-600 italic">· Src: {item.source}</span>
-                </div>
-                <div className="flex h-1.5 rounded-full overflow-hidden gap-px">
-                  <div className="bg-amber-400/70 rounded-l-full" style={{ width: `${(item.wfa / 22) * 100}%` }} />
-                  <div className="bg-emerald-400/50 rounded-r-full flex-1" />
+                {/* Expected Impact WFA */}
+                <div className="p-4 rounded-2xl glass-card flex flex-col gap-2">
+                  <div className="flex items-center justify-between mb-1">
+                    <h4 className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Expected Impact — WFA Policy</h4>
+                    <span className="text-[9px] text-gray-600">Scope: Fungsi Non-Ops</span>
+                  </div>
+                  {[
+                    { label: 'WFA Days Target (Non-Ops)', value: '6–8 hr', tag: 'Per Bulan', icon: <Clock className="w-3.5 h-3.5" />, color: 'text-cyan-400 bg-cyan-500/10', tagColor: 'text-cyan-400/70' },
+                    { label: 'Travel & Commute Cost', value: '−30%', tag: 'Cost & Carbon', icon: <TrendingUp className="w-3.5 h-3.5" />, color: 'text-emerald-400 bg-emerald-500/10', tagColor: 'text-emerald-400/70' },
+                    { label: 'Virtual Meeting Adoption', value: '70%', tag: 'Productivity', icon: <Globe className="w-3.5 h-3.5" />, color: 'text-blue-400 bg-blue-500/10', tagColor: 'text-blue-400/70' },
+                    { label: 'Carbon Emisi Komuter', value: '−25%', tag: 'ESG Impact', icon: <Leaf className="w-3.5 h-3.5" />, color: 'text-amber-400 bg-amber-500/10', tagColor: 'text-amber-400/70' },
+                  ].map((stat, i) => (
+                    <motion.div key={i} initial={{ x: 15, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.15 + i * 0.07 }} className="flex items-center gap-2.5 p-2 rounded-xl bg-white/5">
+                      <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${stat.color}`}>{stat.icon}</div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-[9px] text-gray-400 truncate">{stat.label}</div>
+                        <div className="flex items-baseline gap-1.5">
+                          <span className="text-sm font-bold text-white">{stat.value}</span>
+                          <span className={`text-[8px] font-medium ${stat.tagColor}`}>{stat.tag}</span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
-            ))}
-            <div className="mt-2 pt-2 border-t border-white/5 space-y-1">
-              <div className="text-[9px] text-cyan-400/80 font-semibold">
-                💡 Rekomendasi PTPN: <span className="text-white">6–8 hari WFA/bulan</span> untuk fungsi non-operasional kantor holding
+              {/* Benchmark WFA/WFO */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <motion.div initial={{ y: 15, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.4 }} className="p-4 rounded-2xl glass-card border-l-4 border-cyan-500">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2"><Globe className="w-3.5 h-3.5 text-cyan-400" /><span className="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Benchmark — Industri Agro</span></div>
+                    <span className="text-[8px] text-gray-600 italic">*estimasi praktik industri</span>
+                  </div>
+                  <div className="space-y-2.5">
+                    {[
+                      { company: 'Wilmar International', wfa: 8, wfo: 14, source: 'Sustainability Report 2023' },
+                      { company: 'Cargill Agri', wfa: 10, wfo: 12, source: 'Annual Report 2023' },
+                      { company: 'Astra Agro Lestari', wfa: 6, wfo: 16, source: 'Laporan Tahunan 2023' },
+                    ].map((item, i) => (
+                      <div key={i} className="text-[10px]">
+                        <div className="flex justify-between mb-0.5">
+                          <span className="text-gray-300 font-semibold">{item.company}</span>
+                          <span className="text-[8px] text-gray-600 italic">{item.source}</span>
+                        </div>
+                        <div className="text-gray-500 mb-1"><span className="text-amber-400 font-bold">{item.wfa} hr WFA</span> + <span className="text-emerald-400 font-bold">{item.wfo} hr WFO</span> /bln</div>
+                        <div className="flex h-1.5 rounded-full overflow-hidden">
+                          <div className="bg-amber-400/70 rounded-l-full" style={{ width: `${(item.wfa / 22) * 100}%` }} />
+                          <div className="bg-emerald-400/50 rounded-r-full flex-1" />
+                        </div>
+                      </div>
+                    ))}
+                    <div className="pt-2 border-t border-white/5 text-[9px] text-cyan-400/80 font-semibold">
+                      💡 Rekomendasi PTPN: <span className="text-white">6–8 hari WFA/bulan</span>
+                      <div className="text-[8px] text-gray-600 italic font-normal mt-0.5">Ref: Mercer Global Talent Trends 2024 · BCG Future of Work 2023</div>
+                    </div>
+                  </div>
+                </motion.div>
+                <motion.div initial={{ y: 15, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.5 }} className="p-4 rounded-2xl glass-card border-l-4 border-amber-500">
+                  <div className="flex items-center gap-2 mb-2"><Sparkles className="w-3.5 h-3.5 text-amber-400" /><span className="text-xs font-semibold text-amber-400 uppercase tracking-wider">Consultant Insight</span></div>
+                  <p className="text-gray-300 text-xs italic leading-relaxed">"Hybrid work policies reduce corporate carbon emissions by <span className="text-white font-semibold">30–50%</span> while improving employee productivity by <span className="text-white font-semibold">15%</span>."</p>
+                  <p className="text-[10px] text-gray-500 mt-1.5">— Boston Consulting Group, 2024</p>
+                  <p className="text-[10px] text-amber-400/80 mt-2 pt-2 border-t border-white/5 leading-relaxed">💡 Implikasi PTPN: hybrid kantor dapat menurunkan biaya perjalanan & emisi secara signifikan.</p>
+                </motion.div>
               </div>
-              <div className="text-[8px] text-gray-600 italic">
-                Ref: Mercer Global Talent Trends 2024 · BCG Future of Work Report 2023 · Gartner HR Survey 2024
+            </motion.div>
+          )}
+
+          {/* ── TECHNOLOGY ── */}
+          {activeTab === 'technology' && (
+            <motion.div key="technology" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} transition={{ duration: 0.25 }} className="flex flex-col gap-4">
+              <div>
+                <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">Green Digital Enablement</h2>
+                <p className="text-xs text-gray-400 mt-1">Teknologi sebagai enabler transformasi ESG — 4 pilar utama</p>
               </div>
-            </div>
-          </div>
-        </motion.div>
-        <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.75 }} className="p-4 rounded-2xl glass-card border-l-4 border-amber-500">
-          <div className="flex items-center gap-2 mb-2">
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span className="text-xs font-semibold text-amber-400 uppercase tracking-wider">Consultant Insight</span>
-          </div>
-          <p className="text-gray-300 text-xs italic leading-relaxed">"Hybrid work policies reduce corporate carbon emissions by <span className="text-white font-semibold">30–50%</span> while improving employee productivity by <span className="text-white font-semibold">15%</span> — applicable for both office and field-based organizations."</p>
-          <p className="text-[10px] text-gray-500 mt-1.5">— Boston Consulting Group, 2024</p>
-          <div className="mt-2 pt-2 border-t border-white/5">
-            <p className="text-[10px] text-amber-400/80 leading-relaxed">💡 Implikasi PTPN: digitalisasi kebun & hybrid kantor dapat menurunkan biaya perjalanan operasional dan inspeksi secara signifikan.</p>
-          </div>
-        </motion.div>
+              {/* 4 Pillars */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {[
+                  { icon: <Layers className="w-5 h-5" />, color: 'blue', title: 'Paperless Operations', desc: 'Eliminasi dokumen fisik di seluruh proses kerja', items: ['E-Signature & digital approval', 'IHCMIS — Paperless HC backbone', 'ESS — Layanan mandiri karyawan', 'SOP Online — Standarisasi digital'] },
+                  { icon: <Globe className="w-5 h-5" />, color: 'cyan', title: 'Green IT Infrastructure', desc: 'Infrastruktur TI hemat energi & scalable', items: ['Cloud-first server consolidation', 'Shared workspace & cloud storage', 'Energy monitoring dashboard IT'] },
+                  { icon: <Cpu className="w-5 h-5" />, color: 'purple', title: 'Workflow Automation', desc: 'Otomasi proses repetitif untuk efisiensi', items: ['AI-powered approval routing', 'Auto-notification & reminder', 'Robotic Process Automation (RPA)'] },
+                  { icon: <BarChart3 className="w-5 h-5" />, color: 'emerald', title: 'Data & Analytics', desc: 'Keputusan berbasis data, bukan asumsi', items: ['ESG & cost dashboard real-time', 'Predictive analytics HC', 'Executive Command Center'] },
+                ].map((p, i) => {
+                  const cm: Record<string, { border: string; icon: string; dot: string }> = {
+                    blue: { border: 'border-blue-500/40', icon: 'bg-blue-500/15 text-blue-400', dot: 'bg-blue-400' },
+                    cyan: { border: 'border-cyan-500/40', icon: 'bg-cyan-500/15 text-cyan-400', dot: 'bg-cyan-400' },
+                    purple: { border: 'border-purple-500/40', icon: 'bg-purple-500/15 text-purple-400', dot: 'bg-purple-400' },
+                    emerald: { border: 'border-emerald-500/40', icon: 'bg-emerald-500/15 text-emerald-400', dot: 'bg-emerald-400' },
+                  };
+                  return (
+                    <motion.div key={i} initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.1 + i * 0.08 }} className={`p-4 rounded-2xl glass-card border-t-2 ${cm[p.color].border} flex flex-col gap-3`}>
+                      <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${cm[p.color].icon}`}>{p.icon}</div>
+                      <div>
+                        <div className="text-sm font-bold text-white leading-tight">{p.title}</div>
+                        <div className="text-[10px] text-gray-500 mt-0.5 leading-snug">{p.desc}</div>
+                      </div>
+                      <div className="space-y-1.5 mt-auto">
+                        {p.items.map((item, j) => (
+                          <div key={j} className="flex items-start gap-1.5">
+                            <div className={`w-1 h-1 rounded-full mt-1.5 shrink-0 ${cm[p.color].dot}`} />
+                            <span className="text-[9px] md:text-[10px] leading-snug text-gray-400">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+              {/* Benchmark + Insight */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <motion.div initial={{ y: 15, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.45 }} className="p-4 rounded-2xl glass-card border-l-4 border-blue-500">
+                  <div className="flex items-center gap-2 mb-2"><Globe className="w-3.5 h-3.5 text-blue-400" /><span className="text-xs font-semibold text-blue-400 uppercase tracking-wider">Global Benchmark</span></div>
+                  <div className="space-y-1.5 text-xs">
+                    <div className="flex justify-between"><span className="text-gray-400">Siemens — Digital HR Platform</span><span className="text-white font-semibold">100% cloud HR</span></div>
+                    <div className="flex justify-between"><span className="text-gray-400">Microsoft — Hybrid Work + RPA</span><span className="text-white font-semibold">40% travel reduction</span></div>
+                    <div className="flex justify-between"><span className="text-gray-400">Adobe — E-signature Adoption</span><span className="text-white font-semibold">99% approval digital</span></div>
+                  </div>
+                </motion.div>
+                <motion.div initial={{ y: 15, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.55 }} className="p-4 rounded-2xl glass-card border-l-4 border-purple-500">
+                  <div className="flex items-center gap-2 mb-2"><Sparkles className="w-3.5 h-3.5 text-purple-400" /><span className="text-xs font-semibold text-purple-400 uppercase tracking-wider">Consultant Insight</span></div>
+                  <p className="text-gray-300 text-xs italic leading-relaxed">"Paperless & automated workflows yield <span className="text-white font-semibold">3–5× ROI</span> within 18 months, with <span className="text-white font-semibold">60% faster</span> approval cycles and near-zero document loss."</p>
+                  <p className="text-[10px] text-gray-500 mt-1.5">— Deloitte Digital Transformation, 2024</p>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+
+        </AnimatePresence>
       </div>
     </div>
   );
 }
 
-function TechnologyStreamSlide() {
-  const pillars = [
-    {
-      icon: <Layers className="w-5 h-5" />,
-      color: 'blue',
-      title: 'Paperless Operations',
-      desc: 'Eliminasi dokumen fisik di seluruh proses kerja',
-      items: ['E-Signature & digital approval', 'IHCMIS — Paperless HC backbone', 'Digitalisasi arsip & laporan'],
-    },
-    {
-      icon: <Globe className="w-5 h-5" />,
-      color: 'cyan',
-      title: 'Digital Collaboration',
-      desc: 'Platform kerja terpadu, tanpa batas lokasi',
-      items: ['Virtual-first meeting platform', 'Shared workspace & cloud storage', 'Real-time document co-editing'],
-    },
-    {
-      icon: <Cpu className="w-5 h-5" />,
-      color: 'purple',
-      title: 'Workflow Automation',
-      desc: 'Otomasi proses repetitif untuk efisiensi',
-      items: ['AI-powered approval routing', 'Auto-notification & reminder', 'Robotic Process Automation (RPA)'],
-    },
-    {
-      icon: <BarChart3 className="w-5 h-5" />,
-      color: 'emerald',
-      title: 'Data & Analytics',
-      desc: 'Keputusan berbasis data, bukan asumsi',
-      items: ['ESG & cost dashboard real-time', 'Predictive analytics HC', 'Executive Command Center'],
-    },
-  ];
 
-  const colorMap: Record<string, { pill: string; border: string; icon: string; dot: string }> = {
-    blue: { pill: 'bg-blue-500/10 border-blue-500/20 text-blue-400', border: 'border-blue-500/40', icon: 'bg-blue-500/15 text-blue-400', dot: 'bg-blue-400' },
-    cyan: { pill: 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400', border: 'border-cyan-500/40', icon: 'bg-cyan-500/15 text-cyan-400', dot: 'bg-cyan-400' },
-    purple: { pill: 'bg-purple-500/10 border-purple-500/20 text-purple-400', border: 'border-purple-500/40', icon: 'bg-purple-500/15 text-purple-400', dot: 'bg-purple-400' },
-    emerald: { pill: 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400', border: 'border-emerald-500/40', icon: 'bg-emerald-500/15 text-emerald-400', dot: 'bg-emerald-400' },
-  };
-
-  return (
-    <div className="h-full flex flex-col justify-start md:justify-center pt-4 md:pt-0 py-4 overflow-y-auto gap-5 md:gap-6">
-      {/* Header */}
-      <div>
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium mb-3 w-fit">
-          <Cpu className="w-3.5 h-3.5" /> Technology Stream
-        </div>
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-2">
-          <div>
-            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">Green Digital Enablement</h2>
-            <p className="text-sm text-gray-400 mt-1">Teknologi sebagai enabler transformasi ESG — 4 pilar utama</p>
-          </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 self-start md:self-auto">
-            <Shield className="w-3.5 h-3.5 text-blue-400" />
-            <span className="text-[10px] text-gray-400">Backbone: <span className="text-white font-semibold">IHCMIS</span></span>
-          </div>
-        </div>
-      </div>
-
-      {/* 4 Pillars */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-        {pillars.map((p, i) => (
-          <motion.div
-            key={i}
-            initial={{ y: 25, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 + i * 0.1 }}
-            className={`p-4 rounded-2xl glass-card border-t-2 ${colorMap[p.color].border} flex flex-col gap-3`}
-          >
-            <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${colorMap[p.color].icon}`}>
-              {p.icon}
-            </div>
-            <div>
-              <div className="text-sm font-bold text-white leading-tight">{p.title}</div>
-              <div className="text-[10px] text-gray-500 mt-0.5 leading-snug">{p.desc}</div>
-            </div>
-            <div className="space-y-1.5 mt-auto">
-              {p.items.map((item, j) => (
-                <div key={j} className="flex items-start gap-1.5">
-                  <div className={`w-1 h-1 rounded-full mt-1.5 shrink-0 ${colorMap[p.color].dot}`} />
-                  <span className={`text-[9px] md:text-[10px] leading-snug ${item.includes('IHCMIS') ? 'text-white font-semibold' : 'text-gray-400'}`}>
-                    {item}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Bottom: Global Benchmark + Insight */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.6 }} className="p-4 rounded-2xl glass-card border-l-4 border-blue-500">
-          <div className="flex items-center gap-2 mb-3">
-            <Globe className="w-4 h-4 text-blue-400" />
-            <span className="text-xs font-semibold text-blue-400 uppercase tracking-wider">Global Benchmark</span>
-          </div>
-          <div className="space-y-2 text-xs">
-            <div className="flex justify-between"><span className="text-gray-400">Siemens — Digital HR Platform</span><span className="text-white font-semibold">100% cloud HR</span></div>
-            <div className="flex justify-between"><span className="text-gray-400">Microsoft — Hybrid Work + RPA</span><span className="text-white font-semibold">40% travel reduction</span></div>
-            <div className="flex justify-between"><span className="text-gray-400">Adobe — E-signature Adoption</span><span className="text-white font-semibold">99% approval digital</span></div>
-          </div>
-        </motion.div>
-        <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.7 }} className="p-4 rounded-2xl glass-card border-l-4 border-purple-500">
-          <div className="flex items-center gap-2 mb-2">
-            <Sparkles className="w-4 h-4 text-purple-400" />
-            <span className="text-xs font-semibold text-purple-400 uppercase tracking-wider">Consultant Insight</span>
-          </div>
-          <p className="text-gray-300 text-xs md:text-sm italic leading-relaxed">"Digital enablement across people, process & technology reduces operational cost by <span className="text-white font-semibold">30–40%</span> and cuts corporate carbon footprint by <span className="text-white font-semibold">25%</span> within 2 years."</p>
-          <p className="text-[10px] text-gray-500 mt-2">— McKinsey Digital, 2024</p>
-        </motion.div>
-      </div>
-    </div>
-  );
-}
 
 
 
@@ -1156,24 +1065,17 @@ function GovernanceSlide() {
   const structure = [
     {
       role: 'Program Owner',
-      name: 'HC Director',
+      name: 'Group FGD Cost',
       kpi: 'Program on-track & budget',
       review: 'Monthly',
       color: 'emerald',
     },
     {
       role: 'Sponsor',
-      name: 'Direksi',
+      name: 'BOD',
       kpi: 'Strategic alignment & ROI',
       review: 'Quarterly',
       color: 'amber',
-    },
-    {
-      role: 'PMO',
-      name: 'FGD COST',
-      kpi: 'Milestone delivery & reporting',
-      review: 'Weekly',
-      color: 'cyan',
     },
     {
       role: 'Champion',
@@ -1192,28 +1094,27 @@ function GovernanceSlide() {
   };
 
   const escalation = [
-    { from: 'Green Ambassador', to: 'FGD COST (PMO)', trigger: 'Unit adoption < 60% dalam 2 minggu' },
-    { from: 'FGD COST (PMO)', to: 'HC Director', trigger: 'Milestone Day-30 tidak tercapai' },
-    { from: 'HC Director', to: 'Direksi', trigger: 'Cost saving < 50% target di Day-60' },
+    { from: 'Green Ambassador', to: 'Group FGD Cost', trigger: 'Unit adoption < 60% dalam 2 minggu' },
+    { from: 'Group FGD Cost', to: 'BOD', trigger: 'Cost saving < 50% target di Day-60' },
   ];
 
   return (
-    <div className="h-full flex flex-col justify-start md:justify-center pt-4 md:pt-0 py-4 overflow-y-auto gap-6 md:gap-8">
+    <div className="h-full flex flex-col justify-start md:justify-center py-2 overflow-y-auto gap-3 md:gap-4 lg:gap-6">
       {/* Header */}
       <div>
-        <p className="text-xs md:text-sm font-medium text-[#22c55e] tracking-[0.2em] uppercase mb-2">Program Governance</p>
-        <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">Struktur & Akuntabilitas</h2>
+        <p className="text-[10px] md:text-xs font-medium text-[#22c55e] tracking-[0.2em] uppercase mb-1">Program Governance</p>
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight">Struktur & Akuntabilitas</h2>
       </div>
 
       {/* Role Cards with KPI */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+      <div className="grid grid-cols-3 gap-2 md:gap-3">
         {structure.map((item, i) => (
           <motion.div
             key={i}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.15 + i * 0.1 }}
-            className="p-4 md:p-5 rounded-2xl glass-card flex flex-col gap-3"
+            className="p-3 md:p-4 rounded-2xl glass-card flex flex-col gap-2"
           >
             {/* Role badge */}
             <div className={`inline-flex items-center self-start px-2 py-1 rounded-full border text-[9px] md:text-[10px] font-semibold uppercase tracking-wider ${colorMap[item.color]}`}>
@@ -1241,9 +1142,9 @@ function GovernanceSlide() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.55 }}
-          className="p-5 rounded-2xl glass-card border-l-4 border-red-500/60"
+          className="p-4 rounded-2xl glass-card border-l-4 border-red-500/60"
         >
-          <div className="flex items-center gap-2 mb-4">
+          <div className="flex items-center gap-2 mb-3">
             <Zap className="w-4 h-4 text-red-400" />
             <span className="text-xs font-semibold text-red-400 uppercase tracking-wider">Eskalasi Path</span>
           </div>
@@ -1266,20 +1167,20 @@ function GovernanceSlide() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.65 }}
-          className="p-5 rounded-2xl glass-card border-l-4 border-[#22c55e]/60"
+          className="p-4 rounded-2xl glass-card border-l-4 border-[#22c55e]/60"
         >
-          <div className="flex items-center gap-2 mb-4">
+          <div className="flex items-center gap-2 mb-3">
             <BarChart3 className="w-4 h-4 text-[#22c55e]" />
             <span className="text-xs font-semibold text-[#22c55e] uppercase tracking-wider">Dashboard Cost–ESG</span>
             <span className="ml-auto px-2 py-0.5 rounded-full bg-[#22c55e]/10 text-[#22c55e] text-[9px] font-medium">Real-time</span>
           </div>
-          <p className="text-xs text-gray-400 mb-4 leading-relaxed">
+          <p className="text-[11px] text-gray-400 mb-3 leading-relaxed">
             Monitoring terpusat di Management Command Center — konsumsi listrik, kertas, travel, dan cost saving.
           </p>
           <div className="grid grid-cols-3 gap-2">
             {[
-              { label: 'Weekly', desc: 'PMO Report' },
-              { label: 'Monthly', desc: 'HC Director Review' },
+              { label: 'Weekly', desc: 'FGD Cost Report' },
+              { label: 'Monthly', desc: 'Program Owner Review' },
               { label: 'Quarterly', desc: 'Board Report' },
             ].map((r, i) => (
               <div key={i} className="p-2 rounded-xl bg-white/5 text-center">
@@ -1302,7 +1203,7 @@ function RoadmapSlide() {
       items: [
         { name: 'Green Pledge', desc: 'Komitmen bersama seluruh pimpinan dan karyawan untuk mendukung inisiatif ramah lingkungan.' },
         { name: 'WFA Policy Deployment', desc: 'Penerbitan kebijakan Work From Anywhere untuk mengurangi mobilitas dan penggunaan fasilitas.' },
-        { name: 'Online Meeting Policy', desc: 'Standarisasi pertemuan daring untuk meminimalisir emisi karbon dari perjalanan dinas.' },
+        { name: 'Virtual-First Meeting Policy', desc: 'Standarisasi pertemuan daring untuk meminimalisir emisi karbon dari perjalanan dinas.' },
         { name: 'Campaign Start', desc: 'Peluncuran kampanye kesadaran ESG melalui berbagai kanal komunikasi internal.' }
       ]
     },
@@ -1312,8 +1213,8 @@ function RoadmapSlide() {
       items: [
         { name: 'Paperless Recruitment', desc: 'Digitalisasi penuh proses rekrutmen untuk mengeliminasi penggunaan kertas secara total.' },
         { name: 'WFA Implementation Sync', desc: 'Sinkronisasi dan evaluasi efektivitas pelaksanaan kebijakan kerja jarak jauh di seluruh unit.' },
-        { name: 'Travel Approval App', desc: 'Implementasi aplikasi persetujuan perjalanan dinas yang mengutamakan urgensi dan efisiensi.' },
-        { name: 'Folder Standard', desc: 'Penetapan standar pengelolaan dokumen digital untuk proses kerja yang lebih terorganisir.' }
+        { name: 'ESS Deployment', desc: 'Peluncuran Employee Self Service untuk layanan mandiri karyawan secara digital.' },
+        { name: 'SOP Online Deployment', desc: 'Peluncuran standarisasi proses digital untuk memastikan konsistensi operasional di seluruh unit.' }
       ]
     },
     {
@@ -1328,38 +1229,38 @@ function RoadmapSlide() {
   ];
 
   return (
-    <div className="h-full flex flex-col justify-start md:justify-center pt-4 md:pt-0 py-8 overflow-y-auto">
-      <div className="mb-8 md:mb-12 text-center md:text-left">
-        <p className="text-xs md:text-sm font-medium text-[#22c55e] tracking-[0.2em] uppercase mb-4">Quick Wins</p>
-        <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight">Roadmap 90 Hari</h2>
+    <div className="h-full flex flex-col justify-start md:justify-center py-2 overflow-y-auto gap-3 md:gap-4">
+      <div className="text-center md:text-left">
+        <p className="text-[10px] md:text-xs font-medium text-[#22c55e] tracking-[0.2em] uppercase mb-1">Quick Wins</p>
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight">Roadmap 90 Hari</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
         {phases.map((phase, i) => (
           <motion.div
             key={i}
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 + i * 0.15 }}
-            className="p-8 rounded-3xl glass-card flex flex-col h-full"
+            className="p-4 md:p-5 rounded-2xl glass-card flex flex-col h-full"
           >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-[#22c55e]/10 border border-[#22c55e]/20 flex items-center justify-center">
-                <Clock className="w-6 h-6 text-[#22c55e]" />
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-[#22c55e]/10 border border-[#22c55e]/20 flex items-center justify-center">
+                <Clock className="w-5 h-5 text-[#22c55e]" />
               </div>
               <div>
-                <div className="text-3xl font-bold text-white">Day {phase.day}</div>
-                <div className="text-sm text-gray-500">{phase.title}</div>
+                <div className="text-xl font-bold text-white">Day {phase.day}</div>
+                <div className="text-[11px] text-gray-500">{phase.title}</div>
               </div>
             </div>
-            <div className="space-y-4 flex-grow">
+            <div className="space-y-2.5 flex-grow">
               {phase.items.map((item, j) => (
                 <div key={j} className="flex flex-col gap-1">
-                  <div className="flex items-center gap-3 text-white font-semibold text-sm">
+                  <div className="flex items-center gap-2 text-white font-semibold text-xs">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#22c55e] shrink-0" />
                     {item.name}
                   </div>
-                  <p className="text-[11px] text-gray-400 leading-relaxed ml-[18px]">
+                  <p className="text-[10px] text-gray-400 leading-relaxed ml-[14px]">
                     {item.desc}
                   </p>
                 </div>
@@ -1379,18 +1280,18 @@ function ClosingSlide() {
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="mb-12"
+          className="mb-8"
         >
-          <Sparkles className="w-20 h-20 text-[#22c55e] mx-auto mb-8" />
+          <Sparkles className="w-16 h-16 text-[#22c55e] mx-auto mb-6" />
         </motion.div>
 
         <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3 }}>
-          <p className="text-xs md:text-sm font-medium text-[#22c55e] tracking-[0.3em] uppercase mb-4 md:mb-6">Strategic Power Position</p>
-          <h2 className="text-3xl md:text-6xl font-bold text-white mb-6 md:mb-8 tracking-tight leading-tight px-4">
+          <p className="text-[10px] md:text-xs font-medium text-[#22c55e] tracking-[0.3em] uppercase mb-3 md:mb-4">Strategic Power Position</p>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 tracking-tight leading-tight px-4">
             ESG sebagai penggerak <span className="text-gradient">Efisiensi</span> & Keberlanjutan
           </h2>
-          <p className="text-base md:text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto mb-8 md:mb-12 px-4">
-            Green SAKURA mentransformasi pola kerja operasional menjadi lebih efisien, hemat biaya, dan ramah lingkungan.
+          <p className="text-sm md:text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto mb-6 md:mb-8 px-4">
+            Melalui <span className="text-emerald-400 font-semibold">People</span>, <span className="text-cyan-400 font-semibold">Process</span>, dan <span className="text-blue-400 font-semibold">Technology</span> — Green SAKURA mentransformasi pola kerja menjadi lebih efisien, hemat biaya, dan ramah lingkungan.
           </p>
         </motion.div>
 
@@ -1400,7 +1301,7 @@ function ClosingSlide() {
           transition={{ delay: 0.5 }}
           className="flex flex-wrap justify-center gap-3 md:gap-6 px-4"
         >
-          {['Cost Efficiency', 'Operational Excellence', 'ESG Driven'].map((label, i) => (
+          {['Cost Efficiency', 'Green Ways of Working', 'ESG Driven'].map((label, i) => (
             <div key={i} className="px-4 md:px-6 py-2 md:py-3 rounded-full glass-card text-white text-xs md:text-sm font-medium">
               {label}
             </div>

@@ -620,7 +620,7 @@ function ObjectivesSlide() {
     {
       label: 'Go',
       name: 'Green',
-      desc: 'Leading green biz incubator & impact investing alliance.',
+      desc: 'Leading green biz incubator & global impact investing alliance partner.',
       items: [
         { text: 'Green Habit Campaign', stream: 'people' as const },
         { text: 'Green Ambassador', stream: 'people' as const },
@@ -645,7 +645,7 @@ function ObjectivesSlide() {
     {
       label: 'Go',
       name: 'Secure',
-      desc: 'National champion of inclusive growth & operational resilience.',
+      desc: 'National champion of inclusive growth for EntrePlanters and diversified crops.',
       items: [
         { text: 'ESS', stream: 'technology' as const },
         { text: 'SOP Online', stream: 'technology' as const },
@@ -658,7 +658,7 @@ function ObjectivesSlide() {
     {
       label: 'Go',
       name: 'Beyond',
-      desc: 'Global innovation leader in specialty products & agri supply chain.',
+      desc: 'Global innovation leader in specialty products and agri supply chain.',
       items: [
         { text: 'ESG Dashboard', stream: 'technology' as const },
         { text: 'Executive Command Center', stream: 'technology' as const },

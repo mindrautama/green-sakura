@@ -280,7 +280,7 @@ export default function GreenSakuraPresentation() {
           </div>
 
           <div className="text-right hidden md:block md:order-3">
-            <div className="text-xs text-gray-500">PTPN III Holding</div>
+            <div className="text-xs text-gray-500">PTPN </div>
             <div className="text-sm font-medium text-white">Group of Cost</div>
           </div>
         </header>
@@ -486,7 +486,7 @@ function BackgroundSlide() {
     { name: 'Golden Agri-Resources', sga: '9–11%', mid: 10, color: 'blue' },
     { name: 'Astra Agro Lestari', sga: '11–13%', mid: 12, color: 'amber' },
     { name: 'Median Industri', sga: '≈10%', mid: 10, color: 'white', isMedian: true },
-    { name: 'PTPN III (Holding)', sga: '17%', mid: 17, color: 'red', highlight: true },
+    { name: 'PTPN', sga: '17%', mid: 17, color: 'red', highlight: true },
   ];
 
   return (
@@ -499,7 +499,7 @@ function BackgroundSlide() {
         <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-tight leading-tight">
           Gap Efisiensi: SGA to Sales Ratio
         </h2>
-        <p className="text-gray-400 mt-0.5 text-[10px] md:text-xs">Perbandingan efisiensi operasional PTPN III terhadap peers perkebunan regional</p>
+        <p className="text-gray-400 mt-0.5 text-[10px] md:text-xs">Perbandingan efisiensi operasional PTPN terhadap peers perkebunan regional</p>
       </div>
 
       {/* Main Stats Comparison */}
@@ -521,7 +521,7 @@ function BackgroundSlide() {
               <TrendingDown className="w-4 h-4 rotate-180" />
             </div>
             <div>
-              <div className="text-[8px] text-red-500 uppercase">PTPN III</div>
+              <div className="text-[8px] text-red-500 uppercase">PTPN</div>
               <div className="text-2xl font-bold text-red-500">21<span className="text-sm">%</span></div>
             </div>
           </div>
@@ -549,7 +549,7 @@ function BackgroundSlide() {
               <TrendingUp className="w-4 h-4 rotate-180" />
             </div>
             <div>
-              <div className="text-[8px] text-amber-500 uppercase">PTPN III</div>
+              <div className="text-[8px] text-amber-500 uppercase">PTPN</div>
               <div className="text-2xl font-bold text-amber-400">17<span className="text-sm">%</span></div>
             </div>
           </div>

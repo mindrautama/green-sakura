@@ -131,7 +131,7 @@
 >
 > *Keempat, **Go Secure** — ESS, SOP Online, dan IHCMIS dari **Technology stream**, ditambah Standarisasi Digital dari **Process stream**, memperkuat ketahanan operasional.*
 >
-> *Dan kelima, **Go Beyond** — ESG Dashboard dan Executive Command Center dari **Technology stream**, serta Cost Report compliance dari **Process stream**, menyiapkan PTPN menuju standar ESG global.*
+> *Dan kelima, **Go Beyond** — ESG & Cost Reporting yang selaras standar global (GRI/ISSB) dan Executive Command Center dari **Technology stream**, serta Stakeholder Transparency Report dari **Process stream**, menyiapkan PTPN menuju standar ESG global.*
 >
 > *Jadi, Green SAKURA adalah **akselerator** bagi kelima pilar strategis ini — dan setiap inisiatif bisa di-trace kembali ke stream People, Process, atau Technology."*
 
@@ -187,7 +187,7 @@
 > ### **Day 90 — SCALE** (Pengukuran & Penghargaan)
 > *"Dan pada 30 hari terakhir, kita scale dan ukur hasilnya:*
 > 1. ***Dashboard Live** — peluncuran dashboard pemantauan indikator ESG dan efisiensi biaya secara real-time.*
-> 2. ***Cost Report** — laporan komprehensif hasil penghematan biaya operasional melalui program Green SAKURA.*
+> 2. ***Stakeholder Transparency Report** — laporan ESG & penghematan biaya yang selaras dengan standar pelaporan global (GRI/ISSB).*
 > 3. ***Champion Award** — penghargaan bagi unit yang menunjukkan dedikasi terbaik dalam penerapan budaya kerja hijau.*
 >
 > *Dengan roadmap ini, dalam 90 hari kita sudah bisa melihat **quick wins** yang nyata dan terukur."*

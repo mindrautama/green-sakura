@@ -658,11 +658,11 @@ function ObjectivesSlide() {
     {
       label: 'Go',
       name: 'Beyond',
-      desc: 'Global innovation leader in specialty products and agri supply chain.',
+      desc: 'Global innovation leader — ESG & cost reporting aligned with global sustainability standards.',
       items: [
-        { text: 'ESG Dashboard', stream: 'technology' as const },
+        { text: 'ESG & Cost Reporting (GRI/ISSB-aligned)', stream: 'technology' as const },
         { text: 'Executive Command Center', stream: 'technology' as const },
-        { text: 'Cost Report', stream: 'process' as const },
+        { text: 'Stakeholder Transparency Report', stream: 'process' as const },
       ],
       icon: <Globe className="w-4 h-4" />,
       color: 'purple'
@@ -1048,7 +1048,7 @@ function StreamDeepDiveSlide() {
                   { icon: <Layers className="w-5 h-5" />, color: 'blue', title: 'Paperless Operations', desc: 'Eliminasi dokumen fisik di seluruh proses kerja', items: ['E-Signature & digital approval', 'IHCMIS — Paperless HC backbone', 'ESS — Layanan mandiri karyawan', 'SOP Online — Standarisasi digital'] },
                   { icon: <Globe className="w-5 h-5" />, color: 'cyan', title: 'Green IT Infrastructure', desc: 'Infrastruktur TI hemat energi & scalable', items: ['Cloud-first server consolidation', 'Shared workspace & cloud storage', 'Energy monitoring dashboard IT'] },
                   { icon: <Cpu className="w-5 h-5" />, color: 'purple', title: 'Workflow Automation', desc: 'Otomasi proses repetitif untuk efisiensi', items: ['AI-powered approval routing', 'Auto-notification & reminder', 'Robotic Process Automation (RPA)'] },
-                  { icon: <BarChart3 className="w-5 h-5" />, color: 'emerald', title: 'Data & Analytics', desc: 'Keputusan berbasis data, bukan asumsi', items: ['ESG & cost dashboard real-time', 'Predictive analytics HC', 'Executive Command Center'] },
+                  { icon: <BarChart3 className="w-5 h-5" />, color: 'emerald', title: 'Data & Analytics', desc: 'Keputusan berbasis data, bukan asumsi', items: ['ESG & Cost Reporting (GRI/ISSB)', 'Predictive analytics HC', 'Executive Command Center'] },
                 ].map((p, i) => {
                   const cm: Record<string, { border: string; icon: string; dot: string }> = {
                     blue: { border: 'border-blue-500/40', icon: 'bg-blue-500/15 text-blue-400', dot: 'bg-blue-400' },
@@ -1265,7 +1265,7 @@ function RoadmapSlide() {
       title: 'Scale',
       items: [
         { name: 'Dashboard Live', desc: 'Peluncuran dashboard pemantauan indikator ESG dan efisiensi biaya secara real-time.' },
-        { name: 'Cost Report', desc: 'Laporan komprehensif hasil penghematan biaya operasional melalui program Green SAKURA.' },
+        { name: 'Stakeholder Transparency Report', desc: 'Laporan ESG & penghematan biaya yang selaras dengan standar pelaporan global (GRI/ISSB).' },
         { name: 'Champion Award', desc: 'Penghargaan bagi unit yang menunjukkan dedikasi terbaik dalam penerapan budaya kerja hijau.' }
       ]
     },

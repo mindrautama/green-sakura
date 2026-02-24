@@ -486,7 +486,7 @@ function BackgroundSlide() {
     { name: 'Golden Agri-Resources', sga: '9–11%', mid: 10, color: 'blue' },
     { name: 'Astra Agro Lestari', sga: '11–13%', mid: 12, color: 'amber' },
     { name: 'Median Industri', sga: '≈10%', mid: 10, color: 'white', isMedian: true },
-    { name: 'PTPN', sga: '17%', mid: 17.72, color: 'red', highlight: true },
+    { name: 'PTPN', sga: '17%', mid: 17, color: 'red', highlight: true },
   ];
 
   return (
@@ -550,11 +550,11 @@ function BackgroundSlide() {
             </div>
             <div>
               <div className="text-[8px] text-amber-500 uppercase">PTPN</div>
-              <div className="text-2xl font-bold text-amber-400">17.72<span className="text-sm">%</span></div>
+              <div className="text-2xl font-bold text-amber-400">17<span className="text-sm">%</span></div>
             </div>
           </div>
           <p className="text-[10px] text-gray-400 leading-snug">
-            Membaik dari 21% ke 17.72%, namun masih <strong>+7 ppt di atas median</strong>. Ruang besar untuk efisiensi pola kerja.
+            Membaik dari 21% ke 17%, namun masih <strong>+7 ppt di atas median</strong>. Ruang besar untuk efisiensi pola kerja.
           </p>
         </motion.div>
       </div>

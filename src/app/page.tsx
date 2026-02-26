@@ -6,7 +6,7 @@ import {
   Leaf, Users, Settings, Cpu, TrendingUp, Shield, Award, Clock,
   ChevronLeft, ChevronRight, Sparkles, ArrowRight, Target, Zap,
   Check, BarChart3, Globe, Layers, Mic, MicOff, AlertCircle, TrendingDown,
-  ArrowDown
+  ArrowDown, Building2, Home
 } from 'lucide-react';
 
 export default function GreenSakuraPresentation() {
@@ -19,13 +19,14 @@ export default function GreenSakuraPresentation() {
   const streamRef = useRef<MediaStream | null>(null);
   const audioElRef = useRef<HTMLAudioElement | null>(null);
 
-  const total = 8;
+  const total = 9;
   const slideTitles = [
     "Title Slide - Green SAKURA",
     "Latar Belakang: Gap Benchmark SGA",
     "Strategic Objectives",
     "Overview 3 Stream",
     "3-Stream Deep Dive",
+    "Global Trend: Hybrid Work & RTO",
     "Program Governance",
     "Roadmap 90 Hari",
     "Closing Slide"
@@ -286,7 +287,7 @@ export default function GreenSakuraPresentation() {
         </header>
 
         {/* Slide Area */}
-        <main className="flex-1 px-6 md:px-16 pb-8 overflow-y-auto md:overflow-hidden">
+        <main className="flex-1 px-6 md:px-16 pb-8 overflow-y-auto">
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
@@ -299,12 +300,13 @@ export default function GreenSakuraPresentation() {
             >
               {current === 0 && <TitleSlide />}
               {current === 1 && <BackgroundSlide />}
-              {current === 2 && <StreamsOverviewSlide />}
-              {current === 3 && <StreamDeepDiveSlide />}
-              {current === 4 && <ObjectivesSlide />}
-              {current === 5 && <GovernanceSlide />}
-              {current === 6 && <RoadmapSlide />}
-              {current === 7 && <ClosingSlide />}
+              {current === 2 && <ObjectivesSlide />}
+              {current === 3 && <StreamsOverviewSlide />}
+              {current === 4 && <StreamDeepDiveSlide />}
+              {current === 5 && <HybridTrendSlide />}
+              {current === 6 && <GovernanceSlide />}
+              {current === 7 && <RoadmapSlide />}
+              {current === 8 && <ClosingSlide />}
             </motion.div>
           </AnimatePresence>
         </main>
@@ -851,6 +853,134 @@ function StreamsOverviewSlide() {
   );
 }
 
+
+function HybridTrendSlide() {
+  const trends = [
+    {
+      phase: '01',
+      era: '2020 – 2022',
+      title: 'WFA: Work From Anywhere',
+      sub: 'Respon Krisis Pandemi',
+      desc: 'Pandemi membuktikan efektivitas remote work. Produktivitas awal naik signifikan (+13%), namun memicu risiko burnout jangka panjang dan erosi budaya korporat.',
+      icon: <Home className="w-6 h-6 text-amber-400" />,
+      accent: 'amber',
+      stats: [
+        { label: 'Uplift Produktivitas', val: '+13%*', pos: true },
+        { label: 'Risiko Burnout', val: 'Tinggi', pos: false },
+      ],
+    },
+    {
+      phase: '02',
+      era: '2023 – 2024',
+      title: 'RTO Pressure & Response',
+      sub: 'Uji Coba Kehadiran Fisik Penuh',
+      desc: 'Eksperimen RTO (Return to Office) penuh oleh sejumlah perusahaan besar memicu resistensi talenta (turnover risk) dan penyesuaian menuju keseimbangan baru.',
+      icon: <Building2 className="w-6 h-6 text-red-400" />,
+      accent: 'red',
+      stats: [
+        { label: 'Attrition (Knowledge Work)', val: 'Meningkat', pos: false },
+        { label: 'Sentimen Karyawan', val: 'Resistensi', pos: false },
+      ],
+    },
+    {
+      phase: '03',
+      era: '2025 – Present',
+      title: 'Structured Hybrid',
+      sub: 'Model Kerja Pasca-Konvergensi',
+      desc: 'Konsolidasi global pada model 2–3 hari onsite. Terbukti menurunkan attrition sebesar 35% dibandingkan model full onsite sekaligus mengoptimalkan biaya SGA.',
+      icon: <Layers className="w-6 h-6 text-emerald-400" />,
+      accent: 'emerald',
+      stats: [
+        { label: 'Turnover Reduction', val: '-35%**', pos: true },
+        { label: 'SGA/Space Savings', val: '15–20%***', pos: true },
+      ],
+    },
+  ];
+
+  const accentMap: Record<string, { border: string; bg: string; text: string; badge: string }> = {
+    amber: { border: 'border-amber-500/30', bg: 'bg-amber-500/10', text: 'text-amber-400', badge: 'bg-amber-500/20 text-amber-300 border-amber-400/30' },
+    red: { border: 'border-red-500/30', bg: 'bg-red-500/10', text: 'text-red-400', badge: 'bg-red-500/20 text-red-300 border-red-400/30' },
+    emerald: { border: 'border-emerald-500/30', bg: 'bg-emerald-500/10', text: 'text-emerald-400', badge: 'bg-emerald-500/20 text-emerald-300 border-emerald-400/30' },
+  };
+
+  return (
+    <div className="h-full flex flex-col justify-start md:justify-center py-2 gap-3 relative">
+      {/* Header */}
+      <div className="text-center">
+        <p className="text-xs md:text-sm font-bold text-[#22c55e] tracking-[0.4em] uppercase mb-2 flex items-center justify-center gap-2">
+          <Globe className="w-4 h-4" /> Global Work Paradigm Shift
+        </p>
+        <h2 className="text-2xl md:text-4xl font-black text-white tracking-tighter leading-tight mb-1">
+          Hybrid Work: Macro Trends
+        </h2>
+        <p className="text-xs md:text-sm text-gray-400 font-light max-w-4xl mx-auto leading-relaxed">
+          Industri global berkonvergensi pada model <strong className="text-emerald-400">hybrid terstruktur (2–3 hari onsite)</strong> sebagai solusi optimal yang menyeimbangkan kolaborasi fisik dengan fleksibilitas yang diinginkan talenta berkinerja tinggi.
+        </p>
+      </div>
+
+      {/* Trend Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {trends.map((t, i) => {
+          const a = accentMap[t.accent];
+          return (
+            <motion.div
+              key={i}
+              initial={{ y: 24, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.1 + i * 0.12 }}
+              className={`relative flex flex-col p-5 rounded-2xl glass-card border ${a.border} overflow-hidden group hover:scale-[1.02] transition-all`}
+            >
+              {/* Phase badge */}
+              <div className={`absolute top-4 right-4 text-[10px] font-black px-2 py-0.5 rounded-full border ${a.badge}`}>
+                FASE {t.phase}
+              </div>
+
+              {/* Icon */}
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${a.bg} border ${a.border}`}>
+                {t.icon}
+              </div>
+
+              {/* Text */}
+              <div className={`text-[10px] font-bold uppercase tracking-widest mb-1 ${a.text}`}>{t.era}</div>
+              <h3 className="text-lg font-bold text-white mb-0.5">{t.title}</h3>
+              <p className={`text-xs font-semibold mb-3 ${a.text}`}>{t.sub}</p>
+              <p className="text-xs text-gray-400 leading-relaxed flex-1">{t.desc}</p>
+
+              {/* Stats */}
+              <div className="mt-4 pt-3 border-t border-white/10 grid grid-cols-2 gap-2">
+                {t.stats.map((s, j) => (
+                  <div key={j} className="text-center">
+                    <div className={`text-sm font-black ${s.pos ? 'text-emerald-400' : 'text-red-400'}`}>{s.val}</div>
+                    <div className="text-[9px] text-gray-500 uppercase tracking-wide">{s.label}</div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* PTPN Positioning Note */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6 }}
+        className="p-4 rounded-2xl border border-[#22c55e]/30 bg-[#22c55e]/5 text-center"
+      >
+        <p className="text-sm text-gray-300 leading-relaxed">
+          <span className="text-[#22c55e] font-bold">Strategic Focus:</span> Adopsi <strong className="text-white">Structured Hybrid</strong> ditujukan bagi <strong className="text-emerald-400">fungsi G&A dan Knowledge Workers</strong> di Kantor Pusat & Regional sebagai lever efisiensi SGA tanpa mengganggu produktivitas operasional lapangan.
+        </p>
+      </motion.div>
+
+      {/* Footnotes */}
+      <div className="flex justify-center gap-6 mt-2 pt-2 border-t border-white/5">
+        <span className="text-[8px] text-gray-600 italic">*Stanford/Bloom Research</span>
+        <span className="text-[8px] text-gray-600 italic">**Bloom et al., Nature 2024</span>
+        <span className="text-[8px] text-gray-600 italic">***JLL/CBRE Real Estate Reports</span>
+      </div>
+    </div>
+  );
+}
 
 function StreamDeepDiveSlide() {
   const [activeTab, setActiveTab] = useState<'people' | 'process' | 'technology'>('people');

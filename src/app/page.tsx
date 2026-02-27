@@ -23,10 +23,10 @@ export default function GreenSakuraPresentation() {
   const slideTitles = [
     "Title Slide - Green SAKURA",
     "Latar Belakang: Gap Benchmark SGA",
-    "Strategic Objectives",
     "Overview 3 Stream",
     "3-Stream Deep Dive",
     "Global Trend: Hybrid Work & RTO",
+    "Strategic Objectives",
     "Program Governance",
     "Roadmap 90 Hari",
     "Closing Slide"
@@ -300,10 +300,10 @@ export default function GreenSakuraPresentation() {
             >
               {current === 0 && <TitleSlide />}
               {current === 1 && <BackgroundSlide />}
-              {current === 2 && <ObjectivesSlide />}
-              {current === 3 && <StreamsOverviewSlide />}
-              {current === 4 && <StreamDeepDiveSlide />}
-              {current === 5 && <HybridTrendSlide />}
+              {current === 2 && <StreamsOverviewSlide />}
+              {current === 3 && <StreamDeepDiveSlide />}
+              {current === 4 && <HybridTrendSlide />}
+              {current === 5 && <ObjectivesSlide />}
               {current === 6 && <GovernanceSlide />}
               {current === 7 && <RoadmapSlide />}
               {current === 8 && <ClosingSlide />}
